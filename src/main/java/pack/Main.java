@@ -4,4 +4,7 @@ package pack;
  * Created by Mezentsev.Y on 5/18/2016.
  */
 public class Main {
+    public static void main(String[] args) {
+
+    }
 }
