@@ -3,6 +3,7 @@ package com.mezentsev_tomin.adminpanel.utils;
 import com.mezentsev_tomin.adminpanel.beans.User;
 import com.mezentsev_tomin.adminpanel.util.HibernateUtil;
 import org.hibernate.Session;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -10,13 +11,15 @@ import org.junit.Test;
  */
 public class DBAtogeneratorTest {
 
-    @Test
+    //@Ignore
+    @Test()
     public void generateUsers(){
         final int count = 500;
         Session session = null;
         session = HibernateUtil.getSessionFactory().openSession();
         for (long i = 1; i<=count; i++){
-            User user = new User(i, "User" + i, "login" + i, "user" + i + "@gmail.com", "password" + i, "/photos/user" + i +".jpg", "Hi, dude!!!");
+            User user = new User(i, "User" + i, "login" + i, "user" + i + "@gmail.com", "password" + i, "/photos/user" +
+                    i +".jpg", "Hi, dude!!!");
             session.beginTransaction();
             session.save(user);
             session.getTransaction().commit();
