@@ -4,39 +4,39 @@ import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by Mezentsev.Y on 5/19/2016.
  */
 
-@Entity(name="users")
+@Entity
+@Table(name = "users")
 public class User {
 
     @Id
     @Generated("default")
     @Column(name="id")
-    private Long id_user;
+    private Long id;
     @Column(name="name")
     private String name;
-
     @Column(name="login")
     private String login;
     @Column(name="email")
     private String email;
     @Column(name="password")
     private String password;
-
     @Column(name="photo_path")
     private String photo_path;
     @Column(name="description")
     private String description;
 
-    public User(Long id_user, String login, String email, String password, String name, String photo_path, String description) {
-        this.id_user = id_user;
+    public User(Long id, String name, String login, String email, String password, String photo_path, String description) {
+        this.id = id;
+        this.name = name;
         this.login = login;
         this.email = email;
         this.password = password;
-        this.name = name;
         this.photo_path = photo_path;
         this.description = description;
     }
@@ -45,12 +45,12 @@ public class User {
 
     }
 
-    public Long getId_user() {
-        return id_user;
+    public Long getId() {
+        return id;
     }
 
-    public void setId_user(Long id_user) {
-        this.id_user = id_user;
+    public void setId(Long id_user) {
+        this.id = id_user;
     }
 
     public String getLogin() {
@@ -104,7 +104,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id_user=" + id_user +
+                "id_user=" + id +
                 ", login='" + login + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +

@@ -1,0 +1,17 @@
+create database tominmezentsevdb;
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(70) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `photo_path` varchar(255) DEFAULT NULL,
+  `description` TEXT DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+INSERT  INTO users VALUES
+	 (1,'User1','login1','password1','user1@gmail.com','/foto/user1','description1, hi dude!!!');
+
