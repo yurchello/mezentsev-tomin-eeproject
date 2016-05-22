@@ -4,6 +4,7 @@ import com.mezentsev_tomin.adminpanel.beans.User;
 import com.mezentsev_tomin.adminpanel.dao.UserDao;
 import com.mezentsev_tomin.adminpanel.util.HibernateUtil;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by Mezentsev.Y on 5/19/2016.
  */
 
-
+@Repository
 public class UserDaoImpl implements UserDao {
 
     public void create(User user) {
@@ -66,7 +67,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public User findById(Integer id) {
+    public User findById(Long id) {
         Session session = null;
         User user = null;
         try {
