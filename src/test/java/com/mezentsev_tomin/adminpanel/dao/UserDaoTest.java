@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -33,7 +34,9 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test(priority = 1)
     public void create() throws Exception {
-        User user = new User(6662l,
+        final long ID = 6662L;
+        Assert.assertNotNull(userDao);
+        User user = new User(ID,
                 "User666",
                 "user666",
                 "666@.gmail.com",
@@ -42,14 +45,16 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
                 "someinfo" );
         userDao.create(user);
         Session session = HibernateUtil.getSessionFactory().openSession();
-        User user2 = (User) session.get(User.class, 6662l);
+        User user2 = (User) session.get(User.class, ID);
         if (session.isOpen()) session.close();
         Assert.assertNotNull(user2);
     }
 
     @Test(priority = 2)
     public void findById() throws Exception {
-
+        final long ID = 6662L;
+        User user = userDao.findById(ID);
+        Assert.assertNotNull(user);
     }
 //
 //    @Test(priority = 3)
@@ -62,21 +67,29 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
 //
 //    }
 //
-//    @Test(priority = 5)
-//    public void findAll() throws Exception {
-//
-//    }
-//
-//
-//    @Test(priority = 6)
-//    public void update() throws Exception {
-//
-//    }
-//
-//    @Test(priority = 7)
-//    public void delete() throws Exception {
-//
-//    }
+    @Test(priority = 5)
+    public void findAll() throws Exception {
+        Collection<User> list = userDao.findAll();
+        Assert.assertTrue(list.size()>0);
+    }
+
+
+    @Test(priority = 6)
+    public void update() throws Exception {
+        final String NAME = "nameChanged";
+        final long ID = 6662L;
+        User user = userDao.findById(ID);
+        Assert.assertNotNull(user);
+        user.setName(NAME);
+        userDao.update(user);
+        Assert.assertEquals(NAME, userDao.findById(ID).getName());
+    }
+
+    @Test(priority = 7)
+    public void delete() throws Exception {
+        final long ID = 6662L;
+        userDao.delete(ID);
+    }
 
 
     private List<User> generateUsers(long from, long to){

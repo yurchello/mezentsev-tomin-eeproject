@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();

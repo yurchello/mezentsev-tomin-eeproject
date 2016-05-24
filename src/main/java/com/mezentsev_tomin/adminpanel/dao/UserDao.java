@@ -11,7 +11,7 @@ public interface UserDao {
 
     void create(User user);
     void update(User user);
-    void delete(Integer id);
+    void delete(Long id);
     User findById(Long id);
     User findByEmail(String email);
     User findByLogin(String login);
