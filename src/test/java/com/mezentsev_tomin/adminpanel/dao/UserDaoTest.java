@@ -56,25 +56,15 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
         User user = userDao.findById(ID);
         Assert.assertNotNull(user);
     }
-//
-//    @Test(priority = 3)
-//    public void findByEmail() throws Exception {
-//
-//    }
-//
-//    @Test(priority = 4)
-//    public void findByLogin() throws Exception {
-//
-//    }
-//
-    @Test(priority = 5)
+
+    @Test(priority = 3)
     public void findAll() throws Exception {
         Collection<User> list = userDao.findAll();
         Assert.assertTrue(list.size()>0);
     }
 
 
-    @Test(priority = 6)
+    @Test(priority = 4)
     public void update() throws Exception {
         final String NAME = "nameChanged";
         final long ID = 6662L;
@@ -83,6 +73,21 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
         user.setName(NAME);
         userDao.update(user);
         Assert.assertEquals(NAME, userDao.findById(ID).getName());
+    }
+    @Test(priority = 5)
+    public void testFindByLogin() throws Exception {
+        final String LOGIN = "user666";
+        User user = userDao.findByLogin(LOGIN);
+        Assert.assertNotNull(user);
+
+    }
+
+    @Test(priority = 6)
+    public void testFindByEmail() throws Exception {
+        final String EMAIL = "666@.gmail.com";
+        User user = userDao.findByEmail(EMAIL);
+        Assert.assertNotNull(user);
+
     }
 
     @Test(priority = 7)

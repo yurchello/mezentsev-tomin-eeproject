@@ -4,6 +4,7 @@ import com.mezentsev_tomin.adminpanel.beans.User;
 import com.mezentsev_tomin.adminpanel.dao.UserDao;
 import com.mezentsev_tomin.adminpanel.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import javax.swing.*;
@@ -67,44 +68,34 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    @Override
+    public User findByLogin(String login) {
+        Session session = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        User user = (User) session.createCriteria(User.class).add(Restrictions.eq("login", login)).uniqueResult();
+        if (session.isOpen()) {
+            session.close();
+        }
+        return user;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        Session session = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        User user = (User) session.createCriteria(User.class).add(Restrictions.eq("email", email)).uniqueResult();
+        if (session.isOpen()) {
+            session.close();
+        }
+        return user;
+    }
+
     public User findById(Long id) {
         Session session = null;
         User user = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             user = (User) session.get(User.class, id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
-        return user;
-    }
-
-    public User findByEmail(String email) {
-        Session session = null;
-        User user = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            user = (User) session.get(User.class, email);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
-        return user;
-    }
-
-    public User findByLogin(String login) {
-        Session session = null;
-        User user = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            user = (User) session.get(User.class, login);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
