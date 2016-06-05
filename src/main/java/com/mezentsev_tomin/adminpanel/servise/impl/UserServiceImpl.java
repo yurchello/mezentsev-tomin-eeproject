@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     public User login(String login, String password) throws InvalidUserInputException {
         User user = userDao.findByEmail(login);
         if (user == null)throw new InvalidUserInputException("No user with login: " + login);
-        if (!user.getPassword().equals(password))throw new InvalidUserInputException("Nt correct password");
+        if (!user.getPassword().equals(password))throw new InvalidUserInputException("Not correct password");
         return user;
     }
 
