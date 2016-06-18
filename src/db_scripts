@@ -6,7 +6,7 @@ CREATE TABLE `users` (
   `login` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` varchar(254) NOT NULL,
-  `photo_path` varchar(255) DEFAULT NULL,
+  `photoPath` varchar(255) DEFAULT NULL,
   `description` TEXT DEFAULT NULL,
   PRIMARY KEY (`id`)
 );

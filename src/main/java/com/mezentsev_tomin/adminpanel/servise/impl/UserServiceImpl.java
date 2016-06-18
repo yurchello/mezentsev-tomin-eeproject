@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public User signUp(String name, String email, String login, String password) throws InvalidUserInputException {
+    public User signUp(String name, String email, String login, String password, String photoPath, String description) throws InvalidUserInputException {
         User user = new User();
         if (this.userDao.findByLogin(login) == null) {
             user.setLogin(login);
@@ -46,6 +46,9 @@ public class UserServiceImpl implements UserService {
         }else throw new InvalidUserInputException("You've already used this e-mail!");
         user.setPassword(password);
         user.setName(name);
+        user.setDescription(description);
+        user.setPhoto_path(photoPath);
+        this.create(user);
         return user;
     }
 

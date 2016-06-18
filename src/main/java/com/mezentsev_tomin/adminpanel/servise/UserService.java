@@ -11,7 +11,7 @@ import java.util.Collection;
 public interface UserService {
     void create(User user);
     User login (String login, String password) throws InvalidUserInputException;
-    User signUp(String name, String email, String login, String password) throws InvalidUserInputException;
+    User signUp(String name, String email, String login, String password, String photoPath, String description) throws InvalidUserInputException;
     void update(User user);
     void delete(Long id);
     User findByLogin(String login);

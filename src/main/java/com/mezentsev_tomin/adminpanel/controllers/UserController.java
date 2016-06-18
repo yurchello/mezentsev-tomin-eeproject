@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by Yuriy on 05.06.2016.
  */
-@Controller
+//@Controller
 public class UserController {
     @Autowired
     private UserService userService;
@@ -64,6 +64,16 @@ public class UserController {
     public String helloWorld(ModelMap modelMap){
           modelMap.addAttribute("message", "HELLO!!!");
           return "hello";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register(ModelMap modelMap){
+        return "register";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register2(ModelMap modelMap){
+        return "register";
     }
 
 //    @RequestMapping(value="/login", method=RequestMethod.POST)

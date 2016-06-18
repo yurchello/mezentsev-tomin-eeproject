@@ -12,12 +12,12 @@
 
     <h2>Login with Username and Password</h2>
 
-    <c:if test="${not empty error}">
-        <div class="error">${error}</div>
-    </c:if>
-    <c:if test="${not empty msg}">
-        <div class="msg">${msg}</div>
-    </c:if>
+    <%--<c:if test="${not empty error}">--%>
+        <%--<div class="error">${error}</div>--%>
+    <%--</c:if>--%>
+    <%--<c:if test="${not empty msg}">--%>
+        <%--<div class="msg">${msg}</div>--%>
+    <%--</c:if>--%>
 
     <form name='loginForm' action="/login" method='POST'>
 
@@ -32,6 +32,12 @@
             </tr>
             <tr>
                 <td colspan='2'><input name="submit"  type="submit" value="submit" /></td>
+            </tr>
+            <tr>
+                <td colspan='2'><a href="/register" >Registration</a> <br/></td>
+            </tr>
+            <tr>
+                <td colspan='2'><a href="hello.jsp">Registration</a> <br/></td>
             </tr>
         </table>
 

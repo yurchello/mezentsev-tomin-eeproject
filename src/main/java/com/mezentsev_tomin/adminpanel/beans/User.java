@@ -1,10 +1,9 @@
 package com.mezentsev_tomin.adminpanel.beans;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.annotation.Generated;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Mezentsev.Y on 5/19/2016.
@@ -15,8 +14,9 @@ import javax.persistence.Table;
 public class User {
 
     @Id
-    @Generated("default")
     @Column(name="id")
+    @GenericGenerator(name="generator", strategy="increment")
+    @GeneratedValue(generator="generator")
     private Long id;
     @Column(name="name")
     private String name;

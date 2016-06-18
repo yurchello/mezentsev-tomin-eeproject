@@ -4,7 +4,8 @@ package com.mezentsev_tomin.adminpanel.forms;
  * Created by Yuriy on 05.06.2016.
  */
 public class AbstractLoginForm implements IForm{
-    private static final long serialVersionUID = -8342766271396665602L;
+
+    private static final long serialVersionUID = -8317239495588868934L;
     private String login;
     private String password;
 
