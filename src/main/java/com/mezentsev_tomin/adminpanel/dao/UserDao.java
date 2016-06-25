@@ -12,7 +12,7 @@ public interface UserDao {
     void create(User user);
     void update(User user);
     void delete(Long id);
-    User findByLogin(String login);
+    User findByUserName(String username);
     User findByEmail(String email);
     User findById(Long id);
     Collection<User> findAll();

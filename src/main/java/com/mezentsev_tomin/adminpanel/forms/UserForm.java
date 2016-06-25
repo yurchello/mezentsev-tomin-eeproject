@@ -7,18 +7,11 @@ public class UserForm extends AbstractLoginForm{
 
     private static final long serialVersionUID = -8353343409739766211L;
 
-    private String name;
+
     private String email;
     private String photoPath;
     private String description;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getEmail() {
         return email;

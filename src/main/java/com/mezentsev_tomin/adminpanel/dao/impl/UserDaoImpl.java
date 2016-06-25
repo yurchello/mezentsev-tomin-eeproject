@@ -69,25 +69,26 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findByLogin(String login) {
+    public User findByUserName(String username) {
         Session session = null;
         session = HibernateUtil.getSessionFactory().openSession();
-        User user = (User) session.createCriteria(User.class).add(Restrictions.eq("login", login)).uniqueResult();
+        List<User> users =  session.createCriteria(User.class).add(Restrictions.eq("username", username)).list();
         if (session.isOpen()) {
             session.close();
         }
-        return user;
+        return users.size()>0 ? users.get(0) : null;
     }
 
     @Override
     public User findByEmail(String email) {
         Session session = null;
         session = HibernateUtil.getSessionFactory().openSession();
-        User user = (User) session.createCriteria(User.class).add(Restrictions.eq("email", email)).uniqueResult();
+        List<User> users = session.createCriteria(User.class).add(Restrictions.eq("email", email)).list();
         if (session.isOpen()) {
             session.close();
         }
-        return user;
+        return users.size()>0 ? users.get(0) : null;
+
     }
 
     public User findById(Long id) {

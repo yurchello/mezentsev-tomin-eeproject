@@ -19,10 +19,10 @@ public class InitContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ClassPathXmlApplicationContext applicationContext =
-                new ClassPathXmlApplicationContext("application-context.xml");
-        applicationContext.close();
-        System.out.println();
+//        ClassPathXmlApplicationContext applicationContext =
+//                new ClassPathXmlApplicationContext("application-context.xml");
+//        applicationContext.close();
+//        System.out.println();
     }
 
     @Override

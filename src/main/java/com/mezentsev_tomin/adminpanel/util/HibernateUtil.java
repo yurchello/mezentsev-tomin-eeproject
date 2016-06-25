@@ -2,17 +2,19 @@ package com.mezentsev_tomin.adminpanel.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory = null;
+
     static {
-        try {
-            sessionFactory = new Configuration().configure().buildSessionFactory();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Configuration configuration = new Configuration();
+        configuration.configure();
+        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(
+                configuration.getProperties()).buildServiceRegistry();
+        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
     }
 
     public static SessionFactory getSessionFactory() {

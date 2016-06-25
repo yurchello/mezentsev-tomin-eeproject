@@ -33,16 +33,14 @@ public class LoginController {
         User user;
         try {
             user = userService.signUp(
-                    form.getName(),
+                    form.getUsername(),
                     form.getEmail(),
-                    form.getLogin(),
                     form.getPassword(),
                     form.getPhotoPath(),
                     form.getDescription());
             //model.addAttribute("userForm", form);
             ModelAndView modelAndView = new ModelAndView("account");
-            modelAndView.addObject("name",form.getName());
-            modelAndView.addObject("login",form.getLogin());
+            modelAndView.addObject("username",form.getUsername());
             modelAndView.addObject("password",form.getPassword());
             modelAndView.addObject("email",form.getEmail());
             modelAndView.addObject("description",form.getDescription());
@@ -63,8 +61,7 @@ public class LoginController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveAccount(Model model, @ModelAttribute("registerForm")UserForm form){
         User user;
-        user = userService.findByLogin(form.getLogin());
-        user.setName(form.getName());
+        user = userService.findByLogin(form.getUsername());
         user.setEmail(form.getEmail());
         user.setDescription(form.getDescription());
         user.setPhoto_path(form.getPhotoPath());

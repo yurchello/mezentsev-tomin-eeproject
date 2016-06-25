@@ -4,13 +4,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.annotation.Generated;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Mezentsev.Y on 5/19/2016.
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
     @Id
@@ -18,47 +20,41 @@ public class User {
     @GenericGenerator(name="generator", strategy="increment")
     @GeneratedValue(generator="generator")
     private Long id;
-    @Column(name="name")
-    private String name;
-    @Column(name="login")
-    private String login;
+    @Column(name="username")
+    private String username;
     @Column(name="email")
     private String email;
     @Column(name="password")
     private String password;
-    @Column(name="photo_path")
+    @Column(name="photoPath")
     private String photo_path;
     @Column(name="description")
     private String description;
 
-    public User(Long id, String name, String login, String email, String password, String photo_path, String description) {
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<UserRole> userRole = new HashSet<UserRole>(0);
+
+    public User(Long id, String username, String email, String password, String photo_path, String description) {
+
         this.id = id;
-        this.name = name;
-        this.login = login;
+
+        this.username = username;
         this.email = email;
         this.password = password;
         this.photo_path = photo_path;
         this.description = description;
     }
 
-    public User() {
-
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id_user) {
-        this.id = id_user;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getLogin() {
-        return login;
-    }
+    public User() {
 
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getEmail() {
@@ -77,12 +73,12 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPhoto_path() {
@@ -104,11 +100,10 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id_user=" + id +
-                ", login='" + login + '\'' +
+                "id_user=" + getId() +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
+                ", name='" + username + '\'' +
                 ", photo_path='" + photo_path + '\'' +
                 ", description='" + description + '\'' +
                 '}';

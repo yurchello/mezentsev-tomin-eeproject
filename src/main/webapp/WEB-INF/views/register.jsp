@@ -15,8 +15,8 @@
     <h1>Registration Form</h1>
     <table>
         <tr>
-            <td>Name:</td>
-            <td><input type='text' name='name'></td>
+            <td>Username:</td>
+            <td><input type='text' name='username'></td>
         </tr>
         <tr>
             <td>Login:</td>

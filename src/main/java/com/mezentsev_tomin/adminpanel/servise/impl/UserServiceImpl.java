@@ -36,16 +36,15 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public User signUp(String name, String email, String login, String password, String photoPath, String description) throws InvalidUserInputException {
+    public User signUp(String username, String email, String password, String photoPath, String description) throws InvalidUserInputException {
         User user = new User();
-        if (this.userDao.findByLogin(login) == null) {
-            user.setLogin(login);
+        if (this.userDao.findByUserName(username) == null) {
+            user.setUsername(username);
         }else throw new InvalidUserInputException("This login already exist!");
         if (this.userDao.findByEmail(email) == null) {
             user.setEmail(email);
         }else throw new InvalidUserInputException("You've already used this e-mail!");
         user.setPassword(password);
-        user.setName(name);
         user.setDescription(description);
         user.setPhoto_path(photoPath);
         this.create(user);
@@ -67,7 +66,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public User findByLogin(String login) {
-        return this.userDao.findByLogin(login);
+        return this.userDao.findByUserName(login);
     }
 
     @Transactional

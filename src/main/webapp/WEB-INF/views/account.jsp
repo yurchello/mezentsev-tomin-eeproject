@@ -16,7 +16,7 @@
 <table>
     <tr>
         <td>Name:</td>
-        <td><input type='text' name='name' value=${name}></td>
+        <td><input type='text' name='username' value=${username}></td>
     </tr>
     <tr>
         <td>Email:</td>

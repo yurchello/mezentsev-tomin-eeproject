@@ -16,6 +16,7 @@
         <property name="current_session_context_class">thread</property>
 
         <mapping class="com.mezentsev_tomin.adminpanel.beans.User"/>
+        <mapping class="com.mezentsev_tomin.adminpanel.beans.UserRole"/>
 
      </session-factory>
  </hibernate-configuration>

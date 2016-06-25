@@ -15,3 +15,21 @@ CREATE TABLE `users` (
 INSERT  INTO users VALUES
 	 (1,'User1','login1','password1','user1@gmail.com','/foto/user1','description1, hi dude!!!');
 
+CREATE TABLE `user_roles` (
+  `user_role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(70) NOT NULL,
+  `role` varchar(45) NOT NULL,
+  PRIMARY KEY (`user_role_id`),
+  UNIQUE KEY `uni_username_role` (`role`,`username`),
+  KEY `fk_username_idx` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251
+
+
+INSERT INTO user_roles (username, role)
+VALUES ('yura', 'ROLE_USER');
+
+INSERT INTO user_roles (username, role)
+VALUES ('yura', 'ROLE_ADMIN');
+
+INSERT INTO user_roles (username, role)
+VALUES ('alex', 'ROLE_USER');

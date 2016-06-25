@@ -4,7 +4,7 @@ import com.mezentsev_tomin.adminpanel.beans.User;
 
 
 import com.mezentsev_tomin.adminpanel.util.HibernateUtil;
-import org.hibernate.classic.Session;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -32,28 +32,29 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
 
     }
 
+    private Long id;
     @Test(priority = 1)
     public void create() throws Exception {
-        final long ID = 6662L;
         Assert.assertNotNull(userDao);
-        User user = new User(ID,
-                "User666",
-                "user666",
-                "666@.gmail.com",
-                "1111",
-                "/photo/p.jpg",
-                "someinfo" );
+        User user = new User();
+        user.setUsername("user666");
+        user.setEmail("66@.gmail.com");
+        user.setPassword("1111");
+        user.setPhoto_path("/photo/p.jpg");
+        user.setDescription("someinfo");
+        //user.setId(666l);
         userDao.create(user);
+        this.id = user.getId();
         Session session = HibernateUtil.getSessionFactory().openSession();
-        User user2 = (User) session.get(User.class, ID);
+
+        User user2 = (User) session.get(User.class, user.getId());
         if (session.isOpen()) session.close();
         Assert.assertNotNull(user2);
     }
 
     @Test(priority = 2)
     public void findById() throws Exception {
-        final long ID = 6662L;
-        User user = userDao.findById(ID);
+        User user = userDao.findById(this.id);
         Assert.assertNotNull(user);
     }
 
@@ -66,25 +67,25 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test(priority = 4)
     public void update() throws Exception {
-        final String NAME = "nameChanged";
-        final long ID = 6662L;
-        User user = userDao.findById(ID);
+        final String EMAIL = "email@nameChanged";
+
+        User user = userDao.findById(this.id);
         Assert.assertNotNull(user);
-        user.setName(NAME);
+        user.setEmail(EMAIL);
         userDao.update(user);
-        Assert.assertEquals(NAME, userDao.findById(ID).getName());
+        Assert.assertEquals(EMAIL, userDao.findById(this.id).getEmail());
     }
     @Test(priority = 5)
-    public void testFindByLogin() throws Exception {
+    public void testFindByUserName() throws Exception {
         final String LOGIN = "user666";
-        User user = userDao.findByLogin(LOGIN);
+        User user = userDao.findByUserName(LOGIN);
         Assert.assertNotNull(user);
 
     }
 
     @Test(priority = 6)
     public void testFindByEmail() throws Exception {
-        final String EMAIL = "666@.gmail.com";
+        final String EMAIL = "66@.gmail.com";
         User user = userDao.findByEmail(EMAIL);
         Assert.assertNotNull(user);
 
@@ -92,19 +93,18 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test(priority = 7)
     public void delete() throws Exception {
-        final long ID = 6662L;
-        userDao.delete(ID);
+        userDao.delete(this.id);
     }
 
 
     private List<User> generateUsers(long from, long to){
         List<User> list = new ArrayList<>();
-        while (from<=to){
-            User user = new User(from, "User" + from, "login" + from, "user" + from + "@gmail.com", "password" + from, "/photos/user" +
-                    from +".jpg", "Hi, dude!!!");
-            list.add(user);
-        }
-        return list;
+//        while (from<=to){
+//            User user = new User(from, "User" + from, "login" + from, "user" + from + "@gmail.com", "password" + from, "/photos/user" +
+//                    from +".jpg", "Hi, dude!!!");
+//            list.add(user);
+//        }
+       return list;
     }
 
 
