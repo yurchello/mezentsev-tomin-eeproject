@@ -33,3 +33,9 @@ VALUES ('yura', 'ROLE_ADMIN');
 
 INSERT INTO user_roles (username, role)
 VALUES ('alex', 'ROLE_USER');
+
+INSERT INTO user(username,password,email,photoPath,description)
+VALUES ('alex','123456', 'email@com','/g/g/g/','hello');
+
+INSERT INTO user(username,password,email,photoPath,description)
+VALUES ('mkyong','123456', 'email@com','/g/g/g/','hello');

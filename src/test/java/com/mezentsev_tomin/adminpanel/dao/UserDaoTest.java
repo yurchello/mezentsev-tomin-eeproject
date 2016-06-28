@@ -98,7 +98,7 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests {
 
 
     private List<User> generateUsers(long from, long to){
-        List<User> list = new ArrayList<>();
+        List<User> list = new ArrayList<User>();
 //        while (from<=to){
 //            User user = new User(from, "User" + from, "login" + from, "user" + from + "@gmail.com", "password" + from, "/photos/user" +
 //                    from +".jpg", "Hi, dude!!!");

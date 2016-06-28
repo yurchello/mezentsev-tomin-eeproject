@@ -1,4 +1,4 @@
-package com.mezentsev_tomin.adminpanel.services;
+package com.mezentsev_tomin.adminpanel.service;
 
 import com.mezentsev_tomin.adminpanel.beans.User;
 import com.mezentsev_tomin.adminpanel.exceptions.InvalidUserInputException;

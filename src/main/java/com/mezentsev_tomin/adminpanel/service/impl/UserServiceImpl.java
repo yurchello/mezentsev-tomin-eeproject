@@ -1,11 +1,10 @@
-package com.mezentsev_tomin.adminpanel.services.impl;
+package com.mezentsev_tomin.adminpanel.service.impl;
 
 import com.mezentsev_tomin.adminpanel.beans.User;
 import com.mezentsev_tomin.adminpanel.dao.UserDao;
 import com.mezentsev_tomin.adminpanel.exceptions.InvalidUserInputException;
-import com.mezentsev_tomin.adminpanel.services.UserService;
+import com.mezentsev_tomin.adminpanel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
@@ -13,7 +12,7 @@ import java.util.Collection;
 /**
  * Created by Yuriy on 29.05.2016.
  */
-@Service
+//@Service("UserServiceImpl")
 public class UserServiceImpl implements UserService {
 
     @Autowired

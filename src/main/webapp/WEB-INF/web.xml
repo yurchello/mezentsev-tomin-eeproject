@@ -14,9 +14,9 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <listener>
-        <listener-class>com.mezentsev_tomin.adminpanel.listeners.InitContextListener</listener-class>
-    </listener>
+    <!--<listener>-->
+        <!--<listener-class>com.mezentsev_tomin.adminpanel.listeners.InitContextListener</listener-class>-->
+    <!--</listener>-->
 
     <!--<display-name>Lessons</display-name>-->
     <!--<welcome-file-list>-->

@@ -15,11 +15,12 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
 
-    @Id
+    //@Id
     @Column(name="id")
     @GenericGenerator(name="generator", strategy="increment")
     @GeneratedValue(generator="generator")
     private Long id;
+    @Id
     @Column(name="username")
     private String username;
     @Column(name="email")
@@ -31,7 +32,7 @@ public class User {
     @Column(name="description")
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<UserRole> userRole = new HashSet<UserRole>(0);
 
     public User(Long id, String username, String email, String password, String photo_path, String description) {
@@ -95,6 +96,14 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<UserRole> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Set<UserRole> userRole) {
+        this.userRole = userRole;
     }
 
     @Override

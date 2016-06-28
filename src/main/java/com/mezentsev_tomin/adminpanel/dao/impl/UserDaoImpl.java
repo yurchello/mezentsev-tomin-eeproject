@@ -109,7 +109,7 @@ public class UserDaoImpl implements UserDao {
 
     public Collection<User> findAll() {
         Session session = null;
-        List<User> users = new ArrayList<>();
+        List<User> users = new ArrayList<User>();
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             users = session.createCriteria(User.class).list();
