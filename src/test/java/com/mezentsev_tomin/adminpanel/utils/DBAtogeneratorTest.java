@@ -1,6 +1,6 @@
 package com.mezentsev_tomin.adminpanel.utils;
 
-import com.mezentsev_tomin.adminpanel.beans.User;
+
 import com.mezentsev_tomin.adminpanel.util.HibernateUtil;
 import org.hibernate.Session;
 import org.testng.annotations.Test;

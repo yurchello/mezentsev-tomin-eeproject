@@ -1,21 +1,25 @@
 package com.mezentsev_tomin.adminpanel.service;
 
-import com.mezentsev_tomin.adminpanel.beans.User;
-import com.mezentsev_tomin.adminpanel.exceptions.InvalidUserInputException;
 
-import java.util.Collection;
+import com.mezentsev_tomin.adminpanel.model.User;
 
-/**
- * Created by Yuriy on 29.05.2016.
- */
+import java.util.List;
+
+
 public interface UserService {
-    void create(User user);
-    User login (String login, String password) throws InvalidUserInputException;
-    User signUp(String username, String email, String password, String photoPath, String description) throws InvalidUserInputException;
-    void update(User user);
-    void delete(Long id);
-    User findByLogin(String login);
-    User findByEmail(String email);
-    User findById(Long id);
-    Collection<User> findAll();
+	
+	User findById(int id);
+	
+	User findBySSO(String sso);
+	
+	void saveUser(User user);
+	
+	void updateUser(User user);
+	
+	void deleteUserBySSO(String sso);
+
+	List<User> findAllUsers(); 
+	
+	boolean isUserSSOUnique(Integer id, String sso);
+
 }
