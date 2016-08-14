@@ -1,10 +1,13 @@
 package com.mezentsev_tomin.adminpanel.controller;
 
 
+import com.mezentsev_tomin.adminpanel.model.FileBucket;
 import com.mezentsev_tomin.adminpanel.model.User;
 import com.mezentsev_tomin.adminpanel.model.UserProfile;
 import com.mezentsev_tomin.adminpanel.service.UserProfileService;
 import com.mezentsev_tomin.adminpanel.service.UserService;
+import com.mezentsev_tomin.adminpanel.utils.FileValidator;
+import com.mezentsev_tomin.adminpanel.utils.MultiFileValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
@@ -14,16 +17,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.*;
 import java.util.*;
-
 /**
  * Created by Mezentsev.Y on 7/17/2016.
  */
@@ -46,6 +52,24 @@ public class MainController {
 
     @Autowired
     AuthenticationTrustResolver authenticationTrustResolver;
+
+    private static String UPLOAD_LOCATION="C:/aaa/";
+
+    @Autowired
+    FileValidator fileValidator;
+
+    @Autowired
+    MultiFileValidator multiFileValidator;
+
+    @InitBinder("fileBucket")
+    protected void initBinderFileBucket(WebDataBinder binder) {
+        binder.setValidator(fileValidator);
+    }
+
+    @InitBinder("multiFileBucket")
+    protected void initBinderMultiFileBucket(WebDataBinder binder) {
+        binder.setValidator(multiFileValidator);
+    }
 
     /**
      * This method will provide the medium to add a new user.
@@ -135,7 +159,9 @@ public class MainController {
     @RequestMapping(value = {"/editUser-{ssoId}"}, method = RequestMethod.GET)
     public String editProfile(@PathVariable String ssoId, ModelMap model){
         User user = userService.findBySSO(ssoId);
+
         model.addAttribute("user", user);
+
         return "editProfile";
     }
 
@@ -149,6 +175,61 @@ public class MainController {
         userService.updateUser(user);
         return "redirect:/user-{ssoId}";
     }
+
+    @RequestMapping(value = { "/changePhotoUser-{ssoId}" }, method = RequestMethod.GET)
+    public String changePhotoUser(@PathVariable String ssoId, ModelMap model, String photoPath){
+        FileBucket fileModel = new FileBucket();
+        model.addAttribute("loggedinuser", getPrincipal());
+        model.addAttribute("fileBucket", fileModel);
+        String image = getRawFileFromDrive(photoPath);
+        model.addAttribute("photoPath", image);
+        return "singleFileUploader";
+    }
+
+    private String getRawFileFromDrive(String path){
+        if (path==null)return null;
+        File file = new File(path);
+        try {
+            FileInputStream fis=new FileInputStream(file);
+            ByteArrayOutputStream bos=new ByteArrayOutputStream();
+            int b;
+            byte[] buffer = new byte[1024];
+            while((b=fis.read(buffer))!=-1){
+                bos.write(buffer,0,b);
+            }
+            byte[] fileBytes=bos.toByteArray();
+            fis.close();
+            bos.close();
+            byte[] encoded=
+                    org.apache.commons.codec.binary.Base64.encodeBase64(fileBytes);
+            return new String(encoded);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
+    @RequestMapping(value = "/changePhotoUser-{ssoId}", method = RequestMethod.POST)
+    public String singleFileUpload(@Valid FileBucket fileBucket,
+                                   BindingResult result, ModelMap model, @PathVariable String ssoId) throws IOException {
+        if (result.hasErrors()) {
+            System.out.println("validation errors");
+            return "singleFileUploader";
+        } else {
+            System.out.println("Fetching file");
+            MultipartFile multipartFile = fileBucket.getFile();
+
+            // Now do something with file...
+            File file = new File( UPLOAD_LOCATION,ssoId + ".jpg");
+            FileCopyUtils.copy(fileBucket.getFile().getBytes(), file);
+            String fileName = multipartFile.getOriginalFilename();
+            model.addAttribute("fileName", fileName);
+            model.addAttribute("photoPath", file.getAbsolutePath());
+            return "redirect:/changePhotoUser-{ssoId}";
+        }
+    }
+
+
 
     /**
      * This method will provide UserProfile list to views

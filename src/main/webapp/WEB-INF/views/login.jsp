@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 	<%--<head>--%>
 		<%--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">--%>
@@ -51,6 +52,7 @@
                                 <a href="<c:url value='/newuser' />">Registration</a>
                                 <%--<a href="user_registration">Registration</a>--%>
 							</div>
+
 						</form>
 					</div>
 				</div>

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -17,7 +18,10 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @ComponentScan(basePackages = "com.mezentsev_tomin.adminpanel")
 public class AppConfig extends WebMvcConfigurerAdapter {
-	
+	@Bean(name = "multipartResolver")
+	public StandardServletMultipartResolver resolver() {
+		return new StandardServletMultipartResolver();
+	}
 	
 	@Autowired
 	RoleToUserProfileConverter roleToUserProfileConverter;
@@ -41,7 +45,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+        registry.addResourceHandler("/static/**","C:/aaa/**").addResourceLocations("/static/","C:/aaa/", "C:\\aaa\\");
     }
     
     /**

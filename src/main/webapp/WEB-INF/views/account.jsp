@@ -74,6 +74,9 @@
                                         <a href="<c:url value='/editUser-${user.ssoId}'/>">Edit Profile</a>
                                     </div>
                                     <div>
+                                        <a href="<c:url value='/changePhotoUser-${user.ssoId}'/>">Change photo</a>
+                                    </div>
+                                    <div>
                                         <input type="submit" value="View Vocabulary" class="btn btn-primary btn-sm"/>
                                     </div>
                                 </c:if>

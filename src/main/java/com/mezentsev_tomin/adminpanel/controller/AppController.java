@@ -1,5 +1,6 @@
 package com.mezentsev_tomin.adminpanel.controller;
 
+import com.mezentsev_tomin.adminpanel.model.FileBucket;
 import com.mezentsev_tomin.adminpanel.model.User;
 import com.mezentsev_tomin.adminpanel.model.UserProfile;
 import com.mezentsev_tomin.adminpanel.service.UserProfileService;
@@ -198,6 +199,8 @@ public class AppController {
         userService.updateUser(user);
         return "redirect:/user-{ssoId}";
     }
+
+
 
 	/**
 	 * This method will provide UserProfile list to views
