@@ -10,7 +10,13 @@
 		<%--<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>--%>
 		<%--<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />--%>
 	<%--</head>--%>
-
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+		var loadFile = function(event) {
+			var output = document.getElementById('output');
+			output.src = URL.createObjectURL(event.target.files[0]);
+		};
+	</script>
 	<body>
 		<div id="mainWrapper">
 			<div class="login-container">
@@ -52,6 +58,10 @@
                                 <a href="<c:url value='/newuser' />">Registration</a>
                                 <%--<a href="user_registration">Registration</a>--%>
 							</div>
+								<div>
+									<input type="file" accept="image/*" onchange="loadFile(event)">
+									<img id="output" width="200" height="300"/>
+								</div>
 
 						</form>
 					</div>

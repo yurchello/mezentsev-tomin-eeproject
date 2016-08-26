@@ -2,14 +2,18 @@ package com.mezentsev_tomin.adminpanel.controller;
 
 
 import com.mezentsev_tomin.adminpanel.model.FileBucket;
+import com.mezentsev_tomin.adminpanel.model.JsonLogo;
 import com.mezentsev_tomin.adminpanel.model.User;
 import com.mezentsev_tomin.adminpanel.model.UserProfile;
 import com.mezentsev_tomin.adminpanel.service.UserProfileService;
 import com.mezentsev_tomin.adminpanel.service.UserService;
 import com.mezentsev_tomin.adminpanel.utils.FileValidator;
 import com.mezentsev_tomin.adminpanel.utils.MultiFileValidator;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.core.convert.Property;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.Base64Utils;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -24,9 +29,13 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.*;
 import java.util.*;
@@ -70,6 +79,89 @@ public class MainController {
     protected void initBinderMultiFileBucket(WebDataBinder binder) {
         binder.setValidator(multiFileValidator);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/addAdvert", method = RequestMethod.POST)
+    public ResponseEntity<Integer> addAdvert(@RequestParam(name = "mainImage", required = false) MultipartFile mainImage) throws IOException {
+        System.out.printf("");
+                                                 return null;
+    }
+
+    /**
+     * checking password length
+     * @param password
+     * @return
+     */
+    @RequestMapping(value = { "/checkStrength" }, method = RequestMethod.GET, produces = {"text/html"})
+    public @ResponseBody String checkStrength(String password){
+        final int WEAK = 1;
+        final int FEAR = 5;
+        final int STRONG = 7;
+        int pasLen = password.length();
+        if (pasLen>= WEAK && pasLen<FEAR){
+            return "Low protection";
+        }else if (pasLen>= FEAR && pasLen<STRONG){
+            return "Middle protection";
+        }else if (pasLen>= STRONG){
+            return "High protection";
+        }
+        return "";
+    }
+
+    @RequestMapping(value = { "/doUpdateAvatar" }, method = RequestMethod.GET, produces = {"text/html"})
+    public @ResponseBody String doUpdateAvatar(String aaa){
+        System.out.println();
+        return aaa + "fffff";
+    }
+
+
+
+    @RequestMapping(value={"/image"}, method=RequestMethod.PUT, consumes="multipart/form-data")
+    public @ResponseBody void addImage(HttpServletRequest request) {
+        System.out.println();
+    }
+
+    @RequestMapping(value = "/echofile", method = RequestMethod.POST, produces = {"application/json"})
+    public @ResponseBody HashMap<String, Object> echoFile(MultipartHttpServletRequest request,
+                                                          HttpServletResponse response) throws Exception {
+
+        MultipartFile multipartFile = request.getFile("file");
+        Long size = multipartFile.getSize();
+        String contentType = multipartFile.getContentType();
+        InputStream stream = multipartFile.getInputStream();
+        byte[] bytes = IOUtils.toByteArray(stream);
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("fileoriginalsize", size);
+        map.put("contenttype", contentType);
+        map.put("base64", new String(Base64Utils.encode(bytes)));
+
+        return map;
+    }
+
+    MultipartFile multipartFile;
+    @RequestMapping(value = "/upload-logo", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonLogo uploadLogo(MultipartHttpServletRequest request) {
+        try {
+            Iterator<String> itr = request.getFileNames();
+            MultipartFile file = request.getFile(itr.next());
+
+            JsonLogo logo = new JsonLogo();
+            if (multipartFile.getBytes().length > 0) {
+                logo.setImage(new String(org.apache.commons.codec.binary.Base64.encodeBase64(multipartFile.getBytes())));
+            }
+            return logo;
+        } catch (Exception e) {
+            //Handle exception if any
+        }
+        return null;
+    }
+
+//    @RequestMapping(value = { "/previewPhoto" }, method = RequestMethod.GET, produces = {"text/html"})
+//    public @ResponseBody String previewPhoto(){
+//
+//    }
 
     /**
      * This method will provide the medium to add a new user.
@@ -167,7 +259,7 @@ public class MainController {
 
     @RequestMapping(value = {"/editUser-{ssoId}"}, method = RequestMethod.POST)
     public String updateProfile(@Valid User user, BindingResult result,
-                                ModelMap model){
+                                ModelMap model, HttpServletRequest request){
         if (user.getUserProfiles() == null || user.getUserProfiles().size() == 0){
             setUserRoles(user, (List<UserProfile>) model.get("roles"));
         }
@@ -176,15 +268,24 @@ public class MainController {
         return "redirect:/user-{ssoId}";
     }
 
+    @RequestMapping(value = {"/test"}, method = RequestMethod.POST)
+    public void test(@RequestParam(value = "imgData")Object imgData)
+    {
+        System.out.println(imgData);
+    }
+
     @RequestMapping(value = { "/changePhotoUser-{ssoId}" }, method = RequestMethod.GET)
     public String changePhotoUser(@PathVariable String ssoId, ModelMap model, String photoPath){
         FileBucket fileModel = new FileBucket();
+
         model.addAttribute("loggedinuser", getPrincipal());
         model.addAttribute("fileBucket", fileModel);
         String image = getRawFileFromDrive(photoPath);
         model.addAttribute("photoPath", image);
         return "singleFileUploader";
     }
+
+
 
     private String getRawFileFromDrive(String path){
         if (path==null)return null;
@@ -209,9 +310,22 @@ public class MainController {
         return  null;
     }
 
-    @RequestMapping(value = "/changePhotoUser-{ssoId}", method = RequestMethod.POST)
-    public String singleFileUpload(@Valid FileBucket fileBucket,
+    private String getRawFileFromDrive(byte[] fileBytes){
+            byte[] encoded=
+                    org.apache.commons.codec.binary.Base64.encodeBase64(fileBytes);
+            return new String(encoded);
+    }
+
+    @RequestMapping(value = "/changePhotoUser-{ssoId}", params = "cancel", method = RequestMethod.POST)
+    public String singleFileUploadCancel(@Valid FileBucket fileBucket,
                                    BindingResult result, ModelMap model, @PathVariable String ssoId) throws IOException {
+            return "redirect:/user-{ssoId}";
+    }
+
+
+    @RequestMapping(value = "/changePhotoUser-{ssoId}", params = "upload", method = RequestMethod.POST)
+    public String singleFileUploadUpdate(@Valid FileBucket fileBucket,
+                                         BindingResult result, ModelMap model, @PathVariable String ssoId) throws IOException {
         if (result.hasErrors()) {
             System.out.println("validation errors");
             return "singleFileUploader";
@@ -221,6 +335,27 @@ public class MainController {
 
             // Now do something with file...
             File file = new File( UPLOAD_LOCATION,ssoId + ".jpg");
+            FileCopyUtils.copy(fileBucket.getFile().getBytes(), file);
+            String fileName = multipartFile.getOriginalFilename();
+            model.addAttribute("fileName", fileName);
+            model.addAttribute("photoPath", file.getAbsolutePath());
+            return "redirect:/changePhotoUser-{ssoId}";
+        }
+    }
+
+    @RequestMapping(value = "/changePhotoUser-{ssoId}", params = "preview", method = RequestMethod.POST)
+    public String singleFileUploadPreview(@Valid FileBucket fileBucket,
+                                         BindingResult result, ModelMap model, @PathVariable String ssoId) throws IOException {
+        if (result.hasErrors()) {
+            System.out.println("validation errors");
+            return "singleFileUploader";
+        } else {
+            System.out.println("Fetching file");
+            MultipartFile multipartFile = fileBucket.getFile();
+
+            // Now do something with file...
+            String uniqueID = UUID.randomUUID().toString();
+            File file = new File( UPLOAD_LOCATION, "~" + ssoId + uniqueID + ".jpg");
             FileCopyUtils.copy(fileBucket.getFile().getBytes(), file);
             String fileName = multipartFile.getOriginalFilename();
             model.addAttribute("fileName", fileName);

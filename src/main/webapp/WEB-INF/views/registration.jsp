@@ -5,13 +5,39 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <%--<head>--%>
 	<%--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">--%>
 	<%--<title>User Registration Form</title>--%>
 	<%--<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>--%>
 	<%--<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>--%>
 <%--</head>--%>
+
+<script>
+	function doAjax() {
+
+		$.ajax({
+			url: 'checkStrength',
+			data: ({password :$('#password').val()}),
+			success: function (data) {
+				$('#strengthValue').html(data)
+			}
+		});
+	}
+
+	function doUpdateAvatar() {
+
+		$.ajax({
+			url: 'doUpdateAvatar',
+			data: ({aaa :$('#firstName').val()}),
+			success: function (data) {
+				$('#rrrrr').html(data)
+			}
+		});
+	}
+
+
+</script>
 
 <body>
  	<div class="generic-container">
@@ -70,7 +96,8 @@
 				<div class="form-group col-md-12">
 					<label class="col-md-3 control-lable" for="password">Password</label>
 					<div class="col-md-7">
-						<form:input type="password" path="password" id="password" class="form-control input-sm" />
+						<form:input type="password" path="password" id="password" onkeyup="doAjax()" class="form-control input-sm" />
+						<label id="strengthValue"/>
 						<div class="has-error">
 							<form:errors path="password" class="help-inline"/>
 						</div>
@@ -82,7 +109,8 @@
 				<div class="form-group col-md-12">
 					<label class="col-md-3 control-lable" for="email">Email</label>
 					<div class="col-md-7">
-						<form:input type="text" path="email" id="email" class="form-control input-sm" />
+						<form:input type="text" path="email" id="email" onkeyup="doUpdateAvatar()" class="form-control input-sm" />
+						<label id="rrrrr"/>
 						<div class="has-error">
 							<form:errors path="email" class="help-inline"/>
 						</div>

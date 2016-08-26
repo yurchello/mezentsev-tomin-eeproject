@@ -5,6 +5,10 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<meta name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
 <%--<head>--%>
 <%--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">--%>
@@ -12,6 +16,126 @@
 <%--<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>--%>
 <%--<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>--%>
 <%--</head>--%>
+<script>
+    function doAjax() {
+        $.ajax({
+            url: 'previewPhoto',
+            data: ({password :$('#password').val()}),
+            success: function (data) {
+                $('#strengthValue').html(data)
+            }
+        });
+    }
+
+//    function doUpdateAvatar() {
+//
+//        $.ajax({
+//            url: 'doUpdateAvatar',
+//            data: ({aaa :$('#firstName').val()}),
+//            success: function (data) {
+//                $('#hhh').html(data)
+//            }
+//        });
+//    }
+
+    function doUpdateAvatar() {
+        var output = document.getElementById('output').src;
+
+        $.ajax({
+            url: 'doUpdateAvatar',
+            data: $('#output').serialize(),
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            mimeType: 'application/json',
+            success: function (data) {
+//                $('#hhh').html(data)
+                alert();
+            }
+        });
+
+    }
+
+    function doPutImage() {
+            var image = document.getElementById('output').files[0];
+            var formData = new FormData();
+            formData.append('image', image);
+            $.ajax({
+                url: 'image',
+                type: 'put',
+                data: formData,
+                contentType: false,
+                processData: false,
+                async: true,
+                success: function(data) {
+                    alert("ssss")
+                    console.log("success");
+                    console.log(data);
+                },
+                error: function(data) {
+                    alert("eeeee")
+                    console.log("error");
+                    console.log(data);
+                }
+            });
+    }
+
+    function doImage() {
+        var x = $('div.col-md-12 output').prop('src');
+        var imgData = JSON.stringify(x);
+        $('div.Fil output').prop('src')
+        $.ajax({
+            type: "POST",
+            datatype: 'json',
+            data: imgData,
+            url: "test",
+            success: function(data) {
+                alert("successfully uploaded");
+            },
+            error: function (request, status, error) {
+                alert("failure");
+            }
+        });
+    }
+
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
+
+    var alertCall = function() {
+        var output = document.getElementById('output');
+
+    };
+
+
+    $(function () {
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        $(document).ajaxSend(function(e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    });
+
+    function saveAdvertWithImage() {
+
+        var formData = new FormData();
+        formData.append('mainImage', $('#file')[0].files[0]);
+        //formData.append('mainImage', $('#output').val());
+        //alert();
+        $.ajax({
+            headers: {
+                Accept : "application/json; charset=utf-8"
+            },
+            url: '/addAdvert',
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: 'POST'
+        })
+
+    }
+</script>
 
 <body>
 <div class="generic-container">
@@ -27,7 +151,8 @@
                         <div class="form-group col-md-12">
                             <label class="col-md-3 control-lable" for="firstName">First Name</label>
                             <div class="col-md-7">
-                                <form:input type="text" path="firstName" id="firstName" class="form-control input-sm"/>
+                                <form:input type="text" path="firstName" onkeyup="doUpdateAvatar()" id="firstName" class="form-control input-sm"/>
+                                <label id="hhh" />
                                 <div class="has-error">
                                     <form:errors path="firstName" class="help-inline"/>
                                 </div>
@@ -63,6 +188,7 @@
                             <div class="col-md-7">
                                 <form:input type="password" path="password" id="password"
                                             class="form-control input-sm"/>
+
                                 <div class="has-error">
                                     <form:errors path="password" class="help-inline"/>
                                 </div>
@@ -117,7 +243,15 @@
                         <div class="form-group col-md-12">
                             <label class="col-md-3 control-lable">Photo:</label>
                             <div>
-                                <img src="/static/images/default.JPG" width="117" height="160" alt="df">
+                                <img src="/static/images/default.JPG" width="117" height="160" alt="df" id="statImg">
+                            </div>
+                            <div>
+                                <input id="file" type="file" path="file" accept="image/*" onchange="loadFile(event)"/>
+                                <img  id="output" width="117" height="160"/>
+                                <button name="refresh" id="refresh" type="button" onclick="saveAdvertWithImage()" >Refresh</button>
+                            </div>
+                            <div>
+
                             </div>
                             <a href="<c:url value='/singleUpload' />">Change Photo</a>
 
@@ -171,6 +305,10 @@
                 <input type="submit" value="Update" class="btn btn-primary btn-sm"/> or <a
                     href="<c:url value='/user-${user.ssoId}'/>">Cancel</a>
             </div>
+            <%--<div>--%>
+                <%--<input type="file" accept="image/*" onchange="loadFile(event)">--%>
+                <%--<img id="output" width="117" height="160"/>--%>
+            <%--</div>--%>
         </div>
     </form:form>
 </div>

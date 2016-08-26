@@ -32,13 +32,16 @@
         </div>
         <div>
             <div>
-                <form:input type="file" path="file" id="file"/>
+                <form:input type="file" path="file" id="file" title="dscasd"/>
                 <div class="has-error">
                     <form:errors path="file" class="help-inline"/>
                 </div>
             </div>
             <div>
-                <input type="submit" value="Upload"> or <input type="submit"  value="Cancel">
+                <input type="submit" name="preview" value="Preview">
+            </div>
+            <div>
+                <input type="submit" name="upload" value="Upload"> or <input type="submit" name="cancel"  value="Cancel">
             </div>
             <div>
                 <label>Photo path: ${photoPath}</label>
