@@ -23,7 +23,7 @@
     $(function () {
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
-        $(document).ajaxSend(function(e, xhr, options) {
+        $(document).ajaxSend(function (e, xhr, options) {
             xhr.setRequestHeader(header, token);
         });
     });
@@ -45,21 +45,18 @@
             type: 'POST',
             success: function () {
                 alert("Success!");
-
-
             },
             error: function () {
-                alert("error");
+                alert("Error. Please, choose a photo.");
             }
         })
 
     }
 
-    var loadFile = function(event) {
+    var loadFile = function (event) {
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(event.target.files[0]);
     };
-
 
 
 </script>
@@ -120,15 +117,13 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="col-md-3 control-lable">Photo:</label>
-                            <%--<div>--%>
-                                <%--<img src="/static/images/default.JPG" width="117" height="160" alt="df">--%>
-                            <%--</div>--%>
                             <div>
                                 <c:if test="${user.photo != null}">
-                                    <img src="data:image/jpeg;base64,${photoPath}" id="output" width="117" height="160" alt="df">
+                                    <img src="data:image/jpeg;base64,${photoPath}" id="output" width="117" height="160"
+                                         alt="df">
                                 </c:if>
                                 <c:if test="${user.photo == null}">
-                                    <img id="output" alt="df" width="117" height="160"  src="/static/images/default.JPG">
+                                    <img id="output" alt="df" width="117" height="160" src="/static/images/default.JPG">
                                 </c:if>
                             </div>
 
@@ -136,25 +131,19 @@
                                 <c:if test="${loggedinuser==user.ssoId}">
                                     <div>
                                         <div>
-                                            <input id="file" type="file" path="file" accept="image/*" onchange="loadFile(event)"/>
-                                            <%--<img  id="output" width="117" height="160"/>--%>
-
+                                            <input id="file" type="file" path="file" accept="image/*"
+                                                   onchange="loadFile(event)"/>
                                         </div>
                                         <div>
-                                            <button name="refresh" id="refresh" type="button" onclick="saveAdvertWithImage()" >Refresh</button>
+                                            <button name="refresh" id="refresh" type="button"
+                                                    onclick="saveAdvertWithImage()">Refresh
+                                            </button>
                                             <a href="<c:url value='/user-${user.ssoId}'/>">Cancel</a>
                                         </div>
                                     </div>
                                     <div>
-                                            <%--<input type="submit" value="Edit profile" class="btn btn-primary btn-sm"/>--%>
                                         <a href="<c:url value='/editUser-${user.ssoId}'/>">Edit Profile</a>
                                     </div>
-                                    <%--<div>--%>
-                                        <%--<a href="<c:url value='/changePhotoUser-${user.ssoId}'/>">Change photo</a>--%>
-                                    <%--</div>--%>
-                                    <%--<div>--%>
-                                        <%--<input type="submit" value="View Vocabulary" class="btn btn-primary btn-sm"/>--%>
-                                    <%--</div>--%>
                                 </c:if>
                             </sec:authorize>
                         </div>

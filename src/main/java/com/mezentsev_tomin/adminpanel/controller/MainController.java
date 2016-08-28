@@ -126,18 +126,6 @@ public class MainController {
         return "";
     }
 
-    @RequestMapping(value = { "/doUpdateAvatar" }, method = RequestMethod.GET, produces = {"text/html"})
-    public @ResponseBody String doUpdateAvatar(String aaa){
-        System.out.println();
-        return aaa + "fffff";
-    }
-
-
-
-    @RequestMapping(value={"/image"}, method=RequestMethod.PUT, consumes="multipart/form-data")
-    public @ResponseBody void addImage(HttpServletRequest request) {
-        System.out.println();
-    }
 
     @RequestMapping(value = "/echofile", method = RequestMethod.POST, produces = {"application/json"})
     public @ResponseBody HashMap<String, Object> echoFile(MultipartHttpServletRequest request,
@@ -271,9 +259,10 @@ public class MainController {
     @RequestMapping(value = {"/editUser-{ssoId}"}, method = RequestMethod.GET)
     public String editProfile(@PathVariable String ssoId, ModelMap model){
         User user = userService.findBySSO(ssoId);
-
         model.addAttribute("user", user);
-
+        String image = getRawFileFromDrive(user.getPhoto());
+        model.addAttribute("photoPath", image);
+        model.addAttribute("loggedinuser", getPrincipal());
         return "editProfile";
     }
 
