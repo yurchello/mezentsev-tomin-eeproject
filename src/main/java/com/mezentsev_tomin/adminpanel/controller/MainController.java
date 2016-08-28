@@ -9,10 +9,14 @@ import com.mezentsev_tomin.adminpanel.service.UserProfileService;
 import com.mezentsev_tomin.adminpanel.service.UserService;
 import com.mezentsev_tomin.adminpanel.utils.FileValidator;
 import com.mezentsev_tomin.adminpanel.utils.MultiFileValidator;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.core.convert.Property;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
@@ -47,6 +51,8 @@ import java.util.*;
 @SessionAttributes("roles")
 public class MainController {
 
+    static final Logger logger = LoggerFactory.getLogger(MainController.class);
+
     @Autowired
     UserService userService;
 
@@ -80,11 +86,23 @@ public class MainController {
         binder.setValidator(multiFileValidator);
     }
 
-    @ResponseBody
+    //@ResponseBody
+    @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/addAdvert", method = RequestMethod.POST)
-    public ResponseEntity<Integer> addAdvert(@RequestParam(name = "mainImage", required = false) MultipartFile mainImage) throws IOException {
-        System.out.printf("");
-                                                 return null;
+    public void addAdvert(@RequestParam(name = "mainImage", required = false) MultipartFile mainImage) throws IOException {
+        String ssoId = getSSOIdifAutentificated();
+        String fileName = ssoId + "." + FilenameUtils.getExtension(mainImage.getOriginalFilename());
+        String path = saveFile(mainImage, UPLOAD_LOCATION, fileName);
+        User user = userService.findBySSO(ssoId);
+        user.setPhoto(path);
+        userService.updateUser(user);
+        logger.info("Avatar path saved: ", path);
+    }
+
+    private String saveFile(MultipartFile multipartFile, String dirName, String fileName) throws IOException {
+        File file = new File(dirName, fileName);
+        FileCopyUtils.copy(multipartFile.getBytes(), file);
+        return file.getPath();
     }
 
     /**
@@ -244,6 +262,8 @@ public class MainController {
         User user = userService.findBySSO(ssoId);
         model.addAttribute("user", user);
         model.addAttribute("loggedinuser", getPrincipal());
+        String image = getRawFileFromDrive(user.getPhoto());
+        model.addAttribute("photoPath", image);
         return "account";
     }
 
