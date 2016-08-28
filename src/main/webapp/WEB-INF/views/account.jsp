@@ -28,7 +28,7 @@
         });
     });
 
-    function saveAdvertWithImage() {
+    function avatarUpload() {
 
         var formData = new FormData();
         formData.append('mainImage', $('#file')[0].files[0]);
@@ -38,7 +38,7 @@
 //            headers: {
 //                Accept : "application/json; charset=utf-8"
 //            },
-            url: '/addAdvert',
+            url: '/avatarUpload',
             data: formData,
             processData: false,
             contentType: false,
@@ -136,7 +136,7 @@
                                         </div>
                                         <div>
                                             <button name="refresh" id="refresh" type="button"
-                                                    onclick="saveAdvertWithImage()">Refresh
+                                                    onclick="avatarUpload()">Refresh
                                             </button>
                                             <a href="<c:url value='/user-${user.ssoId}'/>">Cancel</a>
                                         </div>

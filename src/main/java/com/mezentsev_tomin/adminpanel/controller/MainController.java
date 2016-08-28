@@ -70,25 +70,15 @@ public class MainController {
 
     private static String UPLOAD_LOCATION="C:/aaa/";
 
-    @Autowired
-    FileValidator fileValidator;
-
-    @Autowired
-    MultiFileValidator multiFileValidator;
-
-    @InitBinder("fileBucket")
-    protected void initBinderFileBucket(WebDataBinder binder) {
-        binder.setValidator(fileValidator);
-    }
-
-    @InitBinder("multiFileBucket")
-    protected void initBinderMultiFileBucket(WebDataBinder binder) {
-        binder.setValidator(multiFileValidator);
-    }
+//    @Autowired
+//    FileValidator fileValidator;
+//
+//    @Autowired
+//    MultiFileValidator multiFileValidator;
 
     //@ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping(value = "/addAdvert", method = RequestMethod.POST)
+    @RequestMapping(value = "/avatarUpload", method = RequestMethod.POST)
     public void addAdvert(@RequestParam(name = "mainImage", required = false) MultipartFile mainImage) throws IOException {
         String ssoId = getSSOIdifAutentificated();
         String fileName = ssoId + "." + FilenameUtils.getExtension(mainImage.getOriginalFilename());
@@ -126,48 +116,6 @@ public class MainController {
         return "";
     }
 
-
-    @RequestMapping(value = "/echofile", method = RequestMethod.POST, produces = {"application/json"})
-    public @ResponseBody HashMap<String, Object> echoFile(MultipartHttpServletRequest request,
-                                                          HttpServletResponse response) throws Exception {
-
-        MultipartFile multipartFile = request.getFile("file");
-        Long size = multipartFile.getSize();
-        String contentType = multipartFile.getContentType();
-        InputStream stream = multipartFile.getInputStream();
-        byte[] bytes = IOUtils.toByteArray(stream);
-
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("fileoriginalsize", size);
-        map.put("contenttype", contentType);
-        map.put("base64", new String(Base64Utils.encode(bytes)));
-
-        return map;
-    }
-
-    MultipartFile multipartFile;
-    @RequestMapping(value = "/upload-logo", method = RequestMethod.POST)
-    @ResponseBody
-    public JsonLogo uploadLogo(MultipartHttpServletRequest request) {
-        try {
-            Iterator<String> itr = request.getFileNames();
-            MultipartFile file = request.getFile(itr.next());
-
-            JsonLogo logo = new JsonLogo();
-            if (multipartFile.getBytes().length > 0) {
-                logo.setImage(new String(org.apache.commons.codec.binary.Base64.encodeBase64(multipartFile.getBytes())));
-            }
-            return logo;
-        } catch (Exception e) {
-            //Handle exception if any
-        }
-        return null;
-    }
-
-//    @RequestMapping(value = { "/previewPhoto" }, method = RequestMethod.GET, produces = {"text/html"})
-//    public @ResponseBody String previewPhoto(){
-//
-//    }
 
     /**
      * This method will provide the medium to add a new user.
@@ -324,56 +272,6 @@ public class MainController {
                     org.apache.commons.codec.binary.Base64.encodeBase64(fileBytes);
             return new String(encoded);
     }
-
-    @RequestMapping(value = "/changePhotoUser-{ssoId}", params = "cancel", method = RequestMethod.POST)
-    public String singleFileUploadCancel(@Valid FileBucket fileBucket,
-                                   BindingResult result, ModelMap model, @PathVariable String ssoId) throws IOException {
-            return "redirect:/user-{ssoId}";
-    }
-
-
-    @RequestMapping(value = "/changePhotoUser-{ssoId}", params = "upload", method = RequestMethod.POST)
-    public String singleFileUploadUpdate(@Valid FileBucket fileBucket,
-                                         BindingResult result, ModelMap model, @PathVariable String ssoId) throws IOException {
-        if (result.hasErrors()) {
-            System.out.println("validation errors");
-            return "singleFileUploader";
-        } else {
-            System.out.println("Fetching file");
-            MultipartFile multipartFile = fileBucket.getFile();
-
-            // Now do something with file...
-            File file = new File( UPLOAD_LOCATION,ssoId + ".jpg");
-            FileCopyUtils.copy(fileBucket.getFile().getBytes(), file);
-            String fileName = multipartFile.getOriginalFilename();
-            model.addAttribute("fileName", fileName);
-            model.addAttribute("photoPath", file.getAbsolutePath());
-            return "redirect:/changePhotoUser-{ssoId}";
-        }
-    }
-
-    @RequestMapping(value = "/changePhotoUser-{ssoId}", params = "preview", method = RequestMethod.POST)
-    public String singleFileUploadPreview(@Valid FileBucket fileBucket,
-                                         BindingResult result, ModelMap model, @PathVariable String ssoId) throws IOException {
-        if (result.hasErrors()) {
-            System.out.println("validation errors");
-            return "singleFileUploader";
-        } else {
-            System.out.println("Fetching file");
-            MultipartFile multipartFile = fileBucket.getFile();
-
-            // Now do something with file...
-            String uniqueID = UUID.randomUUID().toString();
-            File file = new File( UPLOAD_LOCATION, "~" + ssoId + uniqueID + ".jpg");
-            FileCopyUtils.copy(fileBucket.getFile().getBytes(), file);
-            String fileName = multipartFile.getOriginalFilename();
-            model.addAttribute("fileName", fileName);
-            model.addAttribute("photoPath", file.getAbsolutePath());
-            return "redirect:/changePhotoUser-{ssoId}";
-        }
-    }
-
-
 
     /**
      * This method will provide UserProfile list to views
