@@ -40,3 +40,21 @@ CREATE TABLE user
     photo VARCHAR(255)
 );
 CREATE UNIQUE INDEX sso_id ON user (sso_id);
+//**vcabluary///
+
+CREATE TABLE word
+(
+  `id` BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `word` VARCHAR(30) NOT NULL,
+  `group` VARCHAR(30) NOT NULL,
+  `translation` VARCHAR(30) NOT NULL,
+  `transcription` VARCHAR(30),
+  `description` TEXT
+);
+
+CREATE TABLE user_word
+(
+    user_id BIGINT(20) NOT NULL,
+    word_id BIGINT(20) NOT NULL,
+    CONSTRAINT `PRIMARY` PRIMARY KEY (user_id, word_id)
+);

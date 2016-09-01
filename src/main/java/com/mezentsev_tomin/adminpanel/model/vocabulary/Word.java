@@ -1,16 +1,38 @@
 package com.mezentsev_tomin.adminpanel.model.vocabulary;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Mezentsev.Y on 8/31/2016.
  */
+@Entity
+@Table(name="WORD")
 public class Word implements Serializable {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
-    private String englishWord;
+    @Column(name="WORD", nullable=false)
+    private String word;
+    @Column(name="TRANSLATION", nullable=false)
     private String translation;
+    @Column(name="TRANSCRIPTION")
     private String transcription;
+    @Column(name="DESCRIPTION")
     private String description;
+    @Column(name="GROUP", nullable=false)
+    private String group;
+
+    public Word(Integer id, String word, String translation, String transcription, String description, String group) {
+        this.id = id;
+        this.word = word;
+        this.translation = translation;
+        this.transcription = transcription;
+        this.description = description;
+        this.group = group;
+    }
+
+    public Word() {}
 
     public Integer getId() {
         return id;
@@ -20,12 +42,12 @@ public class Word implements Serializable {
         this.id = id;
     }
 
-    public String getEnglishWord() {
-        return englishWord;
+    public String getWord() {
+        return word;
     }
 
-    public void setEnglishWord(String englishWord) {
-        this.englishWord = englishWord;
+    public void setWord(String word) {
+        this.word = word;
     }
 
     public String getTranslation() {
@@ -52,14 +74,23 @@ public class Word implements Serializable {
         this.description = description;
     }
 
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
     @Override
     public String toString() {
         return "Word[" +
                 "id=" + id +
-                ", englishWord=" + englishWord +
-                ", translation=" + translation  +
-                ", transcription=" + transcription  +
-                ", description=" + description  +
+                ", word=" + word +
+                ", translation=" + translation +
+                ", transcription=" + transcription +
+                ", description=" + description +
+                ", group=" + group +
                 ']';
     }
 }

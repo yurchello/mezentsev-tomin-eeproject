@@ -1,5 +1,6 @@
 package com.mezentsev_tomin.adminpanel.model;
 
+import com.mezentsev_tomin.adminpanel.model.vocabulary.Word;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -50,11 +51,13 @@ public class User implements Serializable{
 	@JoinTable(name = "APP_USER_USER_PROFILE",
              joinColumns = { @JoinColumn(name = "USER_ID") },
              inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
-
-
-
-
 	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_word",
+			joinColumns = { @JoinColumn(name = "USER_ID") },
+			inverseJoinColumns = { @JoinColumn(name = "WORD_ID") })
+	private Set<Word> words = new HashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -126,6 +129,14 @@ public class User implements Serializable{
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public Set<Word> getWords() {
+		return words;
+	}
+
+	public void setWords(Set<Word> words) {
+		this.words = words;
 	}
 
 	@Override
