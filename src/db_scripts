@@ -40,7 +40,7 @@ CREATE TABLE user
     photo VARCHAR(255)
 );
 CREATE UNIQUE INDEX sso_id ON user (sso_id);
-//**vcabluary///
+//**vcabluary simple version///
 
 CREATE TABLE word
 (
@@ -57,4 +57,34 @@ CREATE TABLE user_word
     user_id BIGINT(20) NOT NULL,
     word_id BIGINT(20) NOT NULL,
     CONSTRAINT `PRIMARY` PRIMARY KEY (user_id, word_id)
+);
+
+//**vcabluary version 1///
+CREATE TABLE word
+(
+  `id` BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `word` VARCHAR(30) NOT NULL,
+  `translation` VARCHAR(30) NOT NULL,
+  `transcription` VARCHAR(30),
+  `description` TEXT
+);
+
+CREATE TABLE w_group
+(
+  `id` BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `word_group` VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE user_w_group
+(
+    user_id BIGINT(20) NOT NULL,
+    w_group_id BIGINT(20) NOT NULL,
+    CONSTRAINT `PRIMARY` PRIMARY KEY (user_id, w_group_id)
+);
+
+CREATE TABLE w_group_word
+(
+    w_group_id BIGINT(20) NOT NULL,
+    word_id BIGINT(20),
+    CONSTRAINT `PRIMARY` PRIMARY KEY (w_group_id, word_id)
 );

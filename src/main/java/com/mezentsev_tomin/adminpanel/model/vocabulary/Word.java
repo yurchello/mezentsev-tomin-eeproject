@@ -20,17 +20,6 @@ public class Word implements Serializable {
     private String transcription;
     @Column(name="DESCRIPTION")
     private String description;
-    @Column(name="GROUP", nullable=false)
-    private String group;
-
-    public Word(Integer id, String word, String translation, String transcription, String description, String group) {
-        this.id = id;
-        this.word = word;
-        this.translation = translation;
-        this.transcription = transcription;
-        this.description = description;
-        this.group = group;
-    }
 
     public Word() {}
 
@@ -74,23 +63,14 @@ public class Word implements Serializable {
         this.description = description;
     }
 
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
-
     @Override
     public String toString() {
         return "Word[" +
                 "id=" + id +
                 ", word=" + word +
-                ", translation=" + translation +
-                ", transcription=" + transcription +
-                ", description=" + description +
-                ", group=" + group +
+                ", translation=" + translation  +
+                ", transcription=" + transcription  +
+                ", description=" + description  +
                 ']';
     }
 }
