@@ -132,7 +132,13 @@ public class User implements Serializable{
 		this.photo = photo;
 	}
 
+	public Set<WordsGroup> getWordsGroups() {
+		return wordsGroups;
+	}
 
+	public void setWordsGroups(Set<WordsGroup> wordsGroups) {
+		this.wordsGroups = wordsGroups;
+	}
 
 	@Override
 	public int hashCode() {
