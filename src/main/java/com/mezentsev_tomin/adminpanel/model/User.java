@@ -54,11 +54,11 @@ public class User implements Serializable{
              inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
 	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "user_w_group",
-			joinColumns = { @JoinColumn(name = "USER_ID") },
-			inverseJoinColumns = { @JoinColumn(name = "W_GROUP_ID") })
-	private Set<WordsGroup> wordsGroups = new HashSet<>();
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	@JoinTable(name = "user_w_group",
+//			joinColumns = { @JoinColumn(name = "USER_ID") },
+//			inverseJoinColumns = { @JoinColumn(name = "W_GROUP_ID") })
+//	private Set<WordsGroup> wordsGroups = new HashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -132,13 +132,13 @@ public class User implements Serializable{
 		this.photo = photo;
 	}
 
-	public Set<WordsGroup> getWordsGroups() {
-		return wordsGroups;
-	}
-
-	public void setWordsGroups(Set<WordsGroup> wordsGroups) {
-		this.wordsGroups = wordsGroups;
-	}
+//	public Set<WordsGroup> getWordsGroups() {
+//		return wordsGroups;
+//	}
+//
+//	public void setWordsGroups(Set<WordsGroup> wordsGroups) {
+//		this.wordsGroups = wordsGroups;
+//	}
 
 	@Override
 	public int hashCode() {

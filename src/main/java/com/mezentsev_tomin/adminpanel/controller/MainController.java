@@ -2,22 +2,20 @@ package com.mezentsev_tomin.adminpanel.controller;
 
 
 import com.mezentsev_tomin.adminpanel.model.FileBucket;
-import com.mezentsev_tomin.adminpanel.model.JsonLogo;
+import com.mezentsev_tomin.adminpanel.model.TestModel;
 import com.mezentsev_tomin.adminpanel.model.User;
 import com.mezentsev_tomin.adminpanel.model.UserProfile;
+import com.mezentsev_tomin.adminpanel.model.vocabulary.WordsGroup;
+import com.mezentsev_tomin.adminpanel.service.TestModelService;
 import com.mezentsev_tomin.adminpanel.service.UserProfileService;
 import com.mezentsev_tomin.adminpanel.service.UserService;
-import com.mezentsev_tomin.adminpanel.utils.FileValidator;
-import com.mezentsev_tomin.adminpanel.utils.MultiFileValidator;
+import com.mezentsev_tomin.adminpanel.service.WordGroupService;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.core.convert.Property;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,21 +23,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.Base64Utils;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.*;
 import java.util.*;
@@ -55,6 +48,12 @@ public class MainController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    WordGroupService wordGroupService;
+
+    @Autowired
+    TestModelService testModelService;
 
     @Autowired
     UserProfileService userProfileService;
@@ -208,6 +207,9 @@ public class MainController {
     public String editProfile(@PathVariable String ssoId, ModelMap model){
         User user = userService.findBySSO(ssoId);
         model.addAttribute("user", user);
+
+        List<WordsGroup> list = wordGroupService.findAllGroups();
+        wordGroupService.createGroup("English", user);
         String image = getRawFileFromDrive(user.getPhoto());
         model.addAttribute("photoPath", image);
         model.addAttribute("loggedinuser", getPrincipal());

@@ -1,5 +1,7 @@
 package com.mezentsev_tomin.adminpanel.model.vocabulary;
 
+import com.mezentsev_tomin.adminpanel.model.User;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +10,7 @@ import java.util.Set;
  * Created by Mezentsev.Y on 9/1/2016.
  */
 @Entity
-@Table(name="W_GROUP")
+@Table(name="GROUPS")
 public class WordsGroup {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -16,9 +18,22 @@ public class WordsGroup {
     @Column(name="word_group", nullable=false)
     private String name;
 
+//    @Column(name="user_id", nullable=false)
+//    private String userId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User user;
+
+//    public String getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(String userId) {
+//        this.userId = userId;
+//    }
+
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "w_group_word",
-            joinColumns = { @JoinColumn(name = "W_GROUP_ID") },
+    @JoinTable(name = "groups_word",
+            joinColumns = { @JoinColumn(name = "GROUP_ID") },
             inverseJoinColumns = { @JoinColumn(name = "WORD_ID") })
     private Set<Word> words = new HashSet<>();
 
@@ -44,5 +59,13 @@ public class WordsGroup {
 
     public void setWords(Set<Word> words) {
         this.words = words;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

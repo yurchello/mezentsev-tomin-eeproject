@@ -2,6 +2,7 @@ package com.mezentsev_tomin.adminpanel.service;
 import com.mezentsev_tomin.adminpanel.dao.UserDao;
 import com.mezentsev_tomin.adminpanel.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
 	@Autowired
+	@Qualifier("userDao")
 	private UserDao dao;
 
 	@Autowired

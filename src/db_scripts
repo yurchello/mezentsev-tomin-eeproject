@@ -88,3 +88,40 @@ CREATE TABLE w_group_word
     word_id BIGINT(20),
     CONSTRAINT `PRIMARY` PRIMARY KEY (w_group_id, word_id)
 );
+
+//**vcabluary version 2 foregn key///
+
+CREATE TABLE word
+(
+  `id` BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `word` VARCHAR(30) NOT NULL,
+  `translation` VARCHAR(30) NOT NULL,
+  `transcription` VARCHAR(30),
+  `description` TEXT
+);
+
+CREATE TABLE groups
+(
+  id BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  user_id BIGINT(20) NOT NULL,
+  word_group VARCHAR(30) NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+
+CREATE TABLE groups_word
+(
+  group_id BIGINT(20) NOT NULL,
+  word_id BIGINT(20),
+  CONSTRAINT `PRIMARY` PRIMARY KEY (group_id, word_id)
+);
+
+
+CREATE TABLE test_model
+(
+    id BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(30) NOT NULL,
+);
+
+INSERT INTO test_model (id,first_name) VALUES ('1','yura');
+INSERT INTO test_model (id,first_name) VALUES ('2','fff');
