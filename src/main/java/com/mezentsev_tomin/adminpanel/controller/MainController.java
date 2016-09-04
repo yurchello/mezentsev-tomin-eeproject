@@ -2,11 +2,9 @@ package com.mezentsev_tomin.adminpanel.controller;
 
 
 import com.mezentsev_tomin.adminpanel.model.FileBucket;
-import com.mezentsev_tomin.adminpanel.model.TestModel;
 import com.mezentsev_tomin.adminpanel.model.User;
 import com.mezentsev_tomin.adminpanel.model.UserProfile;
 import com.mezentsev_tomin.adminpanel.model.vocabulary.WordsGroup;
-import com.mezentsev_tomin.adminpanel.service.TestModelService;
 import com.mezentsev_tomin.adminpanel.service.UserProfileService;
 import com.mezentsev_tomin.adminpanel.service.UserService;
 import com.mezentsev_tomin.adminpanel.service.WordGroupService;
@@ -51,9 +49,6 @@ public class MainController {
 
     @Autowired
     WordGroupService wordGroupService;
-
-    @Autowired
-    TestModelService testModelService;
 
     @Autowired
     UserProfileService userProfileService;
