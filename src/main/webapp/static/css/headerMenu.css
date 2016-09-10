@@ -1,0 +1,30 @@
+/*#hrMenu {*/
+    /*!*margin-left:20%;*!*/
+    /*!*top: 0px;*!*/
+    /*!*width: 80%;*!*/
+    /*!*height: 20%;*!*/
+    /*!*position: fixed;*!*/
+    /*!*font-family: 'bgMed',arial,helvetica,sans-serif;*!*/
+    /*!*font-size: 0.6em;*!*/
+    /*!*color: #fff;*!*/
+    /*!*z-index: 15;*!*/
+    /*!*text-transform: uppercase;*!*/
+    /*!*background-color: #272727;*!*/
+    /*!*border-bottom: 2px solid hsl(180,70%,55%);*!*/
+    /*!*padding-top:20px;*!*/
+    /*!*text-align:center;*!*/
+    /*!*list-style: none;*!*/
+    /*!*margin: 0;*!*/
+    /*!*padding-left: 0;*!*/
+    /*display: inline; !* Отображать как строчный элемент *!*/
+    /*margin-right: 5px; !* Отступ слева *!*/
+/*}*/
+
+ul.hrMenu li{
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+    margin-bottom: 5px;
+    /*border: 1px solid #000; !* Рамка вокруг текста *!*/
+    /*padding: 3px; !* Поля вокруг текста *!*/
+}
+

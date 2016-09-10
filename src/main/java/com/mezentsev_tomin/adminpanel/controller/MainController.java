@@ -171,7 +171,7 @@ public class MainController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
         if (isCurrentAuthenticationAnonymous()) {
-            return "login";
+            return "home2";
         } else {
             String ssoId = getSSOIdifAutentificated();
             return "redirect:/user-" + ssoId;

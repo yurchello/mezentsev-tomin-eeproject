@@ -15,7 +15,7 @@
 <div>
     <form:form method="POST" modelAttribute="fileBucket" enctype="multipart/form-data">
         <sec:authorize access="isAuthenticated()">
-            <%@include file="authheader.jsp" %>
+            <%@include file="pages/authheader.jsp" %>
         </sec:authorize>
         <div>
             <div>
