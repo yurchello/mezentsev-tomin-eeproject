@@ -185,6 +185,20 @@
             <version>${apachetiles.version}</version>
         </dependency>
 
+        <!--Email sending-->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>

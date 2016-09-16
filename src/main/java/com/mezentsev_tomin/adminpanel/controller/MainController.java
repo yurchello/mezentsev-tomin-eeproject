@@ -8,12 +8,14 @@ import com.mezentsev_tomin.adminpanel.model.vocabulary.WordsGroup;
 import com.mezentsev_tomin.adminpanel.service.UserProfileService;
 import com.mezentsev_tomin.adminpanel.service.UserService;
 import com.mezentsev_tomin.adminpanel.service.WordGroupService;
+import com.mezentsev_tomin.adminpanel.utils.AAAA;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.MailSender;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -61,6 +63,9 @@ public class MainController {
 
     @Autowired
     AuthenticationTrustResolver authenticationTrustResolver;
+
+    @Autowired
+    private MailSender mailSender;
 
     private static String UPLOAD_LOCATION="C:/aaa/";
 
@@ -163,7 +168,6 @@ public class MainController {
 
 
 
-
     /**
      * This method handles login GET requests.
      * If users is already logged-in and tries to goto login page again, will be redirected to list page.
@@ -185,6 +189,16 @@ public class MainController {
         return "redirect:/user-" + ssoId;
     }
 
+
+    public String contactUs(){
+        EmailSender emailSender = new EmailSender(this.mailSender);
+        emailSender.setSubject("Test");
+        emailSender.setTo("tomin.mezentsev.examples@gmai.com");
+        emailSender.setMessageContent("HI!!!!!!!");
+        emailSender.setFrom("yura_guitar@list.ru");
+        emailSender.sendEmail();
+        return "";
+    }
 
 
     @RequestMapping(value = { "/user-{ssoId}" }, method = RequestMethod.GET)
@@ -211,6 +225,7 @@ public class MainController {
         return "editProfile";
     }
 
+
     @RequestMapping(value = {"/editUser-{ssoId}"}, method = RequestMethod.POST)
     public String updateProfile(@Valid User user, BindingResult result,
                                 ModelMap model, HttpServletRequest request){
@@ -221,6 +236,8 @@ public class MainController {
         userService.updateUser(user);
         return "redirect:/user-{ssoId}";
     }
+
+
 
     @RequestMapping(value = {"/test"}, method = RequestMethod.POST)
     public void test(@RequestParam(value = "imgData")Object imgData)

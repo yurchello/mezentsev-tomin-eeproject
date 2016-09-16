@@ -1,13 +1,20 @@
 package com.mezentsev_tomin.adminpanel.configuration;
 
 import com.mezentsev_tomin.adminpanel.converter.RoleToUserProfileConverter;
+import com.mezentsev_tomin.adminpanel.utils.AAAA;
+import com.mezentsev_tomin.adminpanel.utils.BBB;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -15,10 +22,12 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
+import java.util.Properties;
+
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.mezentsev_tomin.adminpanel")
+@ComponentScan(basePackages = "com.mezentsev_tomin.adminpanel, com.mezentsev_tomin.adminpanel.utils")
 public class AppConfig extends WebMvcConfigurerAdapter {
 	@Bean(name = "multipartResolver")
 	public StandardServletMultipartResolver resolver() {
@@ -88,5 +97,23 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		tilesConfigurer.setCheckRefresh(true);
 		return tilesConfigurer;
 	}
+
+	@Bean
+	public MailSender mailSenderConfigurer(){
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setPort(587);
+		mailSender.setUsername("tomin.mezentsev.examples");
+		mailSender.setPassword("mezentsevtomin");
+
+		Properties mailProperties = new Properties();
+		mailProperties.put("mail.transport.protocol", "smtp");
+		mailProperties.put("mail.smtp.auth", "true");
+		mailProperties.put("mail.smtp.starttls.enable", "true");
+		mailSender.setJavaMailProperties(mailProperties);
+
+		return mailSender;
+	}
+
 }
 
