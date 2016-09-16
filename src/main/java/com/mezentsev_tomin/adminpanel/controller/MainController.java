@@ -4,11 +4,11 @@ package com.mezentsev_tomin.adminpanel.controller;
 import com.mezentsev_tomin.adminpanel.model.FileBucket;
 import com.mezentsev_tomin.adminpanel.model.User;
 import com.mezentsev_tomin.adminpanel.model.UserProfile;
+import com.mezentsev_tomin.adminpanel.model.EmailSenderModel;
 import com.mezentsev_tomin.adminpanel.model.vocabulary.WordsGroup;
 import com.mezentsev_tomin.adminpanel.service.UserProfileService;
 import com.mezentsev_tomin.adminpanel.service.UserService;
 import com.mezentsev_tomin.adminpanel.service.WordGroupService;
-import com.mezentsev_tomin.adminpanel.utils.AAAA;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,8 +64,7 @@ public class MainController {
     @Autowired
     AuthenticationTrustResolver authenticationTrustResolver;
 
-    @Autowired
-    private MailSender mailSender;
+
 
     private static String UPLOAD_LOCATION="C:/aaa/";
 
@@ -190,15 +189,6 @@ public class MainController {
     }
 
 
-    public String contactUs(){
-        EmailSender emailSender = new EmailSender(this.mailSender);
-        emailSender.setSubject("Test");
-        emailSender.setTo("tomin.mezentsev.examples@gmai.com");
-        emailSender.setMessageContent("HI!!!!!!!");
-        emailSender.setFrom("yura_guitar@list.ru");
-        emailSender.sendEmail();
-        return "";
-    }
 
 
     @RequestMapping(value = { "/user-{ssoId}" }, method = RequestMethod.GET)

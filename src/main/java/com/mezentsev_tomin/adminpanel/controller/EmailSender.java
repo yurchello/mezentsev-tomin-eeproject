@@ -35,18 +35,12 @@ public class EmailSender {
         this.mailSender = mailSender;
     }
 
-    public boolean sendEmail(){
+    public void sendEmail(){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(subject);
         message.setText(messageContent + " from email " + from);
-        try {
-            mailSender.send(message);
-        }catch (MailException e){
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+        mailSender.send(message);
     }
 
     public String getMessageContent() {
