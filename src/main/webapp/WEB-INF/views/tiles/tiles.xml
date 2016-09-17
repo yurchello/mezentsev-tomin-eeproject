@@ -12,8 +12,6 @@
        <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />  
    </definition>
 
-
-
    <!-- Product Page -->
    <definition name="products" extends="base-definition">
        <put-attribute name="title" value="Products" />

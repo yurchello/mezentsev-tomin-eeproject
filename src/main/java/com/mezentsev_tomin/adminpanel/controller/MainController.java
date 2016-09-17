@@ -76,7 +76,7 @@ public class MainController {
 
     //@ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping(value = "/avatarUpload", method = RequestMethod.POST)
+    @RequestMapping(value = "/avatarUploade", method = RequestMethod.POST)
     public void addAdvert(@RequestParam(name = "mainImage", required = false) MultipartFile mainImage) throws IOException {
         String ssoId = getSSOIdifAutentificated();
         String fileName = ssoId + "." + FilenameUtils.getExtension(mainImage.getOriginalFilename());
@@ -105,15 +105,21 @@ public class MainController {
         final int STRONG = 7;
         int pasLen = password.length();
         if (pasLen>= WEAK && pasLen<FEAR){
-            return "Low protection";
+            return "1";
         }else if (pasLen>= FEAR && pasLen<STRONG){
-            return "Middle protection";
+            return "2";
         }else if (pasLen>= STRONG){
-            return "High protection";
+            return "3";
         }
         return "";
     }
 
+
+    @RequestMapping(value = { "/confirmPassword" }, method = RequestMethod.GET, produces = {"text/html"})
+    public @ResponseBody String confirmPassword(String password1, String password2){
+
+        return password1 + password2;
+    }
 
     /**
      * This method will provide the medium to add a new user.
