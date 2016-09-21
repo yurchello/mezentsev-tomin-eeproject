@@ -3,10 +3,12 @@ package com.mezentsev_tomin.adminpanel.configuration;
 import com.mezentsev_tomin.adminpanel.utils.AAAA;
 import com.mezentsev_tomin.adminpanel.utils.BBB;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.filter.HttpPutFormContentFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -43,5 +45,33 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	private static final int FILE_SIZE_THRESHOLD = 0; // Size threshold after which files will be written to disk
 
+//	@Override
+//	protected Filter[] getServletFilters() {
+//		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+//		characterEncodingFilter.setEncoding("UTF-8");
+//		return new Filter[]{ characterEncodingFilter };
+//	}
+
+//	@Override
+//	protected Filter[] getServletFilters() {
+//		CharacterEncodingFilter charFilter = new CharacterEncodingFilter();
+//		charFilter.setEncoding("UTF-8");
+//		charFilter.setForceEncoding(true);
+//		return new Filter[] { new HiddenHttpMethodFilter(), charFilter,
+//				new HttpPutFormContentFilter() };
+//	}
+
+//	@Override
+//	public void onStartup(ServletContext servletContext) throws ServletException {
+//
+//		super.onStartup(servletContext);
+//		FilterRegistration.Dynamic fr = servletContext.addFilter("encodingFilter",
+//				new CharacterEncodingFilter());
+//		fr.setInitParameter("encoding", "UTF-8");
+//		fr.setInitParameter("forceEncoding", "true");
+//		fr.addMappingForUrlPatterns(null, true, "/*");
+//
+//
+//	}
 
 }

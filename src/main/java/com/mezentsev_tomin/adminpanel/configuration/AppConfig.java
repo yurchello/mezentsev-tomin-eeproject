@@ -5,6 +5,7 @@ import com.mezentsev_tomin.adminpanel.utils.AAAA;
 import com.mezentsev_tomin.adminpanel.utils.BBB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,9 +13,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -22,6 +25,9 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 
@@ -50,6 +56,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //		viewResolver.setSuffix(".jsp");
 //		registry.viewResolver(viewResolver);
 		TilesViewResolver viewResolver = new TilesViewResolver();
+		viewResolver.setContentType("text/html; charset=UTF-8");
 		registry.viewResolver(viewResolver);
 	}
 	
@@ -114,6 +121,14 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 		return mailSender;
 	}
+
+
+
+
+
+
+
+
 
 }
 

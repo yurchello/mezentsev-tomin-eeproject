@@ -4,6 +4,7 @@ import com.mezentsev_tomin.adminpanel.model.User;
 import com.mezentsev_tomin.adminpanel.model.vocabulary.Word;
 import com.mezentsev_tomin.adminpanel.model.vocabulary.WordsGroup;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
@@ -33,29 +34,34 @@ public class WordGroupDaoImpl extends AbstractDao<Integer, WordsGroup> implement
     }
 
     @Override
-    public void createGroup(String name, User user) {
-        WordsGroup wordsGroup = new WordsGroup();
-        wordsGroup.setName(name);
+    public void createGroup(WordsGroup wordsGroup, User user) {
         wordsGroup.setUser(user);
-        Session session = getSession();
-        session.save(wordsGroup);
-
-
+        persist(wordsGroup);
+//        Session session = getSession();
+//        session.save(wordsGroup);
     }
 
     @Override
     public void updateGroup(WordsGroup wordsGroup) {
-
+        update(wordsGroup);
     }
 
     @Override
     public void deleteGroup(WordsGroup wordsGroup) {
-
+        delete(wordsGroup);
     }
 
     @Override
     public List<WordsGroup> findAllUserGroups(User user) {
+        Session session = getSession();
+        //Query query = session.createQuery("SELECT group.id FROM Developer D");
+        //List groups = query.list();
         return null;
+    }
+
+    @Override
+    public WordsGroup findById(Integer id) {
+        return getByKey(id);
     }
 
     @Override
@@ -63,10 +69,6 @@ public class WordGroupDaoImpl extends AbstractDao<Integer, WordsGroup> implement
 
     }
 
-    @Override
-    public void removeWord(WordsGroup wordsGroup, Word word) {
-
-    }
 
     @Override
     public void updateWord(WordsGroup wordsGroup, Word word) {

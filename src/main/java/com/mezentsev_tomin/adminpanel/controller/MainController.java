@@ -4,18 +4,18 @@ package com.mezentsev_tomin.adminpanel.controller;
 import com.mezentsev_tomin.adminpanel.model.FileBucket;
 import com.mezentsev_tomin.adminpanel.model.User;
 import com.mezentsev_tomin.adminpanel.model.UserProfile;
-import com.mezentsev_tomin.adminpanel.model.EmailSenderModel;
+import com.mezentsev_tomin.adminpanel.model.vocabulary.Word;
 import com.mezentsev_tomin.adminpanel.model.vocabulary.WordsGroup;
 import com.mezentsev_tomin.adminpanel.service.UserProfileService;
 import com.mezentsev_tomin.adminpanel.service.UserService;
 import com.mezentsev_tomin.adminpanel.service.WordGroupService;
+import com.mezentsev_tomin.adminpanel.service.WordService;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
-import org.springframework.mail.MailSender;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,6 +29,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +52,9 @@ public class MainController {
 
     @Autowired
     WordGroupService wordGroupService;
+
+    @Autowired
+    WordService wordService;
 
     @Autowired
     UserProfileService userProfileService;
@@ -76,7 +80,7 @@ public class MainController {
 
     //@ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping(value = "/avatarUploade", method = RequestMethod.POST)
+    @RequestMapping(value = "/avatarUpload", method = RequestMethod.POST)
     public void addAdvert(@RequestParam(name = "mainImage", required = false) MultipartFile mainImage) throws IOException {
         String ssoId = getSSOIdifAutentificated();
         String fileName = ssoId + "." + FilenameUtils.getExtension(mainImage.getOriginalFilename());
@@ -117,7 +121,6 @@ public class MainController {
 
     @RequestMapping(value = { "/confirmPassword" }, method = RequestMethod.GET, produces = {"text/html"})
     public @ResponseBody String confirmPassword(String password1, String password2){
-
         return password1 + password2;
     }
 
@@ -213,8 +216,8 @@ public class MainController {
         User user = userService.findBySSO(ssoId);
         model.addAttribute("user", user);
 
-        List<WordsGroup> list = wordGroupService.findAllGroups();
-        wordGroupService.createGroup("English", user);
+        //List<WordsGroup> list = wordGroupService.findAllGroups();
+        //wordGroupService.createGroup("English", user);
         String image = getRawFileFromDrive(user.getPhoto());
         model.addAttribute("photoPath", image);
         model.addAttribute("loggedinuser", getPrincipal());
@@ -233,12 +236,99 @@ public class MainController {
         return "redirect:/user-{ssoId}";
     }
 
+//    @RequestMapping(value = {"/vocabulary-{ssoId}"}, method = RequestMethod.GET)
+//    public String vocabularyView(@PathVariable String ssoId, ModelMap model){
+//        List<WordsGroup> list = wordGroupService.findAllGroups();
+//        model.addAttribute("wordsGroups", list);
+//        return "vocabulary";
+//    }
 
+    @RequestMapping(value = {"/groupsList-{ssoId}"}, method = RequestMethod.GET)
+    public String groupView(@PathVariable String ssoId, ModelMap model){
+        User user = userService.findBySSO(ssoId);
+        List<WordsGroup> list = wordGroupService.findAllUserGroups(user);
+        model.addAttribute("user", user);
+        model.addAttribute("wordsGroups", list);
+        return "groupsList";
+    }
 
-    @RequestMapping(value = {"/test"}, method = RequestMethod.POST)
-    public void test(@RequestParam(value = "imgData")Object imgData)
-    {
-        System.out.println(imgData);
+    @RequestMapping(value = {"delete-group"}, method = RequestMethod.GET)
+    public String deleteGroup(@RequestParam Integer id, @RequestParam String ssoId, ModelMap model){
+        WordsGroup wordsGroup = wordGroupService.findById(id);
+        wordGroupService.deleteGroup(wordsGroup);
+        return "redirect:/groupsList-" + ssoId;
+    }
+
+    @RequestMapping(value = {"view-group"}, method = RequestMethod.GET)
+    public String editGroup(@RequestParam Integer id, @RequestParam String ssoId, ModelMap model){
+        WordsGroup wordsGroup = wordGroupService.findById(id);
+        User user = userService.findBySSO(ssoId);
+        model.addAttribute("wordsGroup",wordsGroup);
+        model.addAttribute("user", user);
+        //Request.setCharacterEncoding
+        return "viewGroup";
+    }
+
+    @RequestMapping(value = {"/newGroup"}, method = RequestMethod.GET)
+    public String createGroup(@RequestParam String ssoId, ModelMap model){
+        model.addAttribute("ssoId", ssoId);
+        model.addAttribute("wordsGroup", new WordsGroup());
+        return "newGroup";
+    }
+
+    @RequestMapping(value = {"/newGroup"}, method = RequestMethod.POST)
+    public String createGroupAdd(WordsGroup wordsGroup, String ssoId, ModelMap model, RedirectAttributes redirectAttributes){
+        User user = userService.findBySSO(ssoId);
+        wordGroupService.createGroup(wordsGroup, user);
+        redirectAttributes.addAttribute("id", wordsGroup.getId());
+        redirectAttributes.addAttribute("ssoId", ssoId);
+        return "redirect:/view-group";
+    }
+
+    @RequestMapping(value = {"newWord"}, method = RequestMethod.GET)
+    public String newWord(@RequestParam String id, @RequestParam String ssoId, ModelMap model){
+        model.addAttribute("ssoId", ssoId);
+        model.addAttribute("wordsGroupId",id);
+        Word word = new Word();
+        model.addAttribute("word",word);
+        return "newWord";
+    }
+
+    @RequestMapping(value = {"/newWord"}, method = RequestMethod.POST )
+    public String newWordAdd(Word word, Integer wordsGroupId, String ssoId, ModelMap model, RedirectAttributes redirectAttributes){
+        WordsGroup wordsGroup = wordGroupService.findById(wordsGroupId);
+        word.setId(null);
+        wordGroupService.addWordToGroup(word,wordsGroup);
+        redirectAttributes.addAttribute("wordsGroupId", wordsGroupId);
+        redirectAttributes.addAttribute("ssoId", ssoId);
+        return "redirect:/view-group";
+    }
+
+    @RequestMapping(value = {"/editWord"}, method = RequestMethod.GET)
+    public String editWord(@RequestParam Integer wordId, @RequestParam Integer groupId,@RequestParam String ssoId, ModelMap model){
+        Word word = wordService.findById(wordId);
+        model.addAttribute("ssoId", ssoId);
+        model.addAttribute("wordsGroupId",groupId);
+        model.addAttribute("word",word);
+        return "editWord";
+    }
+
+    @RequestMapping(value = {"/editWord"}, method = RequestMethod.POST )
+    public String editDone( Word word, Integer wordsGroupId, String ssoId,ModelMap model, RedirectAttributes redirectAttributes){
+        wordService.update(word);
+        redirectAttributes.addAttribute("id", wordsGroupId);
+        redirectAttributes.addAttribute("ssoId", ssoId);
+        return "redirect:/view-group";
+    }
+
+    @RequestMapping(value = {"/deleteWord"}, method = RequestMethod.GET)
+    public String deleteWord(Integer wordId, Integer groupId, String ssoId,  RedirectAttributes redirectAttributes){
+        Word word = wordService.findById(wordId);
+        WordsGroup wordsGroup = wordGroupService.findById(groupId);
+        wordGroupService.removeWordFromGroup(word, wordsGroup);
+        redirectAttributes.addAttribute("id", groupId);
+        redirectAttributes.addAttribute("ssoId", ssoId);
+        return "redirect:/view-group";
     }
 
     @RequestMapping(value = { "/changePhotoUser-{ssoId}" }, method = RequestMethod.GET)

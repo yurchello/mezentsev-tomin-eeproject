@@ -3,6 +3,7 @@ package com.mezentsev_tomin.adminpanel.model.vocabulary;
 import com.mezentsev_tomin.adminpanel.model.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name="GROUPS")
-public class WordsGroup {
+public class WordsGroup implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
@@ -20,7 +21,7 @@ public class WordsGroup {
 
 //    @Column(name="user_id", nullable=false)
 //    private String userId;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User user;
 
 //    public String getUserId() {

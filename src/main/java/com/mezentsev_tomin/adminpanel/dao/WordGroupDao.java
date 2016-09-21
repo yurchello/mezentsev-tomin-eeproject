@@ -12,13 +12,13 @@ import java.util.List;
 public interface WordGroupDao {
     List<WordsGroup> findAllGroups();//todo remove
 
-    void createGroup(String name, User user);
+    void createGroup(WordsGroup wordsGroup, User user);
     void updateGroup(WordsGroup wordsGroup);
     void deleteGroup(WordsGroup wordsGroup);
     List<WordsGroup> findAllUserGroups(User user);
+    WordsGroup findById(Integer id);
 
     void addWord(WordsGroup wordsGroup, Word word);
-    void removeWord(WordsGroup wordsGroup, Word word);
     void updateWord(WordsGroup wordsGroup, Word word);
     void findAllWords(WordsGroup wordsGroup);
 

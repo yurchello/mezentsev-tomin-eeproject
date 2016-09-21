@@ -6,7 +6,7 @@
 <html>
 <head>
 
-  <link href="<c:url value='/static/css/footerMenu.css' />" rel="stylesheet"></link>
+  <link href="<c:url value='/static/css/footerMenu.css' />" rel="stylesheet"/>
 </head>
 <body>
 <div>
