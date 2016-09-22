@@ -51,7 +51,7 @@
             </div>
         </div>
         <div>
-            <input type="submit" value="Add" id="addWord" class="btn btn-primary btn-sm"/> or <a href="/view-group?id=${wordsGroupId}&ssoId=${ssoId}">Cancel</a>
+            <input type="submit" value="Add" id="addWord" class="btn btn-primary btn-sm"/> or <a href="/view-group?wordsGroupId=${wordsGroupId}&ssoId=${ssoId}">Cancel</a>
         </div>
     </div>
 </form:form>

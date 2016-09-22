@@ -53,10 +53,20 @@ public class WordGroupDaoImpl extends AbstractDao<Integer, WordsGroup> implement
 
     @Override
     public List<WordsGroup> findAllUserGroups(User user) {
-        Session session = getSession();
-        //Query query = session.createQuery("SELECT group.id FROM Developer D");
-        //List groups = query.list();
-        return null;
+//        Session session = getSession();
+//        Query query = session.createQuery("FROM WordsGroup as worgGoup inner join worgGoup.user as user on user.id =:id");
+//        query.setInteger("id", user.getId());
+//        List groups = query.list();
+
+//        Session session = getSession();
+//        Query query = session.createQuery("FROM WordsGroup as worgGoup where worgGoup.user.id =:id");
+//        query.setInteger("id", user.getId());
+//        List groups = query.list();
+
+        Query query = getSession().createQuery("FROM WordsGroup as worgGoup where worgGoup.user =:currentUser");
+        query.setParameter("currentUser", user);
+        List groups = query.list();
+        return groups;
     }
 
     @Override

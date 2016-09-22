@@ -32,8 +32,8 @@
                     <td>${word.transcription}</td>
                     <td>${word.translation}</td>
                     <td>${word.description}</td>
-                    <td><a href='/editWord?wordId=${word.id}&groupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-success custom-width">edit</a></td>
-                    <td><a href='/deleteWord?wordId=${word.id}&groupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-danger custom-width">delete</a></td>
+                    <td><a href='/editWord?wordId=${word.id}&wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-success custom-width">edit</a></td>
+                    <td><a href='/deleteWord?wordId=${word.id}&wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-danger custom-width">delete</a></td>
                     <td>${word.id}</td>
                 </tr>
             </c:forEach>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="well">
-        <a href="/newWord?id=${wordsGroup.id}&ssoId=${user.ssoId}">Add New Word</a>
+        <a href="/newWord?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}">Add New Word</a>
     </div>
 
 </div>

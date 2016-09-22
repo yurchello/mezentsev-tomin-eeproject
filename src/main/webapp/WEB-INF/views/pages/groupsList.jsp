@@ -33,8 +33,8 @@
 				<c:forEach items="${wordsGroups}" var="wordsGroup" varStatus="status">
 					<tr>
 						<td>${wordsGroup.name}</td>
-						<td><a href='/view-group?id=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-success custom-width">edit</a></td>
-						<td><a href='/delete-group?id=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-danger custom-width">delete</a></td>
+						<td><a href='/view-group?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-success custom-width">edit</a></td>
+						<td><a href='/delete-group?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-danger custom-width">delete</a></td>
 					</tr>
 				</c:forEach>
 	    		</tbody>

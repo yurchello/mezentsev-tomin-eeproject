@@ -253,15 +253,15 @@ public class MainController {
     }
 
     @RequestMapping(value = {"delete-group"}, method = RequestMethod.GET)
-    public String deleteGroup(@RequestParam Integer id, @RequestParam String ssoId, ModelMap model){
-        WordsGroup wordsGroup = wordGroupService.findById(id);
+    public String deleteGroup(@RequestParam Integer wordsGroupId, @RequestParam String ssoId, ModelMap model){
+        WordsGroup wordsGroup = wordGroupService.findById(wordsGroupId);
         wordGroupService.deleteGroup(wordsGroup);
         return "redirect:/groupsList-" + ssoId;
     }
 
     @RequestMapping(value = {"view-group"}, method = RequestMethod.GET)
-    public String editGroup(@RequestParam Integer id, @RequestParam String ssoId, ModelMap model){
-        WordsGroup wordsGroup = wordGroupService.findById(id);
+    public String editGroup(@RequestParam Integer wordsGroupId, @RequestParam String ssoId, ModelMap model){
+        WordsGroup wordsGroup = wordGroupService.findById(wordsGroupId);
         User user = userService.findBySSO(ssoId);
         model.addAttribute("wordsGroup",wordsGroup);
         model.addAttribute("user", user);
@@ -280,15 +280,15 @@ public class MainController {
     public String createGroupAdd(WordsGroup wordsGroup, String ssoId, ModelMap model, RedirectAttributes redirectAttributes){
         User user = userService.findBySSO(ssoId);
         wordGroupService.createGroup(wordsGroup, user);
-        redirectAttributes.addAttribute("id", wordsGroup.getId());
+        redirectAttributes.addAttribute("wordsGroupId", wordsGroup.getId());
         redirectAttributes.addAttribute("ssoId", ssoId);
         return "redirect:/view-group";
     }
 
     @RequestMapping(value = {"newWord"}, method = RequestMethod.GET)
-    public String newWord(@RequestParam String id, @RequestParam String ssoId, ModelMap model){
+    public String newWord(@RequestParam String wordsGroupId, @RequestParam String ssoId, ModelMap model){
         model.addAttribute("ssoId", ssoId);
-        model.addAttribute("wordsGroupId",id);
+        model.addAttribute("wordsGroupId",wordsGroupId);
         Word word = new Word();
         model.addAttribute("word",word);
         return "newWord";
@@ -305,10 +305,10 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/editWord"}, method = RequestMethod.GET)
-    public String editWord(@RequestParam Integer wordId, @RequestParam Integer groupId,@RequestParam String ssoId, ModelMap model){
+    public String editWord(@RequestParam Integer wordId, @RequestParam Integer wordsGroupId,@RequestParam String ssoId, ModelMap model){
         Word word = wordService.findById(wordId);
         model.addAttribute("ssoId", ssoId);
-        model.addAttribute("wordsGroupId",groupId);
+        model.addAttribute("wordsGroupId",wordsGroupId);
         model.addAttribute("word",word);
         return "editWord";
     }
@@ -316,17 +316,17 @@ public class MainController {
     @RequestMapping(value = {"/editWord"}, method = RequestMethod.POST )
     public String editDone( Word word, Integer wordsGroupId, String ssoId,ModelMap model, RedirectAttributes redirectAttributes){
         wordService.update(word);
-        redirectAttributes.addAttribute("id", wordsGroupId);
+        redirectAttributes.addAttribute("wordsGroupId", wordsGroupId);
         redirectAttributes.addAttribute("ssoId", ssoId);
         return "redirect:/view-group";
     }
 
     @RequestMapping(value = {"/deleteWord"}, method = RequestMethod.GET)
-    public String deleteWord(Integer wordId, Integer groupId, String ssoId,  RedirectAttributes redirectAttributes){
+    public String deleteWord(Integer wordId, Integer wordsGroupId, String ssoId,  RedirectAttributes redirectAttributes){
         Word word = wordService.findById(wordId);
-        WordsGroup wordsGroup = wordGroupService.findById(groupId);
+        WordsGroup wordsGroup = wordGroupService.findById(wordsGroupId);
         wordGroupService.removeWordFromGroup(word, wordsGroup);
-        redirectAttributes.addAttribute("id", groupId);
+        redirectAttributes.addAttribute("wordsGroupId", wordsGroupId);
         redirectAttributes.addAttribute("ssoId", ssoId);
         return "redirect:/view-group";
     }

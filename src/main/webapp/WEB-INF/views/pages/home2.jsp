@@ -16,6 +16,7 @@
 <link href="<c:url value='/static/css/buttons.dataTables.min.css' />" rel="stylesheet"/>
 
 <head>
+
     <title>Title</title>
    </head>
 <script>
@@ -75,6 +76,7 @@
     } );
 </script>
 <body>
+
 <div width="70%">
     <table id="example" class="display" cellspacing="0" width="100%">
         <thead>
