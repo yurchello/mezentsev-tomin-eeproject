@@ -16,38 +16,38 @@
     <div>
         <div>
             <label for="word">Word</label>
+            <div class="has-error">
+                <form:errors path="word" class="help-inline"/>
+            </div>
             <div class="col-md-7">
                 <form:input type="text" path="word" id="word" />
-                <div class="has-error">
-                    <form:errors path="word" class="help-inline"/>
-                </div>
             </div>
         </div>
         <div>
             <label for="transcription">Transcription</label>
+            <div class="has-error">
+                <form:errors path="transcription" class="help-inline"/>
+            </div>
             <div class="col-md-7">
                 <form:input type="text" path="transcription" id="transcription" />
-                <div class="has-error">
-                    <form:errors path="transcription" class="help-inline"/>
-                </div>
             </div>
         </div>
         <div>
             <label for="translation">Translation</label>
+            <div class="has-error">
+                <form:errors path="translation" class="help-inline"/>
+            </div>
             <div class="col-md-7">
                 <form:input type="text" path="translation" id="translation" />
-                <div class="has-error">
-                    <form:errors path="translation" class="help-inline"/>
-                </div>
             </div>
         </div>
         <div>
             <label for="description">Description</label>
+            <div class="has-error">
+                <form:errors path="description" class="help-inline"/>
+            </div>
             <div class="col-md-7">
                 <form:textarea type="text" path="description" id="description" rows="5" cols="30" />
-                <div class="has-error">
-                    <form:errors path="description" class="help-inline"/>
-                </div>
             </div>
         </div>
         <div>

@@ -277,7 +277,10 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/newGroup"}, method = RequestMethod.POST)
-    public String createGroupAdd(WordsGroup wordsGroup, String ssoId, ModelMap model, RedirectAttributes redirectAttributes){
+    public String createGroupAdd(@Valid WordsGroup wordsGroup, BindingResult result, String ssoId, ModelMap model, RedirectAttributes redirectAttributes){
+        if (result.hasErrors()){
+            return "newGroup";
+        }
         User user = userService.findBySSO(ssoId);
         wordGroupService.createGroup(wordsGroup, user);
         redirectAttributes.addAttribute("wordsGroupId", wordsGroup.getId());
@@ -295,7 +298,10 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/newWord"}, method = RequestMethod.POST )
-    public String newWordAdd(Word word, Integer wordsGroupId, String ssoId, ModelMap model, RedirectAttributes redirectAttributes){
+    public String newWordAdd(@Valid Word word, BindingResult result, Integer wordsGroupId, String ssoId, ModelMap model, RedirectAttributes redirectAttributes){
+        if (result.hasErrors()){
+            return "newWord";
+        }
         WordsGroup wordsGroup = wordGroupService.findById(wordsGroupId);
         word.setId(null);
         wordGroupService.addWordToGroup(word,wordsGroup);
@@ -314,7 +320,10 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/editWord"}, method = RequestMethod.POST )
-    public String editDone( Word word, Integer wordsGroupId, String ssoId,ModelMap model, RedirectAttributes redirectAttributes){
+    public String editDone(@Valid Word word, BindingResult result, Integer wordsGroupId, String ssoId,ModelMap model, RedirectAttributes redirectAttributes){
+        if (result.hasErrors()){
+            return "editWord";
+        }
         wordService.update(word);
         redirectAttributes.addAttribute("wordsGroupId", wordsGroupId);
         redirectAttributes.addAttribute("ssoId", ssoId);

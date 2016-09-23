@@ -75,6 +75,9 @@
         } );
     } );
 </script>
+<head>
+    <link rel="shortcut icon" href="/favicon.ico" />
+</head>
 <body>
 
 <div width="70%">

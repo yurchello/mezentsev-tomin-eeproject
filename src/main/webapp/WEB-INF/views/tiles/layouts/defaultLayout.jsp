@@ -7,6 +7,7 @@
 <html>
 
 <head>
+	<link rel="shortcut icon" href="/favicon.ico" />
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title><tiles:getAsString name="title" /></title>
 	<%--<link href="<c:url value='/static/css/bootstrap.css' />"  rel="stylesheet"></link>--%>

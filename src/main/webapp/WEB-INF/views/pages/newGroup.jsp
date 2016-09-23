@@ -13,11 +13,11 @@
     <div>
         <div>
             <label for="name">Group Name</label>
+            <div class="has-error">
+                <form:errors path="name" class="help-inline"/>
+            </div>
             <div class="col-md-7">
                 <form:input type="text" path="name" id="name" />
-                <div class="has-error">
-                    <form:errors path="name" class="help-inline"/>
-                </div>
             </div>
         </div>
 

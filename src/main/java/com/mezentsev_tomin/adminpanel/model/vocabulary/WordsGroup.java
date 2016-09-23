@@ -1,6 +1,7 @@
 package com.mezentsev_tomin.adminpanel.model.vocabulary;
 
 import com.mezentsev_tomin.adminpanel.model.User;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +17,8 @@ public class WordsGroup implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
+
+    @NotEmpty
     @Column(name="word_group", nullable=false)
     private String name;
 

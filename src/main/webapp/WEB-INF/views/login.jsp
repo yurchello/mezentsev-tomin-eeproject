@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <html>
 	<%--<head>--%>
 		<%--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">--%>
@@ -11,6 +12,12 @@
 		<%--<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>--%>
 		<%--<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />--%>
 	<%--</head>--%>
+	<head>
+		<link rel="icon" type="image/x-icon" href="<s:url value="favicon.ico"/>" />
+		<%--<link rel="shortcut icon" href="<c:url value='/favicon.ico'/>" />--%>
+		<%--<link rel="icon" href="../../../static/img/favicon.ico" type="image/x-icon" />--%>
+		<%--<link rel="shortcut icon" href="http://www.example.com/favicon.ico" type="image/x-icon" />--%>
+	</head>
 	<body>
 		<div id="mainWrapper">
 			<div class="login-container">
