@@ -28,10 +28,7 @@ public class AppController {
 		return "contactus";
 	}
 
-	@RequestMapping(value = { "/download"}, method = RequestMethod.GET)
-	public String cdownloadPage(ModelMap model) {
-		return "download";
-	}
+
 
 	@RequestMapping(value = { "/help"}, method = RequestMethod.GET)
 	public String helpPage(ModelMap model) {

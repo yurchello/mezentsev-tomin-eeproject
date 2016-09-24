@@ -15,7 +15,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,6 +39,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.*;
+import java.net.URLConnection;
 import java.util.*;
 /**
  * Created by Mezentsev.Y on 7/17/2016.
@@ -71,6 +75,7 @@ public class MainController {
 
 
     private static String UPLOAD_LOCATION="C:/aaa/";
+
 
 //    @Autowired
 //    FileValidator fileValidator;
@@ -350,6 +355,7 @@ public class MainController {
         model.addAttribute("photoPath", image);
         return "singleFileUploader";
     }
+
 
 
 
