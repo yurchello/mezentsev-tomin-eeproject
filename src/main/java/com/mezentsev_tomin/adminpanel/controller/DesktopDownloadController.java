@@ -30,49 +30,44 @@ public class DesktopDownloadController {
     }
 
     @RequestMapping(value = { "/download/windows-{file}"}, method = RequestMethod.GET)
-    public void downloadWindows(HttpServletResponse response, @PathVariable("file") String file) {
-        File fileDownload = new File(DOWNLOAD_WINDOWS_DESKTOP_LOCATION,file);
-        try {
-            getFile(response, fileDownload);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String downloadWindows(HttpServletResponse response, @PathVariable("file") String file,ModelMap model) {
+        return getFile(response,DOWNLOAD_WINDOWS_DESKTOP_LOCATION,file, model);
     }
 
     @RequestMapping(value = { "/download/android-{file}"}, method = RequestMethod.GET)
-    public void downloadAndroid(HttpServletResponse response, @PathVariable("file") String file) {
-        File fileDownload = new File(DOWNLOAD_ANDROID_DESKTOP_LOCATION,file);
-        try {
-            getFile(response, fileDownload);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String downloadAndroid(HttpServletResponse response, @PathVariable("file") String file,ModelMap model) {
+        return getFile(response,DOWNLOAD_ANDROID_DESKTOP_LOCATION,file, model);
     }
 
     @RequestMapping(value = { "/download/ios-{file}"}, method = RequestMethod.GET)
-    public void downloadIOS(HttpServletResponse response, @PathVariable("file") String file) {
-        File fileDownload = new File(DOWNLOAD_IOS_DESKTOP_LOCATION,file);
-        try {
-            getFile(response, fileDownload);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String downloadIOS(HttpServletResponse response, @PathVariable("file") String file,ModelMap model) {
+        return getFile(response,DOWNLOAD_IOS_DESKTOP_LOCATION,file, model);
     }
 
-    private void getFile(HttpServletResponse response, File fileDownload) throws IOException {
-        InputStream is = new FileInputStream(fileDownload);
-        response.setContentType("application/octet-stream");
-        response.setHeader("Content-Disposition", "attachment; filename=\""
-                + fileDownload.getName() + "\"");
-        OutputStream os = response.getOutputStream();
-        byte[] buffer = new byte[1024];
-        int len;
-        while ((len = is.read(buffer)) != -1) {
-            os.write(buffer, 0, len);
+
+
+    private String getFile(HttpServletResponse response,String filesLocation, String file, ModelMap model) {
+        try {
+            File fileDownload = new File(filesLocation ,file);
+            InputStream is = new FileInputStream(fileDownload);
+            response.setContentType("application/octet-stream");
+            response.setHeader("Content-Disposition", "attachment; filename=\""
+                    + fileDownload.getName() + "\"");
+            OutputStream os = response.getOutputStream();
+            byte[] buffer = new byte[1024];
+            int len;
+            while ((len = is.read(buffer)) != -1) {
+                os.write(buffer, 0, len);
+            }
+            os.flush();
+            os.close();
+            is.close();
+            return "";
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("msg", e.getMessage());
+            return "errorOccurred";
         }
-        os.flush();
-        os.close();
-        is.close();
     }
 
     private List<String> getFilesList(String folder){
