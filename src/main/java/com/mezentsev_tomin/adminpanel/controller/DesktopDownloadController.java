@@ -1,10 +1,10 @@
 package com.mezentsev_tomin.adminpanel.controller;
 
+import com.mezentsev_tomin.adminpanel.exceptions.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -30,20 +30,19 @@ public class DesktopDownloadController {
     }
 
     @RequestMapping(value = { "/download/windows-{file}"}, method = RequestMethod.GET)
-    public String downloadWindows(HttpServletResponse response, @PathVariable("file") String file,ModelMap model) {
+    public String downloadWindows(HttpServletResponse response, @PathVariable("file") String file,ModelMap model)  {
         return getFile(response,DOWNLOAD_WINDOWS_DESKTOP_LOCATION,file, model);
     }
 
     @RequestMapping(value = { "/download/android-{file}"}, method = RequestMethod.GET)
-    public String downloadAndroid(HttpServletResponse response, @PathVariable("file") String file,ModelMap model) {
+    public String downloadAndroid(HttpServletResponse response, @PathVariable("file") String file,ModelMap model){
         return getFile(response,DOWNLOAD_ANDROID_DESKTOP_LOCATION,file, model);
     }
 
     @RequestMapping(value = { "/download/ios-{file}"}, method = RequestMethod.GET)
-    public String downloadIOS(HttpServletResponse response, @PathVariable("file") String file,ModelMap model) {
+    public String downloadIOS(HttpServletResponse response, @PathVariable("file") String file,ModelMap model)  {
         return getFile(response,DOWNLOAD_IOS_DESKTOP_LOCATION,file, model);
     }
-
 
 
     private String getFile(HttpServletResponse response,String filesLocation, String file, ModelMap model) {
@@ -63,10 +62,8 @@ public class DesktopDownloadController {
             os.close();
             is.close();
             return "";
-        } catch (IOException e) {
-            e.printStackTrace();
-            model.addAttribute("msg", e.getMessage());
-            return "errorOccurred";
+        }catch (IOException e){
+            throw new ResourceNotFoundException(e.getMessage());
         }
     }
 

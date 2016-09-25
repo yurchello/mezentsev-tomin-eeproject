@@ -127,4 +127,10 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/errorPage.jsp" />
     </definition>
 
+    <!--Error 404 Page -->
+    <definition name="page404" extends="base-definition">
+        <put-attribute name="title" value="Error 404" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/page404.jsp" />
+    </definition>
+
 </tiles-definitions>

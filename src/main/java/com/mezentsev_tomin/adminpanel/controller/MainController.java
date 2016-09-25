@@ -1,6 +1,7 @@
 package com.mezentsev_tomin.adminpanel.controller;
 
 
+import com.mezentsev_tomin.adminpanel.exceptions.ResourceNotFoundException;
 import com.mezentsev_tomin.adminpanel.model.FileBucket;
 import com.mezentsev_tomin.adminpanel.model.User;
 import com.mezentsev_tomin.adminpanel.model.UserProfile;
@@ -95,6 +96,8 @@ public class MainController {
         userService.updateUser(user);
         logger.info("Avatar path saved: ", path);
     }
+
+
 
     private String saveFile(MultipartFile multipartFile, String dirName, String fileName) throws IOException {
         File file = new File(dirName, fileName);
@@ -356,7 +359,10 @@ public class MainController {
         return "singleFileUploader";
     }
 
-
+//    @RequestMapping(value = { "/favicon.ico" }, method = RequestMethod.GET)
+//    public String setFavicon(){
+//        return "forward:/favicon.ico";
+//    }
 
 
     private String getRawFileFromDrive(String path){
