@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -42,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				//.antMatchers("/newuser/**", "/delete-user-*").access("hasRole('ADMIN')")
 				.antMatchers("/edit-user-*").access("hasRole('ADMIN') or hasRole('DBA')")
 				.antMatchers("/favicon.ico").permitAll()
-
+				//.antMatchers("/test").access("hasRole('DBA')")
 				.and()
 				.formLogin().loginPage("/login")
 				.loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password")

@@ -19,8 +19,10 @@
                 <th>Transcription</th>
                 <th>Translation</th>
                 <th>Description</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <c:if test="${edit}">
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </c:if>
 
                 <th width="100"></th>
             </tr>
@@ -32,9 +34,11 @@
                     <td>${word.transcription}</td>
                     <td>${word.translation}</td>
                     <td>${word.description}</td>
-                    <td><a href='/editWord?wordId=${word.id}&wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-success custom-width">edit</a></td>
-                    <td><a href='/deleteWord?wordId=${word.id}&wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-danger custom-width">delete</a></td>
-                    <td>${word.id}</td>
+                    <c:if test="${edit}">
+                        <td><a href='/editWord?wordId=${word.id}&wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-success custom-width">Edit</a></td>
+                        <td><a href='/deleteWord?wordId=${word.id}&wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-danger custom-width">Delete</a></td>
+                    </c:if>
+                   <%--<td>${word.id}</td>--%>
                 </tr>
             </c:forEach>
             </tbody>
@@ -43,10 +47,12 @@
 
 
     </div>
+    <c:if test="${edit}">
+        <div class="well">
+            <a href="/newWord?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}">Add New Word</a>
+        </div>
+    </c:if>
 
-    <div class="well">
-        <a href="/newWord?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}">Add New Word</a>
-    </div>
 
 </div>
 

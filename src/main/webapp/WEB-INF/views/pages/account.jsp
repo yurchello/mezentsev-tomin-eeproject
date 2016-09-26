@@ -144,10 +144,10 @@
                                     <div>
                                         <a href="<c:url value='/editUser-${user.ssoId}'/>">Edit Profile</a>
                                     </div>
-                                    <div>
-                                        <a href="<c:url value='/groupsList-${user.ssoId}'/>">View vocabulary</a>
-                                    </div>
                                 </c:if>
+                                <div>
+                                    <a href="<c:url value='/groupsList-${user.ssoId}'/>">View vocabulary</a>
+                                </div>
                             </sec:authorize>
                         </div>
                     </div>

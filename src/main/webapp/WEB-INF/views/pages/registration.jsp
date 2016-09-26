@@ -88,10 +88,10 @@
 				<div class="form-group col-md-12">
 					<label class="col-md-3 control-lable" for="firstName">First Name</label>
 					<div class="col-md-7">
-						<form:input type="text" path="firstName" id="firstName"  class="form-control input-sm"/>
 						<div class="has-error">
 							<form:errors path="firstName" class="help-inline"/>
 						</div>
+						<form:input type="text" path="firstName" id="firstName"  class="form-control input-sm"/>
 					</div>
 				</div>
 			</div>
@@ -100,10 +100,10 @@
 				<div class="form-group col-md-12">
 					<label class="col-md-3 control-lable" for="lastName">Last Name</label>
 					<div class="col-md-7">
-						<form:input type="text" path="lastName" id="lastName"  class="form-control input-sm" />
 						<div class="has-error">
 							<form:errors path="lastName" class="help-inline"/>
 						</div>
+						<form:input type="text" path="lastName" id="lastName"  class="form-control input-sm" />
 					</div>
 				</div>
 			</div>
@@ -117,10 +117,10 @@
 								<form:input type="text" path="ssoId" id="ssoId"  class="form-control input-sm" disabled="true"/>
 							</c:when>
 							<c:otherwise>
-								<form:input type="text" path="ssoId" id="ssoId"  class="form-control input-sm" />
 								<div class="has-error">
 									<form:errors path="ssoId" class="help-inline"/>
 								</div>
+								<form:input type="text" path="ssoId" id="ssoId"  class="form-control input-sm" />
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -134,11 +134,12 @@
 				<div class="form-group col-md-12">
 					<label class="col-md-3 control-lable" for="password">Password</label>
 					<div class="col-md-7">
-						<form:input type="text" path="password" id="password1" onkeyup="checkPasswordStrength()" class="form-control input-sm" />
-						<label id="strengthValue"/>
 						<div class="has-error">
 							<form:errors path="password" class="help-inline"/>
 						</div>
+						<form:input type="text" path="password" id="password1" onkeyup="checkPasswordStrength()" class="form-control input-sm" />
+						<label id="strengthValue"/>
+
 					</div>
 				</div>
 			</div>
@@ -156,11 +157,10 @@
 				<div class="form-group col-md-12">
 					<label class="col-md-3 control-lable" for="email">Email</label>
 					<div class="col-md-7">
-						<form:input type="text" path="email" id="email" onkeyup="doUpdateAvatar()" class="form-control input-sm" />
-						<label id="rrrrr"/>
 						<div class="has-error">
 							<form:errors path="email" class="help-inline"/>
 						</div>
+						<form:input type="text" path="email" id="email"  class="form-control input-sm" />
 					</div>
 				</div>
 			</div>

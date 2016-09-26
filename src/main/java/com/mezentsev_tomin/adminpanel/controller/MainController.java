@@ -19,8 +19,11 @@ import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.method.P;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -45,6 +48,7 @@ import java.util.*;
 /**
  * Created by Mezentsev.Y on 7/17/2016.
  */
+
 @Controller
 @RequestMapping("/")
 @SessionAttributes("roles")
@@ -210,6 +214,7 @@ public class MainController {
 
     @RequestMapping(value = { "/user-{ssoId}" }, method = RequestMethod.GET)
     public String customAccount(@PathVariable String ssoId, ModelMap model){
+        if (!isLoggedInUser()) return "accessDeniedUnregistered";
         User user = userService.findBySSO(ssoId);
         model.addAttribute("user", user);
         model.addAttribute("loggedinuser", getPrincipal());
@@ -218,9 +223,12 @@ public class MainController {
         return "account";
     }
 
+
     //@PreAuthorize("isAuthenticated() and hasPermission(#ssoId, 'isProfileOwner')")
     @RequestMapping(value = {"/editUser-{ssoId}"}, method = RequestMethod.GET)
+   //@PreAuthorize("hasRole('ADMIN') AND hasRole('D')")
     public String editProfile(@PathVariable String ssoId, ModelMap model){
+        if (!isAccountOwner(ssoId)) return "accessDeniedHard";
         User user = userService.findBySSO(ssoId);
         model.addAttribute("user", user);
 
@@ -230,6 +238,13 @@ public class MainController {
         model.addAttribute("photoPath", image);
         model.addAttribute("loggedinuser", getPrincipal());
         return "editProfile";
+    }
+
+
+    @RequestMapping(value = {"/test"}, method = RequestMethod.GET)
+    @PreAuthorize("")
+    public String test(){
+        return "errorOccurred";
     }
 
 
@@ -253,15 +268,18 @@ public class MainController {
 
     @RequestMapping(value = {"/groupsList-{ssoId}"}, method = RequestMethod.GET)
     public String groupView(@PathVariable String ssoId, ModelMap model){
+        if (!isLoggedInUser()) return "accessDeniedUnregistered";
         User user = userService.findBySSO(ssoId);
         List<WordsGroup> list = wordGroupService.findAllUserGroups(user);
         model.addAttribute("user", user);
         model.addAttribute("wordsGroups", list);
+        model.addAttribute("edit", isAccountOwner(ssoId));
         return "groupsList";
     }
 
     @RequestMapping(value = {"delete-group"}, method = RequestMethod.GET)
     public String deleteGroup(@RequestParam Integer wordsGroupId, @RequestParam String ssoId, ModelMap model){
+        if (!isAccountOwner(ssoId)) return "accessDeniedHard";
         WordsGroup wordsGroup = wordGroupService.findById(wordsGroupId);
         wordGroupService.deleteGroup(wordsGroup);
         return "redirect:/groupsList-" + ssoId;
@@ -269,16 +287,19 @@ public class MainController {
 
     @RequestMapping(value = {"view-group"}, method = RequestMethod.GET)
     public String editGroup(@RequestParam Integer wordsGroupId, @RequestParam String ssoId, ModelMap model){
+        if (!isLoggedInUser()) return "accessDeniedUnregistered";
         WordsGroup wordsGroup = wordGroupService.findById(wordsGroupId);
         User user = userService.findBySSO(ssoId);
         model.addAttribute("wordsGroup",wordsGroup);
         model.addAttribute("user", user);
+        model.addAttribute("edit", isAccountOwner(ssoId));
         //Request.setCharacterEncoding
         return "viewGroup";
     }
 
     @RequestMapping(value = {"/newGroup"}, method = RequestMethod.GET)
     public String createGroup(@RequestParam String ssoId, ModelMap model){
+        if (!isAccountOwner(ssoId)) return "accessDeniedHard";
         model.addAttribute("ssoId", ssoId);
         model.addAttribute("wordsGroup", new WordsGroup());
         return "newGroup";
@@ -298,6 +319,7 @@ public class MainController {
 
     @RequestMapping(value = {"newWord"}, method = RequestMethod.GET)
     public String newWord(@RequestParam String wordsGroupId, @RequestParam String ssoId, ModelMap model){
+        if (!isAccountOwner(ssoId)) return "accessDeniedHard";
         model.addAttribute("ssoId", ssoId);
         model.addAttribute("wordsGroupId",wordsGroupId);
         Word word = new Word();
@@ -320,6 +342,7 @@ public class MainController {
 
     @RequestMapping(value = {"/editWord"}, method = RequestMethod.GET)
     public String editWord(@RequestParam Integer wordId, @RequestParam Integer wordsGroupId,@RequestParam String ssoId, ModelMap model){
+        if (!isAccountOwner(ssoId)) return "accessDeniedHard";
         Word word = wordService.findById(wordId);
         model.addAttribute("ssoId", ssoId);
         model.addAttribute("wordsGroupId",wordsGroupId);
@@ -340,6 +363,7 @@ public class MainController {
 
     @RequestMapping(value = {"/deleteWord"}, method = RequestMethod.GET)
     public String deleteWord(Integer wordId, Integer wordsGroupId, String ssoId,  RedirectAttributes redirectAttributes){
+        if (!isAccountOwner(ssoId)) return "accessDeniedHard";
         Word word = wordService.findById(wordId);
         WordsGroup wordsGroup = wordGroupService.findById(wordsGroupId);
         wordGroupService.removeWordFromGroup(word, wordsGroup);
@@ -351,7 +375,6 @@ public class MainController {
     @RequestMapping(value = { "/changePhotoUser-{ssoId}" }, method = RequestMethod.GET)
     public String changePhotoUser(@PathVariable String ssoId, ModelMap model, String photoPath){
         FileBucket fileModel = new FileBucket();
-
         model.addAttribute("loggedinuser", getPrincipal());
         model.addAttribute("fileBucket", fileModel);
         String image = getRawFileFromDrive(photoPath);
@@ -364,6 +387,11 @@ public class MainController {
 //        return "forward:/favicon.ico";
 //    }
 
+
+    private boolean isAccountOwner(String ssoId){
+        if (ssoId == null) return false;
+        return ssoId.equals(getSSOIdifAutentificated());
+    }
 
     private String getRawFileFromDrive(String path){
         if (path==null)return null;
@@ -471,6 +499,10 @@ public class MainController {
             userName = principal.toString();
         }
         return userName;
+    }
+
+    private boolean isLoggedInUser(){
+        return !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
 
 }

@@ -23,8 +23,10 @@
 	    		<thead>
 		      		<tr>
 				        <th>Group name</th>
-						<th>Edit</th>
-						<th>Delete</th>
+							<th>Edit/View</th>
+							<c:if test="${edit}">
+								<th>Delete</th>
+							</c:if>
 
 						<th width="100"></th>
 					</tr>
@@ -33,15 +35,21 @@
 				<c:forEach items="${wordsGroups}" var="wordsGroup" varStatus="status">
 					<tr>
 						<td>${wordsGroup.name}</td>
-						<td><a href='/view-group?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-success custom-width">edit</a></td>
-						<td><a href='/delete-group?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-danger custom-width">delete</a></td>
-					</tr>
+
+							<td><a href='/view-group?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-success custom-width">Edit/View</a></td>
+						<c:if test="${edit}">
+							<td><a href='/delete-group?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-danger custom-width">Delete</a></td>
+						</c:if>
+						</tr>
 				</c:forEach>
 	    		</tbody>
 	    	</table>
 		</div>
 		<div>
-			<a href="/newGroup?ssoId=${user.ssoId}">Add New Group</a>
+			<c:if test="${edit}">
+				<a href="/newGroup?ssoId=${user.ssoId}">Add New Group</a>
+			</c:if>
+
 		</div>
    	</div>
 </body>

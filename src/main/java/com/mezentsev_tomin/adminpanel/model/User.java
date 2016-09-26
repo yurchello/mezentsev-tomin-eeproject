@@ -2,6 +2,7 @@ package com.mezentsev_tomin.adminpanel.model;
 
 import com.mezentsev_tomin.adminpanel.model.vocabulary.Word;
 import com.mezentsev_tomin.adminpanel.model.vocabulary.WordsGroup;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -34,6 +35,7 @@ public class User implements Serializable{
 	private String lastName;
 
 	@NotEmpty
+	//@Email
 	@Column(name="EMAIL", nullable=false)
 	private String email;
 

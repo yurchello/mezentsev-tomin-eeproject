@@ -133,4 +133,22 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/page404.jsp" />
     </definition>
 
+    <!--Access Denied Page -->
+    <definition name="accessDenied" extends="base-definition">
+        <put-attribute name="title" value="Access Denied" />
+        <put-attribute name="body" value="/WEB-INF/views/accessDenied.jsp" />
+    </definition>
+
+    <!--Access Denied Hard level Page -->
+    <definition name="accessDeniedHard" extends="base-definition">
+        <put-attribute name="title" value="Access Denied" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/accessDeniedHard.jsp" />
+    </definition>
+
+    <!--Access Denied unregistered level Page -->
+    <definition name="accessDeniedUnregistered" extends="base-definition">
+        <put-attribute name="title" value="Access Denied" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/accessDeniedUnregistered.jsp" />
+    </definition>
+
 </tiles-definitions>
