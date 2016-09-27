@@ -411,7 +411,7 @@ public class MainController {
                     org.apache.commons.codec.binary.Base64.encodeBase64(fileBytes);
             return new String(encoded);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.debug("Life not found",e);
         }
         return  null;
     }
@@ -461,6 +461,29 @@ public class MainController {
         }
         return "redirect:/login?logout";
     }
+
+    @RequestMapping(value="/user-list", method = RequestMethod.GET)
+    public String userList(ModelMap model){
+        List<User> users = userService.findAllUsers();
+        model.addAttribute("users", users);
+        List<String> images = new ArrayList<>();
+        for (User user: users){
+            String image = getRawFileFromDrive(user.getPhoto());
+            images.add(image);
+        }
+        model.addAttribute("images", images);
+        return "userslist";
+    }
+
+    /**
+     * This method will delete an user by it's SSOID value.
+     */
+    @RequestMapping(value = { "/delete-user-{ssoId}" }, method = RequestMethod.GET)
+    public String deleteUser(@PathVariable String ssoId) {
+        userService.deleteUserBySSO(ssoId);
+        return "redirect:/user-list";
+    }
+
 
     private void setUserRoles(User user, List<UserProfile> userProfiles){
         Set<UserProfile> set = new HashSet<>();

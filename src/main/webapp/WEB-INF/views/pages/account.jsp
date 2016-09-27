@@ -118,12 +118,12 @@
                         <div class="form-group col-md-12">
                             <label class="col-md-3 control-lable">Photo:</label>
                             <div>
-                                <c:if test="${user.photo != null}">
-                                    <img src="data:image/jpeg;base64,${photoPath}" id="output" width="117" height="160"
+                                <c:if test="${user.photo != ''}">
+                                    <img src="data:image/jpeg;base64,${photoPath}" id="output" width="117"
                                          alt="df">
                                 </c:if>
-                                <c:if test="${user.photo == null}">
-                                    <img id="output" alt="df" width="117" height="160" src="/static/images/default.JPG">
+                                <c:if test="${user.photo == ''}">
+                                    <img id="output" alt="df" width="117" src="/static/images/default.JPG">
                                 </c:if>
                             </div>
 

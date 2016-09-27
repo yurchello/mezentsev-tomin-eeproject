@@ -151,4 +151,10 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/accessDeniedUnregistered.jsp" />
     </definition>
 
+    <!--User List Page -->
+    <definition name="userslist" extends="base-definition">
+        <put-attribute name="title" value="User List" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/userslist.jsp" />
+    </definition>
+
 </tiles-definitions>
