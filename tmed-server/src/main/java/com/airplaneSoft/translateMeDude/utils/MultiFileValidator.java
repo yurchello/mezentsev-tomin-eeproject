@@ -1,7 +1,7 @@
 package com.airplaneSoft.translateMeDude.utils;
 
-import com.airplaneSoft.translateMeDude.model.FileBucket;
-import com.airplaneSoft.translateMeDude.model.MultiFileBucket;
+import com.airplaneSoft.translateMeDude.models.FileBucket;
+import com.airplaneSoft.translateMeDude.models.MultiFileBucket;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

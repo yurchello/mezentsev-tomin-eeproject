@@ -1,8 +1,8 @@
-package com.airplaneSoft.translateMeDude.model;
-
+package com.airplaneSoft.translateMeDude.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
 
 @Entity
 @Table(name="PERSISTENT_LOGINS")

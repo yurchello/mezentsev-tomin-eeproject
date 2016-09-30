@@ -1,10 +1,9 @@
-package com.airplaneSoft.translateMeDude.model.vocabulary;
+package com.airplaneSoft.translateMeDude.models.vocabulary;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
 /**
  * Created by Mezentsev.Y on 8/31/2016.
  */

@@ -1,6 +1,7 @@
 package com.airplaneSoft.translateMeDude.dao;
 
-import com.airplaneSoft.translateMeDude.model.vocabulary.Word;
+
+import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
 
 /**
  * Created by Mezentsev.Y on 9/20/2016.

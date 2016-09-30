@@ -1,7 +1,7 @@
 package com.airplaneSoft.translateMeDude.converter;
 
 
-import com.airplaneSoft.translateMeDude.model.UserProfile;
+import com.airplaneSoft.translateMeDude.models.UserProfile;
 import com.airplaneSoft.translateMeDude.service.UserProfileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

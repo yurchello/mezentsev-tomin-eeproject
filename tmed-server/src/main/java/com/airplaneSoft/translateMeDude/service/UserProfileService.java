@@ -2,7 +2,7 @@ package com.airplaneSoft.translateMeDude.service;
 
 
 
-import com.airplaneSoft.translateMeDude.model.UserProfile;
+import com.airplaneSoft.translateMeDude.models.UserProfile;
 
 import java.util.List;
 

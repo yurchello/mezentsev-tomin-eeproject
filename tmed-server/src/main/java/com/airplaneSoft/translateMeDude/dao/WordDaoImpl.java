@@ -1,6 +1,6 @@
 package com.airplaneSoft.translateMeDude.dao;
 
-import com.airplaneSoft.translateMeDude.model.vocabulary.Word;
+import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
 import org.springframework.stereotype.Repository;
 
 /**

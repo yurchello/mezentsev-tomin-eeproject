@@ -1,6 +1,6 @@
 package com.airplaneSoft.translateMeDude.service;
-import com.airplaneSoft.translateMeDude.model.User;
 import com.airplaneSoft.translateMeDude.dao.UserDao;
+import com.airplaneSoft.translateMeDude.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;

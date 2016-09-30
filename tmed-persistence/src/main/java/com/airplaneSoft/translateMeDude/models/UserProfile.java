@@ -1,7 +1,8 @@
-package com.airplaneSoft.translateMeDude.model;
+package com.airplaneSoft.translateMeDude.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 
 @Entity
 @Table(name="USER_PROFILE")

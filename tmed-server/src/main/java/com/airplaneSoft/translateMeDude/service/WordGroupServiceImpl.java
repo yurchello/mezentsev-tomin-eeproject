@@ -1,10 +1,10 @@
 package com.airplaneSoft.translateMeDude.service;
 
-import com.airplaneSoft.translateMeDude.model.User;
 import com.airplaneSoft.translateMeDude.dao.WordDao;
 import com.airplaneSoft.translateMeDude.dao.WordGroupDao;
-import com.airplaneSoft.translateMeDude.model.vocabulary.Word;
-import com.airplaneSoft.translateMeDude.model.vocabulary.WordsGroup;
+import com.airplaneSoft.translateMeDude.models.User;
+import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
+import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

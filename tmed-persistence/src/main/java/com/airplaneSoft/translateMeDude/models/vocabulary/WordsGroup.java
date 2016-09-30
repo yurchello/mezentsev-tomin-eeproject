@@ -1,13 +1,13 @@
-package com.airplaneSoft.translateMeDude.model.vocabulary;
+package com.airplaneSoft.translateMeDude.models.vocabulary;
 
-import com.airplaneSoft.translateMeDude.model.User;
+
+import com.airplaneSoft.translateMeDude.models.User;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
 /**
  * Created by Mezentsev.Y on 9/1/2016.
  */
@@ -21,6 +21,7 @@ public class WordsGroup implements Serializable {
     @NotEmpty
     @Column(name="word_group", nullable=false)
     private String name;
+
 
 //    @Column(name="user_id", nullable=false)
 //    private String userId;

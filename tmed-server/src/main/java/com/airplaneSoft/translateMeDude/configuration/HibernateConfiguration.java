@@ -28,7 +28,8 @@ public class HibernateConfiguration {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[] { "com.airplaneSoft.translateMeDude.model" });
+        sessionFactory.setPackagesToScan("");
+        sessionFactory.setPackagesToScan(new String[] { "com.airplaneSoft.translateMeDude.model", "com.airplaneSoft.translateMeDude.models"});
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
      }

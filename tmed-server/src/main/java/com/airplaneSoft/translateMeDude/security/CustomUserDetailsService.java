@@ -1,8 +1,8 @@
 package com.airplaneSoft.translateMeDude.security;
 
 
-import com.airplaneSoft.translateMeDude.model.User;
-import com.airplaneSoft.translateMeDude.model.UserProfile;
+import com.airplaneSoft.translateMeDude.models.User;
+import com.airplaneSoft.translateMeDude.models.UserProfile;
 import com.airplaneSoft.translateMeDude.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

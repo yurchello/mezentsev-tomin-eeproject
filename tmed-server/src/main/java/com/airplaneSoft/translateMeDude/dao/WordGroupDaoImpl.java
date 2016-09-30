@@ -1,8 +1,9 @@
 package com.airplaneSoft.translateMeDude.dao;
 
-import com.airplaneSoft.translateMeDude.model.User;
-import com.airplaneSoft.translateMeDude.model.vocabulary.Word;
-import com.airplaneSoft.translateMeDude.model.vocabulary.WordsGroup;
+import com.airplaneSoft.translateMeDude.models.User;
+import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
+import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -69,6 +70,7 @@ public class WordGroupDaoImpl extends AbstractDao<Integer, WordsGroup> implement
 
     @Override
     public WordsGroup findById(Integer id) {
+
         return getByKey(id);
     }
 

@@ -26,15 +26,15 @@ public class FileUploadController {
 //
 //
 //    @RequestMapping(value = "/singleUpload", method = RequestMethod.GET)
-//    public String getSingleUploadPage(ModelMap model) {
+//    public String getSingleUploadPage(ModelMap models) {
 //        FileBucket fileModel = new FileBucket();
-//        model.addAttribute("fileBucket", fileModel);
+//        models.addAttribute("fileBucket", fileModel);
 //        return "singleFileUploader";
 //    }
 //
 //    @RequestMapping(value = "/singleUpload", method = RequestMethod.POST)
 //    public String singleFileUpload(@Valid FileBucket fileBucket,
-//                                   BindingResult result, ModelMap model) throws IOException {
+//                                   BindingResult result, ModelMap models) throws IOException {
 //
 //        if (result.hasErrors()) {
 //            System.out.println("validation errors");
@@ -46,7 +46,7 @@ public class FileUploadController {
 //            // Now do something with file...
 //            FileCopyUtils.copy(fileBucket.getFile().getBytes(), new File( UPLOAD_LOCATION + fileBucket.getFile().getOriginalFilename()));
 //            String fileName = multipartFile.getOriginalFilename();
-//            model.addAttribute("fileName", fileName);
+//            models.addAttribute("fileName", fileName);
 //            return "success";
 //        }
 //    }

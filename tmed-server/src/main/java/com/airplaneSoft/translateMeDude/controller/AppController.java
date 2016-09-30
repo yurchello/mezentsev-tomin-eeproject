@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AppController {
 
 //	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
-//	public String homePage(ModelMap model) {
+//	public String homePage(ModelMap models) {
 //		return "home2";
 //
 //	}

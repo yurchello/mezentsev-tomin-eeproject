@@ -1,11 +1,11 @@
 package com.airplaneSoft.translateMeDude.controller;
 
 
-import com.airplaneSoft.translateMeDude.model.FileBucket;
-import com.airplaneSoft.translateMeDude.model.User;
-import com.airplaneSoft.translateMeDude.model.UserProfile;
-import com.airplaneSoft.translateMeDude.model.vocabulary.Word;
-import com.airplaneSoft.translateMeDude.model.vocabulary.WordsGroup;
+import com.airplaneSoft.translateMeDude.models.FileBucket;
+import com.airplaneSoft.translateMeDude.models.User;
+import com.airplaneSoft.translateMeDude.models.UserProfile;
+import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
+import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
 import com.airplaneSoft.translateMeDude.service.UserProfileService;
 import com.airplaneSoft.translateMeDude.service.WordGroupService;
 import com.airplaneSoft.translateMeDude.service.WordService;
@@ -256,9 +256,9 @@ public class MainController {
     }
 
 //    @RequestMapping(value = {"/vocabulary-{ssoId}"}, method = RequestMethod.GET)
-//    public String vocabularyView(@PathVariable String ssoId, ModelMap model){
+//    public String vocabularyView(@PathVariable String ssoId, ModelMap models){
 //        List<WordsGroup> list = wordGroupService.findAllGroups();
-//        model.addAttribute("wordsGroups", list);
+//        models.addAttribute("wordsGroups", list);
 //        return "vocabulary";
 //    }
 

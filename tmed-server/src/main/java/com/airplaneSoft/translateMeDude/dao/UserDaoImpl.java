@@ -1,7 +1,7 @@
 package com.airplaneSoft.translateMeDude.dao;
 
 
-import com.airplaneSoft.translateMeDude.model.User;
+import com.airplaneSoft.translateMeDude.models.User;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.criterion.Order;

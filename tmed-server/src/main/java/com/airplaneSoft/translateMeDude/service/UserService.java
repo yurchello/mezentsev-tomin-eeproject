@@ -1,7 +1,7 @@
 package com.airplaneSoft.translateMeDude.service;
 
 
-import com.airplaneSoft.translateMeDude.model.User;
+import com.airplaneSoft.translateMeDude.models.User;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
 	
 	User findById(int id);
-	
+
 	User findBySSO(String sso);
 	
 	void saveUser(User user);

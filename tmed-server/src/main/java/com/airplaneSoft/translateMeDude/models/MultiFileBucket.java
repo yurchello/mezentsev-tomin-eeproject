@@ -1,4 +1,4 @@
-package com.airplaneSoft.translateMeDude.model;
+package com.airplaneSoft.translateMeDude.models;
 
 import java.util.ArrayList;
 import java.util.List;

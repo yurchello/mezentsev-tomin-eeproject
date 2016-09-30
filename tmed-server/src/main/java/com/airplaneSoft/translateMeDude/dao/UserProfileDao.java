@@ -3,7 +3,7 @@ package com.airplaneSoft.translateMeDude.dao;
 
 
 
-import com.airplaneSoft.translateMeDude.model.UserProfile;
+import com.airplaneSoft.translateMeDude.models.UserProfile;
 
 import java.util.List;
 

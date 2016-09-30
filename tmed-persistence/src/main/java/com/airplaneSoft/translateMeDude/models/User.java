@@ -1,11 +1,16 @@
-package com.airplaneSoft.translateMeDude.model;
+package com.airplaneSoft.translateMeDude.models;
+
+
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
 
 @Entity
 @Table(name="USER")

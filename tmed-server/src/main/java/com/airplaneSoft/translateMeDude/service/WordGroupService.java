@@ -1,8 +1,8 @@
 package com.airplaneSoft.translateMeDude.service;
 
-import com.airplaneSoft.translateMeDude.model.User;
-import com.airplaneSoft.translateMeDude.model.vocabulary.Word;
-import com.airplaneSoft.translateMeDude.model.vocabulary.WordsGroup;
+import com.airplaneSoft.translateMeDude.models.User;
+import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
+import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.airplaneSoft.translateMeDude.service;
 
-import com.airplaneSoft.translateMeDude.model.vocabulary.Word;
+import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
 
 /**
  * Created by Mezentsev.Y on 9/21/2016.

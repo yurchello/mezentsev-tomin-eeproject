@@ -1,4 +1,4 @@
-package com.airplaneSoft.translateMeDude.model;
+package com.airplaneSoft.translateMeDude.models;
 
 import org.springframework.web.multipart.MultipartFile;
 

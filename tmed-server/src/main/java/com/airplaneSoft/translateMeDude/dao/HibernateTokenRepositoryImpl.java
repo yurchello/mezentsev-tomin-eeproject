@@ -1,6 +1,6 @@
 package com.airplaneSoft.translateMeDude.dao;
 
-import com.airplaneSoft.translateMeDude.model.PersistentLogin;
+import com.airplaneSoft.translateMeDude.models.PersistentLogin;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
