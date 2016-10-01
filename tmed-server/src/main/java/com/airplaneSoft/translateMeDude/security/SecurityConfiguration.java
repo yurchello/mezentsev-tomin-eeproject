@@ -1,5 +1,6 @@
 package com.airplaneSoft.translateMeDude.security;
 
+import com.airplaneSoft.translateMeDude.core.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -44,6 +45,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				//.antMatchers("/newuser/**", "/delete-user-*").access("hasRole('ADMIN')")
 				.antMatchers("/edit-user-*").access("hasRole('ADMIN') or hasRole('DBA')")
 				.antMatchers("/favicon.ico").permitAll()
+				.antMatchers("/userGroups").permitAll()
+
 				//.antMatchers("/test").access("hasRole('DBA')")
 				.and()
 				.formLogin().loginPage("/login")
@@ -54,12 +57,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 				.csrf()
 				.and()
+				.csrf().ignoringAntMatchers("/api/**")
+				//.csrf()
+				.and()
 				.exceptionHandling().accessDeniedPage("/Access_Denied");
 	}
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+		return Utils.getPasswordEncoder();
 	}
 
 	@Bean

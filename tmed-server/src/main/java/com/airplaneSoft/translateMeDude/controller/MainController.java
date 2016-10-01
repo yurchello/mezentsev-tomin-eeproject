@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
@@ -262,6 +264,8 @@ public class MainController {
 //        return "vocabulary";
 //    }
 
+
+
     @RequestMapping(value = {"/groupsList-{ssoId}"}, method = RequestMethod.GET)
     public String groupView(@PathVariable String ssoId, ModelMap model){
         if (!isLoggedInUser()) return "accessDeniedUnregistered";
@@ -469,6 +473,17 @@ public class MainController {
         }
         model.addAttribute("images", images);
         return "userslist";
+    }
+
+//    @RequestMapping(value="/test2", method = RequestMethod.GET)
+//    @ResponseBody public ResponseEntity<User> test2(){
+//        return new ResponseEntity<User>(new User(), HttpStatus.OK);
+//    }
+
+    @RequestMapping(value = {"/testGet"}, method = RequestMethod.GET)
+    public String testGet(){
+        System.out.println();
+        return "testGet";
     }
 
     /**

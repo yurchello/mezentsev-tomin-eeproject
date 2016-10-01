@@ -25,8 +25,8 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	@Override
 	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
 		registration.setMultipartConfig(getMultipartConfigElement());
-        boolean done = registration.setInitParameter("throwExceptionIfNoHandlerFound", "true"); // -> true
-        if(!done) throw new RuntimeException();
+//        boolean done = registration.setInitParameter("throwExceptionIfNoHandlerFound", "true"); // -> true
+//        if(!done) throw new RuntimeException();
 	}
 
 	private MultipartConfigElement getMultipartConfigElement() {

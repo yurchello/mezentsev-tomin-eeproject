@@ -157,4 +157,10 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/userslist.jsp" />
     </definition>
 
+    <!--User List Page -->
+    <!--<definition name="test2" extends="base-definition">-->
+        <!--<put-attribute name="title" value="Test2" />-->
+        <!--<put-attribute name="body" value="/WEB-INF/views/pages/test2.jsp" />-->
+    <!--</definition>-->
+
 </tiles-definitions>
