@@ -1,5 +1,4 @@
 import com.airplaneSoft.translateMeDude.models.User;
-import sun.plugin.javascript.navig.LinkArray;
 
 import java.util.ArrayList;
 import java.util.List;

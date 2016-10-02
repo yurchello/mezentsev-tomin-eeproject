@@ -61,8 +61,8 @@ CREATE TABLE user_word
 
 //**vcabluary version 1///
 CREATE TABLE word
-(
-  `id` BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+(AUTO_INCREMENT
+  `id` BIGINT(20) PRIMARY KEY NOT NULL ,
   `word` VARCHAR(30) NOT NULL,
   `translation` VARCHAR(30) NOT NULL,
   `transcription` VARCHAR(30),
