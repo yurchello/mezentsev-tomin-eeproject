@@ -1,5 +1,6 @@
 package com.airplaneSoft.translateMeDude.api.wordGroupApi;
 
+import com.airplaneSoft.translateMeDude.core.Utils;
 import com.airplaneSoft.translateMeDude.models.User;
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
 import com.airplaneSoft.translateMeDude.service.UserService;
@@ -10,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,17 +26,12 @@ public class WordGroupApi {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value="/test2", method = RequestMethod.GET)
-    public ResponseEntity<User> test2(){
-        return new ResponseEntity<User>(new User(), HttpStatus.OK);
-    }
-
     //{"id":46,"ssoId":null,"password":"$2a$10$SJ2PcT/U4LvpypN76WYfkemo1C39tEf77W5IQpD9LQOhGvJ8l0PYG","firstName":null,"lastName":null,"email":null,"description":null,"photo":null,"userProfiles":[]}
     @Transactional
     @RequestMapping(value="/getGroupsList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WordsGroup>> test37(@RequestBody User user){
         User ownerUser = userService.findById(user.getId());
-        if (!ownerUser.getPassword().equals(user.getPassword()))return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (!Utils.getPasswordEncoder().matches(user.getPassword(), ownerUser.getPassword()))return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         List<WordsGroup> list = wordGroupService.findAllUserGroups(ownerUser);
         if (list == null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(list, HttpStatus.OK);
