@@ -6,20 +6,24 @@
 <html>
 
 <head>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--%>
+	<link href="<c:url value='/static/css/jquery.dataTables.min.css' />" rel="stylesheet"/>
+	<script type="text/javascript" src="/static/js/jquery-1.12.3.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.dataTables.min.js"></script>
 	<%--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">--%>
 	<%--<title>Users List</title>--%>
 	<%--<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>--%>
 	<%--<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>--%>
 </head>
 
+
 <body>
 <h1>Word Group</h1>
-	<div class="generic-container">
+	<div >
 		<div class="panel panel-default">
-			  <!-- Default panel contents -->
-		  	<div class="panel-heading"><span class="lead">List of Groups </span></div>
-			<table class="table table-hover">
+
+			<div style=" height:80%; overflow:auto">
+				<table id="groupListTable" class="display" cellspacing="0" width="100%">
 	    		<thead>
 		      		<tr>
 				        <th>Group name</th>
@@ -28,7 +32,7 @@
 								<th>Delete</th>
 							</c:if>
 
-						<th width="100"></th>
+						<%--<th width="100"></th>--%>
 					</tr>
 		    	</thead>
 	    		<tbody>
@@ -44,18 +48,35 @@
 				</c:forEach>
 	    		</tbody>
 	    	</table>
+				<div>
+					<c:if test="${edit}">
+						<a href="/newGroup?ssoId=${user.ssoId}">Add New Group</a>
+					</c:if>
+				</div>
+			</div>
 		</div>
-		<div>
-			<c:if test="${edit}">
-				<a href="/newGroup?ssoId=${user.ssoId}">Add New Group</a>
-			</c:if>
 
-		</div>
    	</div>
 </body>
 
-<script type="text/javascript">
+<script>
+	$(document).ready(function() {
+		var table = $('#groupListTable').DataTable();
 
+		$('#groupListTable tbody').on( 'click', 'tr', function () {
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		} );
 
+		$('#button').click( function () {
+			table.row('.selected').remove().draw( false );
+		} );
+	} );
 </script>
+
 </html>

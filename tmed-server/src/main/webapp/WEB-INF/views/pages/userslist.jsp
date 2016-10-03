@@ -5,17 +5,23 @@
 
 <html>
 
+<head>
+	<link href="<c:url value='/static/css/jquery.dataTables.min.css' />" rel="stylesheet"/>
+	<script type="text/javascript" src="/static/js/jquery-1.12.3.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.dataTables.min.js"></script>
+</head>
+
 <body>
 	<div class="generic-container">
-		<div class="panel panel-default">
+		<div class="panel panel-default"  style=" height:80%; overflow:auto">
 			  <!-- Default panel contents -->
 		  	<div class="panel-heading"><span class="lead">List of Users </span></div>
-			<table class="table table-hover">
+			<table id="userListTable" class="display" cellspacing="0" width="100%">
 	    		<thead>
 		      		<tr>
 						<th>SSO ID</th>
-				        <th>Firstname</th>
-				        <th>Lastname</th>
+				        <th>First name</th>
+				        <th>Last name</th>
 				        <th>Email</th>
 						<th>Photo</th>
 				        <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
@@ -24,7 +30,7 @@
 				        <sec:authorize access="hasRole('ADMIN')">
 				        	<th width="100"></th>
 				        </sec:authorize>
-				        
+
 					</tr>
 		    	</thead>
 	    		<tbody>
@@ -52,12 +58,33 @@
 				</c:forEach>
 	    		</tbody>
 	    	</table>
+			<sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+				<div class="well">
+					<a href="<c:url value='/newuser' />">Add New User</a>
+				</div>
+			</sec:authorize>
 		</div>
-		<sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-		 	<div class="well">
-		 		<a href="<c:url value='/newuser' />">Add New User</a>
-		 	</div>
-	 	</sec:authorize>
+
    	</div>
+
 </body>
+<script>
+	$(document).ready(function() {
+		var table = $('#userListTable').DataTable();
+
+		$('#userListTable tbody').on( 'click', 'tr', function () {
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		} );
+
+		$('#button').click( function () {
+			table.row('.selected').remove().draw( false );
+		} );
+	} );
+</script>
 </html>
