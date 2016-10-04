@@ -5,6 +5,7 @@ package com.airplaneSoft.translateMeDude.models;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,18 +21,22 @@ public class User implements Serializable{
     @GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 
+	@Pattern(regexp = "^[A-Za-z0-9]+$")
 	@NotEmpty
 	@Column(name="SSO_ID", unique=true, nullable=false)
 	private String ssoId;
-	
+
+	@Pattern(regexp = "^[A-Za-z0-9]+$")
 	@NotEmpty
 	@Column(name="PASSWORD", nullable=false)
 	private String password;
-		
+
+	@Pattern(regexp = "^[A-Za-z]+$")
 	@NotEmpty
 	@Column(name="FIRST_NAME", nullable=false)
 	private String firstName;
 
+	@Pattern(regexp = "^[A-Za-z]+$")
 	@NotEmpty
 	@Column(name="LAST_NAME", nullable=false)
 	private String lastName;

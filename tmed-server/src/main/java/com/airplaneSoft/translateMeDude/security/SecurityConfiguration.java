@@ -58,6 +58,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.csrf()
 				.and()
 				.csrf().ignoringAntMatchers("/api/**")
+				.and()
+				.csrf().ignoringAntMatchers("/favicon.ico")
 				//.csrf()
 				.and()
 				.exceptionHandling().accessDeniedPage("/Access_Denied");

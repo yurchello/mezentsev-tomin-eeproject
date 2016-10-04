@@ -24,11 +24,11 @@
 				        <th>Last name</th>
 				        <th>Email</th>
 						<th>Photo</th>
+				        <%--<sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">--%>
+				        	<%--<th width="100"></th>--%>
+				        <%--</sec:authorize>--%>
 				        <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-				        	<th width="100"></th>
-				        </sec:authorize>
-				        <sec:authorize access="hasRole('ADMIN')">
-				        	<th width="100"></th>
+				        	<th>Delete</th>
 				        </sec:authorize>
 
 					</tr>
@@ -48,9 +48,9 @@
 								<img src="data:image/jpeg;base64,${images[i.index]}" id="output" width="20" alt="df">
 							</c:if>
 						</td>
-					    <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-							<td><a href="<c:url value='/editUser-${user.ssoId}' />" class="btn btn-success custom-width">Edit</a></td>
-				        </sec:authorize>
+					    <%--<sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">--%>
+							<%--<td><a href="<c:url value='/editUser-${user.ssoId}' />" class="btn btn-success custom-width">Edit</a></td>--%>
+				        <%--</sec:authorize>--%>
 				        <sec:authorize access="hasRole('ADMIN')">
 							<td><a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width">Delete</a></td>
         				</sec:authorize>

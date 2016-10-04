@@ -13,8 +13,7 @@
 		<%--<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />--%>
 	<%--</head>--%>
 	<head>
-		<%--<link rel="icon" type="image/x-icon" href="<s:url value="favicon.ico"/>" />--%>
-		<%--<link rel="shortcut icon" href="<c:url value='/favicon.ico'/>" />--%>
+		<link href="/favicon.ico" rel="icon" type="image/x-icon">
 		<%--<link rel="icon" href="../../../static/img/favicon.ico" type="image/x-icon" />--%>
 		<%--<link rel="shortcut icon" href="http://www.example.com/favicon.ico" type="image/x-icon" />--%>
 	</head>

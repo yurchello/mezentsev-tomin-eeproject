@@ -67,6 +67,12 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/registration.jsp" />
     </definition>
 
+    <!--User List Page -->
+    <definition name="registrationSuccess" extends="base-definition">
+        <put-attribute name="title" value="Registration Success" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/registrationSuccess.jsp" />
+    </definition>
+
     <!-- Test Page -->
     <definition name="test" extends="base-definition">
         <put-attribute name="title" value="Test" />
@@ -152,7 +158,7 @@
     </definition>
 
     <!--User List Page -->
-    <definition name="userslist" extends="base-definition">
+    <definition name="usersList" extends="base-definition">
         <put-attribute name="title" value="User List" />
         <put-attribute name="body" value="/WEB-INF/views/pages/userslist.jsp" />
     </definition>

@@ -177,17 +177,18 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="form-group col-md-12">
-					<label class="col-md-3 control-lable" for="photo">Photo test(todo add upload)</label>
-					<div class="col-md-7">
-						<form:input type="text" path="photo" id="description" class="form-control input-sm" />
-						<div class="has-error">
-							<form:errors path="photo" class="help-inline"/>
-						</div>
-					</div>
-				</div>
-			</div>
+			<form:input type="hidden"  name="photo"   path="photo"/>
+			<%--<div class="row">--%>
+				<%--<div class="form-group col-md-12">--%>
+					<%--<label class="col-md-3 control-lable" for="photo">Photo test(todo add upload)</label>--%>
+					<%--<div class="col-md-7">--%>
+						<%--<form:input type="text" path="photo" id="description" class="form-control input-sm" />--%>
+						<%--<div class="has-error">--%>
+							<%--<form:errors path="photo" class="help-inline"/>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+				<%--</div>--%>
+			<%--</div>--%>
 			<%--<textarea name='test' id='test' w><c:out value="wdfwdlfkdvlvmkla;sklsaklssnknklnn" /> </textarea>--%>
 			<%--<form:input type="hidden"  name="userProfiles" value="[USER]"  path="userProfiles"/>--%>
 			<sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
@@ -219,7 +220,7 @@
 							<input type="submit" value="Update" class="btn btn-primary btn-sm"/> or <a href="<c:url value='/list' />">Cancel</a>
 						</c:when>
 						<c:otherwise>
-							<input type="submit" value="Register" id="registerButton" class="btn btn-primary btn-sm"/> or <a href="<c:url value='/' />">Cancel</a>
+							<input type="submit" disabled="true" value="Register" id="registerButton" class="btn btn-primary btn-sm"/> or <a href="<c:url value='/' />">Cancel</a>
 						</c:otherwise>
 					</c:choose>
 				</div>

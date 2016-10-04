@@ -131,8 +131,8 @@
                                 <c:if test="${loggedinuser==user.ssoId}">
                                     <div>
                                         <div>
-                                            <input id="file" type="file" path="file" accept="image/*"
-                                                   onchange="loadFile(event)"/>
+                                            <input id="file" type="file" path="file"
+                                                   onchange="loadFile(event)" accept="image/jpeg,image/png"/>
                                         </div>
                                         <div>
                                             <button name="refresh" id="refresh" type="button"

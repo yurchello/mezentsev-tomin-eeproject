@@ -146,6 +146,11 @@ public class MainController {
         return "registration";
     }
 
+//    @RequestMapping(value = { "/registrationSuccess" }, method = RequestMethod.GET)
+//    public String registrationSuccess() {
+//        return "registrationSuccess";
+//    }
+
     /**
      * This method will be called on form submission, handling POST request for
      * saving user in database. It also validates the user input
@@ -179,9 +184,11 @@ public class MainController {
 
         userService.saveUser(user);
 
-		model.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " registered successfully");
-		model.addAttribute("loggedinuser", getPrincipal());
-        return "redirect:/user-"+user.getSsoId();
+//		model.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " registered successfully");
+//		model.addAttribute("loggedinuser", getPrincipal());
+//        return "redirect:/user-"+user.getSsoId();
+        model.addAttribute("loggedinuser", getPrincipal());
+        return "registrationSuccess";
     }
 
 
@@ -207,13 +214,11 @@ public class MainController {
         return "redirect:/user-" + ssoId;
     }
 
-
-
-
     @RequestMapping(value = { "/user-{ssoId}" }, method = RequestMethod.GET)
     public String customAccount(@PathVariable String ssoId, ModelMap model){
         if (!isLoggedInUser()) return "accessDeniedUnregistered";
         User user = userService.findBySSO(ssoId);
+        if (user == null) return "page404";
         model.addAttribute("user", user);
         model.addAttribute("loggedinuser", getPrincipal());
         String image = getRawFileFromDrive(user.getPhoto());
@@ -384,7 +389,7 @@ public class MainController {
 
 //    @RequestMapping(value = { "/favicon.ico" }, method = RequestMethod.GET)
 //    public String setFavicon(){
-//        return "forward:/favicon.ico";
+//        return "/favicon.ico";
 //    }
 
 
@@ -462,7 +467,7 @@ public class MainController {
         return "redirect:/login?logout";
     }
 
-    @RequestMapping(value="/user-list", method = RequestMethod.GET)
+    @RequestMapping(value="/usersList", method = RequestMethod.GET)
     public String userList(ModelMap model){
         List<User> users = userService.findAllUsers();
         model.addAttribute("users", users);
@@ -472,7 +477,7 @@ public class MainController {
             images.add(image);
         }
         model.addAttribute("images", images);
-        return "userslist";
+        return "usersList";
     }
 
 //    @RequestMapping(value="/test2", method = RequestMethod.GET)
@@ -492,7 +497,7 @@ public class MainController {
     @RequestMapping(value = { "/delete-user-{ssoId}" }, method = RequestMethod.GET)
     public String deleteUser(@PathVariable String ssoId) {
         userService.deleteUserBySSO(ssoId);
-        return "redirect:/user-list";
+        return "redirect:/usersList";
     }
 
 
