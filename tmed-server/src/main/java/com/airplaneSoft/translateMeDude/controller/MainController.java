@@ -469,6 +469,7 @@ public class MainController {
 
     @RequestMapping(value="/usersList", method = RequestMethod.GET)
     public String userList(ModelMap model){
+        if (!isLoggedInUser()) return "accessDeniedUnregistered";
         List<User> users = userService.findAllUsers();
         model.addAttribute("users", users);
         List<String> images = new ArrayList<>();

@@ -13,7 +13,7 @@
 		<%--<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />--%>
 	<%--</head>--%>
 	<head>
-		<link href="/favicon.ico" rel="icon" type="image/x-icon">
+		<link rel="icon" href="http://example.com/image.png" />
 		<%--<link rel="icon" href="../../../static/img/favicon.ico" type="image/x-icon" />--%>
 		<%--<link rel="shortcut icon" href="http://www.example.com/favicon.ico" type="image/x-icon" />--%>
 	</head>
@@ -64,6 +64,14 @@
 							<sec:authorize access="isAuthenticated()">
 								<div>
 									<%@include file="pages/authheader.jsp" %>
+								</div>
+								<div align="center">
+									<div>
+										<a href="<c:url value='/user-${loggedinuser}' />">My Account</a>
+									</div>
+									<div>
+										<a href="<c:url value='/usersList' />">Find User</a>
+									</div>
 								</div>
 							</sec:authorize>
 
