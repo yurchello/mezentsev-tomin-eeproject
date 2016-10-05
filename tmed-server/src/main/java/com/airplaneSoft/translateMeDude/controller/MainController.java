@@ -16,8 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
@@ -75,16 +73,7 @@ public class MainController {
     @Autowired
     AuthenticationTrustResolver authenticationTrustResolver;
 
-
-
     private static String UPLOAD_LOCATION="C:/aaa/";
-
-
-//    @Autowired
-//    FileValidator fileValidator;
-//
-//    @Autowired
-//    MultiFileValidator multiFileValidator;
 
     //@ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
@@ -98,8 +87,6 @@ public class MainController {
         userService.updateUser(user);
         logger.info("Avatar path saved: ", path);
     }
-
-
 
     private String saveFile(MultipartFile multipartFile, String dirName, String fileName) throws IOException {
         File file = new File(dirName, fileName);
@@ -129,10 +116,10 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = { "/confirmPassword" }, method = RequestMethod.GET, produces = {"text/html"})
-    public @ResponseBody String confirmPassword(String password1, String password2){
-        return password1 + password2;
-    }
+//    @RequestMapping(value = { "/confirmPassword" }, method = RequestMethod.GET, produces = {"text/html"})
+//    public @ResponseBody String confirmPassword(String password1, String password2){
+//        return password1 + password2;
+//    }
 
     /**
      * This method will provide the medium to add a new user.
@@ -145,11 +132,6 @@ public class MainController {
         model.addAttribute("loggedinuser", getPrincipal());
         return "registration";
     }
-
-//    @RequestMapping(value = { "/registrationSuccess" }, method = RequestMethod.GET)
-//    public String registrationSuccess() {
-//        return "registrationSuccess";
-//    }
 
     /**
      * This method will be called on form submission, handling POST request for
@@ -171,7 +153,6 @@ public class MainController {
                 hasProfileError = true;
             }
         }
-
         if (result.hasErrors() && !(result.getAllErrors().size() == 1 && hasProfileError)) {
             return "registration";
         }
@@ -181,17 +162,10 @@ public class MainController {
             result.addError(ssoError);
             return "registration";
         }
-
         userService.saveUser(user);
-
-//		model.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " registered successfully");
-//		model.addAttribute("loggedinuser", getPrincipal());
-//        return "redirect:/user-"+user.getSsoId();
         model.addAttribute("loggedinuser", getPrincipal());
         return "registrationSuccess";
     }
-
-
 
     /**
      * This method handles login GET requests.
@@ -226,30 +200,22 @@ public class MainController {
         return "account";
     }
 
-
-    //@PreAuthorize("isAuthenticated() and hasPermission(#ssoId, 'isProfileOwner')")
     @RequestMapping(value = {"/editUser-{ssoId}"}, method = RequestMethod.GET)
-   //@PreAuthorize("hasRole('ADMIN') AND hasRole('D')")
     public String editProfile(@PathVariable String ssoId, ModelMap model){
         if (!isAccountOwner(ssoId)) return "accessDeniedHard";
         User user = userService.findBySSO(ssoId);
         model.addAttribute("user", user);
-
-        //List<WordsGroup> list = wordGroupService.findAllGroups();
-        //wordGroupService.createGroup("English", user);
         String image = getRawFileFromDrive(user.getPhoto());
         model.addAttribute("photoPath", image);
         model.addAttribute("loggedinuser", getPrincipal());
         return "editProfile";
     }
 
-
     @RequestMapping(value = {"/test"}, method = RequestMethod.GET)
     @PreAuthorize("")
     public String test(){
         return "errorOccurred";
     }
-
 
     @RequestMapping(value = {"/editUser-{ssoId}"}, method = RequestMethod.POST)
     public String updateProfile(@Valid User user, BindingResult result,
@@ -261,15 +227,6 @@ public class MainController {
         userService.updateUser(user);
         return "redirect:/user-{ssoId}";
     }
-
-//    @RequestMapping(value = {"/vocabulary-{ssoId}"}, method = RequestMethod.GET)
-//    public String vocabularyView(@PathVariable String ssoId, ModelMap models){
-//        List<WordsGroup> list = wordGroupService.findAllGroups();
-//        models.addAttribute("wordsGroups", list);
-//        return "vocabulary";
-//    }
-
-
 
     @RequestMapping(value = {"/groupsList-{ssoId}"}, method = RequestMethod.GET)
     public String groupView(@PathVariable String ssoId, ModelMap model){
@@ -298,7 +255,6 @@ public class MainController {
         model.addAttribute("wordsGroup",wordsGroup);
         model.addAttribute("user", user);
         model.addAttribute("edit", isAccountOwner(ssoId));
-        //Request.setCharacterEncoding
         return "viewGroup";
     }
 
@@ -387,10 +343,40 @@ public class MainController {
         return "singleFileUploader";
     }
 
-//    @RequestMapping(value = { "/favicon.ico" }, method = RequestMethod.GET)
-//    public String setFavicon(){
-//        return "/favicon.ico";
-//    }
+    @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
+    public String accessDeniedPage(ModelMap model) {
+        model.addAttribute("loggedinuser", getPrincipal());
+        return "accessDenied";
+    }
+
+    /**
+     * This method handles logout requests.
+     * Toggle the handlers if you are RememberMe functionality is useless in your app.
+     */
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            //new SecurityContextLogoutHandler().logout(request, response, auth);
+            persistentTokenBasedRememberMeServices.logout(request, response, auth);
+            SecurityContextHolder.getContext().setAuthentication(null);
+        }
+        return "redirect:/login?logout";
+    }
+
+    @RequestMapping(value="/usersList", method = RequestMethod.GET)
+    public String userList(ModelMap model){
+        if (!isLoggedInUser()) return "accessDeniedUnregistered";
+        List<User> users = userService.findAllUsers();
+        model.addAttribute("users", users);
+        List<String> images = new ArrayList<>();
+        for (User user: users){
+            String image = getRawFileFromDrive(user.getPhoto());
+            images.add(image);
+        }
+        model.addAttribute("images", images);
+        return "usersList";
+    }
 
 
     private boolean isAccountOwner(String ssoId){
@@ -442,49 +428,6 @@ public class MainController {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authenticationTrustResolver.isAnonymous(authentication);
     }
-
-    /**
-     * This method handles Access-Denied redirect.
-     */
-    @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
-    public String accessDeniedPage(ModelMap model) {
-        model.addAttribute("loggedinuser", getPrincipal());
-        return "accessDenied";
-    }
-
-    /**
-     * This method handles logout requests.
-     * Toggle the handlers if you are RememberMe functionality is useless in your app.
-     */
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            //new SecurityContextLogoutHandler().logout(request, response, auth);
-            persistentTokenBasedRememberMeServices.logout(request, response, auth);
-            SecurityContextHolder.getContext().setAuthentication(null);
-        }
-        return "redirect:/login?logout";
-    }
-
-    @RequestMapping(value="/usersList", method = RequestMethod.GET)
-    public String userList(ModelMap model){
-        if (!isLoggedInUser()) return "accessDeniedUnregistered";
-        List<User> users = userService.findAllUsers();
-        model.addAttribute("users", users);
-        List<String> images = new ArrayList<>();
-        for (User user: users){
-            String image = getRawFileFromDrive(user.getPhoto());
-            images.add(image);
-        }
-        model.addAttribute("images", images);
-        return "usersList";
-    }
-
-//    @RequestMapping(value="/test2", method = RequestMethod.GET)
-//    @ResponseBody public ResponseEntity<User> test2(){
-//        return new ResponseEntity<User>(new User(), HttpStatus.OK);
-//    }
 
     @RequestMapping(value = {"/testGet"}, method = RequestMethod.GET)
     public String testGet(){

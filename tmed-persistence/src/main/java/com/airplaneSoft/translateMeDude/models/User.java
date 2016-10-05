@@ -26,7 +26,7 @@ public class User implements Serializable{
 	@Column(name="SSO_ID", unique=true, nullable=false)
 	private String ssoId;
 
-	@Pattern(regexp = "^[A-Za-z0-9]+$")
+	//@Pattern(regexp = "^[A-Za-z0-9]+$")
 	@NotEmpty
 	@Column(name="PASSWORD", nullable=false)
 	private String password;
