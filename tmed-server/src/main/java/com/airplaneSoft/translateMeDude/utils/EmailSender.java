@@ -1,4 +1,4 @@
-package com.airplaneSoft.translateMeDude.controller;
+package com.airplaneSoft.translateMeDude.utils;
 
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;

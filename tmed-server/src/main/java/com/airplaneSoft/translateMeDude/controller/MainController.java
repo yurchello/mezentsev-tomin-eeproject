@@ -115,12 +115,6 @@ public class MainController {
         return "";
     }
 
-
-//    @RequestMapping(value = { "/confirmPassword" }, method = RequestMethod.GET, produces = {"text/html"})
-//    public @ResponseBody String confirmPassword(String password1, String password2){
-//        return password1 + password2;
-//    }
-
     /**
      * This method will provide the medium to add a new user.
      */
@@ -209,12 +203,6 @@ public class MainController {
         model.addAttribute("photoPath", image);
         model.addAttribute("loggedinuser", getPrincipal());
         return "editProfile";
-    }
-
-    @RequestMapping(value = {"/test"}, method = RequestMethod.GET)
-    @PreAuthorize("")
-    public String test(){
-        return "errorOccurred";
     }
 
     @RequestMapping(value = {"/editUser-{ssoId}"}, method = RequestMethod.POST)
@@ -378,6 +366,15 @@ public class MainController {
         return "usersList";
     }
 
+    /**
+     * This method will delete an user by it's SSOID value.
+     */
+    @RequestMapping(value = { "/delete-user-{ssoId}" }, method = RequestMethod.GET)
+    public String deleteUser(@PathVariable String ssoId) {
+        userService.deleteUserBySSO(ssoId);
+        return "redirect:/usersList";
+    }
+
 
     private boolean isAccountOwner(String ssoId){
         if (ssoId == null) return false;
@@ -402,7 +399,7 @@ public class MainController {
                     org.apache.commons.codec.binary.Base64.encodeBase64(fileBytes);
             return new String(encoded);
         } catch (IOException e) {
-            logger.debug("Life not found",e);
+            logger.debug("Fife not found",e);
         }
         return  null;
     }
@@ -428,22 +425,6 @@ public class MainController {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authenticationTrustResolver.isAnonymous(authentication);
     }
-
-    @RequestMapping(value = {"/testGet"}, method = RequestMethod.GET)
-    public String testGet(){
-        System.out.println();
-        return "testGet";
-    }
-
-    /**
-     * This method will delete an user by it's SSOID value.
-     */
-    @RequestMapping(value = { "/delete-user-{ssoId}" }, method = RequestMethod.GET)
-    public String deleteUser(@PathVariable String ssoId) {
-        userService.deleteUserBySSO(ssoId);
-        return "redirect:/usersList";
-    }
-
 
     private void setUserRoles(User user, List<UserProfile> userProfiles){
         Set<UserProfile> set = new HashSet<>();

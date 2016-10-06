@@ -1,6 +1,7 @@
 package com.airplaneSoft.translateMeDude.controller;
 
 import com.airplaneSoft.translateMeDude.models.EmailSenderModel;
+import com.airplaneSoft.translateMeDude.utils.EmailSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
