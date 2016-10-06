@@ -1,7 +1,7 @@
 package com.airplaneSoft.translateMeDude.controller;
 
 
-import com.airplaneSoft.translateMeDude.models.FileBucket;
+
 import com.airplaneSoft.translateMeDude.models.User;
 import com.airplaneSoft.translateMeDude.models.UserProfile;
 import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
@@ -320,16 +320,16 @@ public class MainController {
         redirectAttributes.addAttribute("ssoId", ssoId);
         return "redirect:/view-group";
     }
-
-    @RequestMapping(value = { "/changePhotoUser-{ssoId}" }, method = RequestMethod.GET)
-    public String changePhotoUser(@PathVariable String ssoId, ModelMap model, String photoPath){
-        FileBucket fileModel = new FileBucket();
-        model.addAttribute("loggedinuser", getPrincipal());
-        model.addAttribute("fileBucket", fileModel);
-        String image = getRawFileFromDrive(photoPath);
-        model.addAttribute("photoPath", image);
-        return "singleFileUploader";
-    }
+//
+//    @RequestMapping(value = { "/changePhotoUser-{ssoId}" }, method = RequestMethod.GET)
+//    public String changePhotoUser(@PathVariable String ssoId, ModelMap model, String photoPath){
+//        FileBucket fileModel = new FileBucket();
+//        model.addAttribute("loggedinuser", getPrincipal());
+//        model.addAttribute("fileBucket", fileModel);
+//        String image = getRawFileFromDrive(photoPath);
+//        model.addAttribute("photoPath", image);
+//        return "singleFileUploader";
+//    }
 
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {

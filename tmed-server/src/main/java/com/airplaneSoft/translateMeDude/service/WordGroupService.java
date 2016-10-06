@@ -10,7 +10,6 @@ import java.util.List;
  * Created by Mezentsev.Y on 9/3/2016.
  */
 public interface WordGroupService{
-    List<WordsGroup> findAllGroups();
     void createGroup(WordsGroup wordsGroup, User user);
     void updateGroup(WordsGroup wordsGroup);
     void deleteGroup(WordsGroup wordsGroup);

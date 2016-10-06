@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
-;
 
 @Repository("tokenRepositoryDao")
 @Transactional

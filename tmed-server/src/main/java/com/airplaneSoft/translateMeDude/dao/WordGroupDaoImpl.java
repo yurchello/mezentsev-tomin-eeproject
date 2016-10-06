@@ -20,8 +20,6 @@ import java.util.List;
 
 @Repository("wordGroupDao")
 public class WordGroupDaoImpl extends AbstractDao<Integer, WordsGroup> implements WordGroupDao{
-    @Autowired
-    private SessionFactory sessionFactory;
 
     public List<WordsGroup> findAllGroups(){
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("name"));
@@ -52,16 +50,6 @@ public class WordGroupDaoImpl extends AbstractDao<Integer, WordsGroup> implement
 
     @Override
     public List<WordsGroup> findAllUserGroups(User user) {
-//        Session session = getSession();
-//        Query query = session.createQuery("FROM WordsGroup as worgGoup inner join worgGoup.user as user on user.id =:id");
-//        query.setInteger("id", user.getId());
-//        List groups = query.list();
-
-//        Session session = getSession();
-//        Query query = session.createQuery("FROM WordsGroup as worgGoup where worgGoup.user.id =:id");
-//        query.setInteger("id", user.getId());
-//        List groups = query.list();
-
         Query query = getSession().createQuery("FROM WordsGroup as worgGoup where worgGoup.user =:currentUser");
         query.setParameter("currentUser", user);
         List groups = query.list();
@@ -70,23 +58,7 @@ public class WordGroupDaoImpl extends AbstractDao<Integer, WordsGroup> implement
 
     @Override
     public WordsGroup findById(Integer id) {
-
         return getByKey(id);
     }
 
-    @Override
-    public void addWord(WordsGroup wordsGroup, Word word) {
-
-    }
-
-
-    @Override
-    public void updateWord(WordsGroup wordsGroup, Word word) {
-
-    }
-
-    @Override
-    public void findAllWords(WordsGroup wordsGroup) {
-
-    }
 }

@@ -26,8 +26,6 @@ public class WordGroupServiceImpl implements WordGroupService {
     @Autowired
     WordDao wordDao;
 
-
-
     @Override
     public void createGroup(WordsGroup wordsGroup, User user) {
         dao.createGroup(wordsGroup,user);
@@ -64,11 +62,6 @@ public class WordGroupServiceImpl implements WordGroupService {
     @Override
     public List<WordsGroup> findAllUserGroups(User user) {
         return dao.findAllUserGroups(user);
-    }
-
-    @Override
-    public List<WordsGroup> findAllGroups() {
-        return dao.findAllGroups();
     }
 
     @Override

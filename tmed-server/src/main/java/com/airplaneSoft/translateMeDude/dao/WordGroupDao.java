@@ -19,9 +19,4 @@ public interface WordGroupDao {
     void deleteGroup(WordsGroup wordsGroup);
     List<WordsGroup> findAllUserGroups(User user);
     WordsGroup findById(Integer id);
-
-    void addWord(WordsGroup wordsGroup, Word word);
-    void updateWord(WordsGroup wordsGroup, Word word);
-    void findAllWords(WordsGroup wordsGroup);
-
 }
