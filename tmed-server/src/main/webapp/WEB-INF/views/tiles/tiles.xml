@@ -38,9 +38,9 @@
     </definition>
 
     <!-- Home Page -->
-    <definition name="home2" extends="base-definition">
-        <put-attribute name="title" value="Welcome" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/home2.jsp" />
+    <definition name="home" extends="base-definition">
+        <put-attribute name="title" value="Home" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />
     </definition>
 
     <!-- Help Page -->
@@ -73,12 +73,6 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/registrationSuccess.jsp" />
     </definition>
 
-    <!-- Test Page -->
-    <definition name="test" extends="base-definition">
-        <put-attribute name="title" value="Test" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/test.jsp" />
-    </definition>
-
      <!-- Account Page -->
     <definition name="account" extends="base-definition">
         <put-attribute name="title" value="Account" />
@@ -90,12 +84,6 @@
         <put-attribute name="title" value="Edit profile" />
         <put-attribute name="body" value="/WEB-INF/views/pages/editProfile.jsp" />
     </definition>
-
-    <!--&lt;!&ndash; Vocabulary user Page &ndash;&gt;-->
-    <!--<definition name="vocabulary" extends="base-definition">-->
-        <!--<put-attribute name="title" value="Vocabulary" />-->
-        <!--<put-attribute name="body" value="/WEB-INF/views/pages/vocabulary.jsp" />-->
-    <!--</definition>-->
 
     <!-- Words Groups List Page -->
     <definition name="groupsList" extends="base-definition">

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
  */
 //@Controller
 @ControllerAdvice
-public class ErrorsController {
+public class ErrorsController extends BaseController{
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public String handle(Exception ex) {

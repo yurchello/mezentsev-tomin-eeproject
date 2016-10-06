@@ -20,7 +20,7 @@ import javax.validation.Valid;
  */
 @Controller
 @RequestMapping("/")
-public class EmailSendController {
+public class EmailSendController extends BaseController{
 
     static final Logger logger = LoggerFactory.getLogger(MainController.class);
 

@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Mezentsev.Y on 9/24/2016.
  */
 @Controller
-public class DesktopDownloadController {
+public class DesktopDownloadController extends BaseController {
 
     private static String DOWNLOAD_WINDOWS_DESKTOP_LOCATION = "C:/desktop_dude/windows/";
     private static String DOWNLOAD_IOS_DESKTOP_LOCATION = "C:/desktop_dude/ios/";

@@ -48,32 +48,7 @@ import java.util.*;
 @Controller
 @RequestMapping("/")
 @SessionAttributes("roles")
-public class MainController {
-
-    static final Logger logger = LoggerFactory.getLogger(MainController.class);
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    WordGroupService wordGroupService;
-
-    @Autowired
-    WordService wordService;
-
-    @Autowired
-    UserProfileService userProfileService;
-
-    @Autowired
-    MessageSource messageSource;
-
-    @Autowired
-    PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
-
-    @Autowired
-    AuthenticationTrustResolver authenticationTrustResolver;
-
-    private static String UPLOAD_LOCATION="C:/aaa/";
+public class MainController extends BaseController{
 
     //@ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
@@ -123,7 +98,7 @@ public class MainController {
         User user = new User();
         model.addAttribute("user", user);
         model.addAttribute("edit", false);
-        model.addAttribute("loggedinuser", getPrincipal());
+        //model.addAttribute("loggedinuser", getPrincipal());
         return "registration";
     }
 
@@ -157,7 +132,7 @@ public class MainController {
             return "registration";
         }
         userService.saveUser(user);
-        model.addAttribute("loggedinuser", getPrincipal());
+        //model.addAttribute("loggedinuser", getPrincipal());
         return "registrationSuccess";
     }
 
@@ -168,7 +143,7 @@ public class MainController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
         if (isCurrentAuthenticationAnonymous()) {
-            return "home2";
+            return "home";
         } else {
             String ssoId = getSSOIdifAutentificated();
             return "redirect:/user-" + ssoId;
@@ -188,7 +163,7 @@ public class MainController {
         User user = userService.findBySSO(ssoId);
         if (user == null) return "page404";
         model.addAttribute("user", user);
-        model.addAttribute("loggedinuser", getPrincipal());
+       // model.addAttribute("loggedinuser", getPrincipal());
         String image = getRawFileFromDrive(user.getPhoto());
         model.addAttribute("photoPath", image);
         return "account";
@@ -201,7 +176,7 @@ public class MainController {
         model.addAttribute("user", user);
         String image = getRawFileFromDrive(user.getPhoto());
         model.addAttribute("photoPath", image);
-        model.addAttribute("loggedinuser", getPrincipal());
+        //model.addAttribute("loggedinuser", getPrincipal());
         return "editProfile";
     }
 
@@ -320,20 +295,10 @@ public class MainController {
         redirectAttributes.addAttribute("ssoId", ssoId);
         return "redirect:/view-group";
     }
-//
-//    @RequestMapping(value = { "/changePhotoUser-{ssoId}" }, method = RequestMethod.GET)
-//    public String changePhotoUser(@PathVariable String ssoId, ModelMap model, String photoPath){
-//        FileBucket fileModel = new FileBucket();
-//        model.addAttribute("loggedinuser", getPrincipal());
-//        model.addAttribute("fileBucket", fileModel);
-//        String image = getRawFileFromDrive(photoPath);
-//        model.addAttribute("photoPath", image);
-//        return "singleFileUploader";
-//    }
 
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
-        model.addAttribute("loggedinuser", getPrincipal());
+        //model.addAttribute("loggedinuser", getPrincipal());
         return "accessDenied";
     }
 
@@ -376,10 +341,7 @@ public class MainController {
     }
 
 
-    private boolean isAccountOwner(String ssoId){
-        if (ssoId == null) return false;
-        return ssoId.equals(getSSOIdifAutentificated());
-    }
+
 
     private String getRawFileFromDrive(String path){
         if (path==null)return null;
@@ -417,13 +379,15 @@ public class MainController {
     public List<UserProfile> initializeProfiles() {
         return userProfileService.findAll();
     }
+//
+//    @ModelAttribute("loggedinuser")
+//    public String initLoggedinuser(){
+//        return getPrincipal();
+//    }
 
-    /**
-     * This method returns true if users is already authenticated [logged-in], else false.
-     */
-    private boolean isCurrentAuthenticationAnonymous() {
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authenticationTrustResolver.isAnonymous(authentication);
+    private boolean isAccountOwner(String ssoId){
+        if (ssoId == null) return false;
+        return ssoId.equals(getSSOIdifAutentificated());
     }
 
     private void setUserRoles(User user, List<UserProfile> userProfiles){
@@ -444,29 +408,6 @@ public class MainController {
             }
         }
         user.setUserProfiles(set);
-    }
-
-    private String getSSOIdifAutentificated(){
-        return SecurityContextHolder.getContext().getAuthentication().getName();
-    }
-
-    /**
-     * This method returns the principal[user-name] of logged-in user.
-     */
-    private String getPrincipal(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        return userName;
-    }
-
-    private boolean isLoggedInUser(){
-        return !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
 
 }
