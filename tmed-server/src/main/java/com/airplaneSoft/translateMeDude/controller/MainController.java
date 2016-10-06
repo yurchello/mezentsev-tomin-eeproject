@@ -10,6 +10,7 @@ import com.airplaneSoft.translateMeDude.service.UserProfileService;
 import com.airplaneSoft.translateMeDude.service.WordGroupService;
 import com.airplaneSoft.translateMeDude.service.WordService;
 import com.airplaneSoft.translateMeDude.service.UserService;
+import com.airplaneSoft.translateMeDude.utils.FileUtilities;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,18 +57,18 @@ public class MainController extends BaseController{
     public void addAdvert(@RequestParam(name = "mainImage", required = false) MultipartFile mainImage) throws IOException {
         String ssoId = getSSOIdifAutentificated();
         String fileName = ssoId + "." + FilenameUtils.getExtension(mainImage.getOriginalFilename());
-        String path = saveFile(mainImage, UPLOAD_LOCATION, fileName);
+        String path = FileUtilities.saveFile(mainImage, UPLOAD_LOCATION, fileName);
         User user = userService.findBySSO(ssoId);
         user.setPhoto(path);
         userService.updateUser(user);
         logger.info("Avatar path saved: ", path);
     }
-
-    private String saveFile(MultipartFile multipartFile, String dirName, String fileName) throws IOException {
-        File file = new File(dirName, fileName);
-        FileCopyUtils.copy(multipartFile.getBytes(), file);
-        return file.getPath();
-    }
+//
+//    private String saveFile(MultipartFile multipartFile, String dirName, String fileName) throws IOException {
+//        File file = new File(dirName, fileName);
+//        FileCopyUtils.copy(multipartFile.getBytes(), file);
+//        return file.getPath();
+//    }
 
     /**
      * checking password length
@@ -164,7 +165,12 @@ public class MainController extends BaseController{
         if (user == null) return "page404";
         model.addAttribute("user", user);
        // model.addAttribute("loggedinuser", getPrincipal());
-        String image = getRawFileFromDrive(user.getPhoto());
+        String image = null;
+        try {
+            image = FileUtilities.getRawFileFromDrive(user.getPhoto());
+        } catch (IOException e) {
+            logger.debug("File not found",e);
+        }
         model.addAttribute("photoPath", image);
         return "account";
     }
@@ -174,7 +180,12 @@ public class MainController extends BaseController{
         if (!isAccountOwner(ssoId)) return "accessDeniedHard";
         User user = userService.findBySSO(ssoId);
         model.addAttribute("user", user);
-        String image = getRawFileFromDrive(user.getPhoto());
+        String image = null;
+        try {
+            image = FileUtilities.getRawFileFromDrive(user.getPhoto());
+        } catch (IOException e) {
+            logger.debug("File not found",e);
+        }
         model.addAttribute("photoPath", image);
         //model.addAttribute("loggedinuser", getPrincipal());
         return "editProfile";
@@ -268,8 +279,9 @@ public class MainController extends BaseController{
     public String editWord(@RequestParam Integer wordId, @RequestParam Integer wordsGroupId,@RequestParam String ssoId, ModelMap model){
         if (!isAccountOwner(ssoId)) return "accessDeniedHard";
         Word word = wordService.findById(wordId);
+        WordsGroup wordsGroup = wordGroupService.findById(wordsGroupId);
         model.addAttribute("ssoId", ssoId);
-        model.addAttribute("wordsGroupId",wordsGroupId);
+        model.addAttribute("wordsGroupId",wordsGroup.getName());
         model.addAttribute("word",word);
         return "editWord";
     }
@@ -324,7 +336,12 @@ public class MainController extends BaseController{
         model.addAttribute("users", users);
         List<String> images = new ArrayList<>();
         for (User user: users){
-            String image = getRawFileFromDrive(user.getPhoto());
+            String image = null;
+            try {
+                image = FileUtilities.getRawFileFromDrive(user.getPhoto());
+            } catch (IOException e) {
+                logger.debug("File not found",e);
+            }
             images.add(image);
         }
         model.addAttribute("images", images);
@@ -343,34 +360,34 @@ public class MainController extends BaseController{
 
 
 
-    private String getRawFileFromDrive(String path){
-        if (path==null)return null;
-        File file = new File(path);
-        try {
-            FileInputStream fis=new FileInputStream(file);
-            ByteArrayOutputStream bos=new ByteArrayOutputStream();
-            int b;
-            byte[] buffer = new byte[1024];
-            while((b=fis.read(buffer))!=-1){
-                bos.write(buffer,0,b);
-            }
-            byte[] fileBytes=bos.toByteArray();
-            fis.close();
-            bos.close();
-            byte[] encoded=
-                    org.apache.commons.codec.binary.Base64.encodeBase64(fileBytes);
-            return new String(encoded);
-        } catch (IOException e) {
-            logger.debug("Fife not found",e);
-        }
-        return  null;
-    }
-
-    private String getRawFileFromDrive(byte[] fileBytes){
-            byte[] encoded=
-                    org.apache.commons.codec.binary.Base64.encodeBase64(fileBytes);
-            return new String(encoded);
-    }
+//    private String getRawFileFromDrive(String path){
+//        if (path==null)return null;
+//        File file = new File(path);
+//        try {
+//            FileInputStream fis=new FileInputStream(file);
+//            ByteArrayOutputStream bos=new ByteArrayOutputStream();
+//            int b;
+//            byte[] buffer = new byte[1024];
+//            while((b=fis.read(buffer))!=-1){
+//                bos.write(buffer,0,b);
+//            }
+//            byte[] fileBytes=bos.toByteArray();
+//            fis.close();
+//            bos.close();
+//            byte[] encoded=
+//                    org.apache.commons.codec.binary.Base64.encodeBase64(fileBytes);
+//            return new String(encoded);
+//        } catch (IOException e) {
+//            logger.debug("Fife not found",e);
+//        }
+//        return  null;
+//    }
+//
+//    private String getRawFileFromDrive(byte[] fileBytes){
+//            byte[] encoded=
+//                    org.apache.commons.codec.binary.Base64.encodeBase64(fileBytes);
+//            return new String(encoded);
+//    }
 
     /**
      * This method will provide UserProfile list to views

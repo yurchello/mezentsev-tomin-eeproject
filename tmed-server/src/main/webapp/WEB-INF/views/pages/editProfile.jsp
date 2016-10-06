@@ -130,12 +130,12 @@
                             <%--</div>--%>
 
                             <div>
-                                <c:if test="${user.photo != null}">
+                                <c:if test="${user.photo != ''}">
                                     <img src="data:image/jpeg;base64,${photoPath}" id="output" width="117" height="160"
                                          alt="df">
 
                                 </c:if>
-                                <c:if test="${user.photo == null}">
+                                <c:if test="${user.photo == ''}">
                                     <img id="output" alt="df" width="117" height="160" src="/static/images/default.JPG">
                                 </c:if>
                             </div>

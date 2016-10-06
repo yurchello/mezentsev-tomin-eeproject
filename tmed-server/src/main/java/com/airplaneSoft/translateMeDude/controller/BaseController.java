@@ -75,7 +75,7 @@ public class BaseController {
         return !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
 
-    	@ModelAttribute("loggedinuser")
+    @ModelAttribute("loggedinuser")
 	public String initLoggedinuser(){
 		return getPrincipal();
 	}
