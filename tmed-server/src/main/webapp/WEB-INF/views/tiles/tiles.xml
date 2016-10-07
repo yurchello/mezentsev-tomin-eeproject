@@ -12,12 +12,6 @@
        <put-attribute name="body" value="" />  
        <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />  
    </definition>
-
-   <!-- Product Page -->
-   <definition name="products" extends="base-definition">
-       <put-attribute name="title" value="Products" />
-       <put-attribute name="body" value="/WEB-INF/views/pages/products.jsp" />
-   </definition>
       
    <!-- Contact-us Page -->
    <definition name="contactus" extends="base-definition">  
@@ -28,13 +22,13 @@
     <!-- Error sending email Page -->
     <definition name="errorSendingEmail" extends="base-definition">
         <put-attribute name="title" value="Error sending email" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/errorSendingEmail.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/statuses/errorSendingEmail.jsp" />
     </definition>
 
     <!-- Success sending email Page -->
     <definition name="successSendingEmail" extends="base-definition">
         <put-attribute name="title" value="Email sent" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/successSendingEmail.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/statuses/successSendingEmail.jsp" />
     </definition>
 
     <!-- Home Page -->
@@ -70,61 +64,61 @@
     <!--User List Page -->
     <definition name="registrationSuccess" extends="base-definition">
         <put-attribute name="title" value="Registration Success" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/registrationSuccess.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/statuses/registrationSuccess.jsp" />
     </definition>
 
      <!-- Account Page -->
     <definition name="account" extends="base-definition">
         <put-attribute name="title" value="Account" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/account.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/userAccount/account.jsp" />
     </definition>
 
     <!-- Edit profile Page -->
     <definition name="editProfile" extends="base-definition">
         <put-attribute name="title" value="Edit profile" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/editProfile.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/userAccount/editProfile.jsp" />
     </definition>
 
     <!-- Words Groups List Page -->
     <definition name="groupsList" extends="base-definition">
         <put-attribute name="title" value="Word Group" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/groupsList.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/userAccount/groupsList.jsp" />
     </definition>
 
     <!--View Words Group Page -->
     <definition name="viewGroup" extends="base-definition">
         <put-attribute name="title" value="View Words Group" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/viewGroup.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/userAccount/viewGroup.jsp" />
     </definition>
 
     <!--New Words Group Page -->
     <definition name="newGroup" extends="base-definition">
         <put-attribute name="title" value="New Words Group" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/newGroup.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/userAccount/newGroup.jsp" />
     </definition>
 
     <!--Add new Word to Group Page -->
     <definition name="newWord" extends="base-definition">
         <put-attribute name="title" value="Add new Word" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/newWord.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/userAccount/newWord.jsp" />
     </definition>
 
     <!--Edit Word Page -->
     <definition name="editWord" extends="base-definition">
         <put-attribute name="title" value="Edit Word" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/editWord.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/userAccount/editWord.jsp" />
     </definition>
 
     <!--Error Page -->
     <definition name="errorOccurred" extends="base-definition">
         <put-attribute name="title" value="Error" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/errorPage.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/statuses/errorPage.jsp" />
     </definition>
 
     <!--Error 404 Page -->
     <definition name="page404" extends="base-definition">
         <put-attribute name="title" value="Error 404" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/page404.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/statuses/page404.jsp" />
     </definition>
 
     <!--Access Denied Page -->
@@ -136,13 +130,13 @@
     <!--Access Denied Hard level Page -->
     <definition name="accessDeniedHard" extends="base-definition">
         <put-attribute name="title" value="Access Denied" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/accessDeniedHard.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/statuses/accessDeniedHard.jsp" />
     </definition>
 
     <!--Access Denied unregistered level Page -->
     <definition name="accessDeniedUnregistered" extends="base-definition">
         <put-attribute name="title" value="Access Denied" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/accessDeniedUnregistered.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/statuses/accessDeniedUnregistered.jsp" />
     </definition>
 
     <!--User List Page -->

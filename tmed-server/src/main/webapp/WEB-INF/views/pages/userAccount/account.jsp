@@ -62,11 +62,11 @@
 </script>
 <body>
 <div class="generic-container">
-    <sec:authorize access="isAuthenticated()">
-        <%@include file="authheader.jsp" %>
-    </sec:authorize>
+    <%--<sec:authorize access="isAuthenticated()">--%>
+        <%--<%@include file="../authheader.jsp" %>--%>
+    <%--</sec:authorize>--%>
 
-    <div class="well lead">User Personal Page</div>
+    <h1>Personal Page</h1>
     <form:form method="POST" modelAttribute="user" class="form-horizontal">
         <form:input type="hidden" path="id" id="id"/>
 

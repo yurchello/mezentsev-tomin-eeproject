@@ -15,7 +15,7 @@
 	<div class="generic-container">
 		<div class="panel panel-default"  style=" height:80%; overflow:auto">
 			  <!-- Default panel contents -->
-		  	<div class="panel-heading"><span class="lead">List of Users </span></div>
+		  	<h1>Find User</h1>
 			<table id="userListTable" class="display" cellspacing="0" width="100%">
 	    		<thead>
 		      		<tr>

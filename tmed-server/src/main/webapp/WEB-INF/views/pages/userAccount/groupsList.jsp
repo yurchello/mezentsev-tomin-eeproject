@@ -18,7 +18,7 @@
 
 
 <body>
-<h1>Word Group</h1>
+<h1>Word Groups</h1>
 	<div >
 		<div class="panel panel-default">
 

@@ -253,10 +253,11 @@ public class MainController extends BaseController{
     }
 
     @RequestMapping(value = {"newWord"}, method = RequestMethod.GET)
-    public String newWord(@RequestParam String wordsGroupId, @RequestParam String ssoId, ModelMap model){
+    public String newWord(@RequestParam Integer wordsGroupId, @RequestParam String ssoId, ModelMap model){
         if (!isAccountOwner(ssoId)) return "accessDeniedHard";
         model.addAttribute("ssoId", ssoId);
-        model.addAttribute("wordsGroupId",wordsGroupId);
+        WordsGroup wordsGroup = wordGroupService.findById(wordsGroupId);
+        model.addAttribute("wordsGroup",wordsGroup);
         Word word = new Word();
         model.addAttribute("word",word);
         return "newWord";
@@ -281,7 +282,7 @@ public class MainController extends BaseController{
         Word word = wordService.findById(wordId);
         WordsGroup wordsGroup = wordGroupService.findById(wordsGroupId);
         model.addAttribute("ssoId", ssoId);
-        model.addAttribute("wordsGroupId",wordsGroup.getName());
+        model.addAttribute("wordsGroup",wordsGroup);
         model.addAttribute("word",word);
         return "editWord";
     }

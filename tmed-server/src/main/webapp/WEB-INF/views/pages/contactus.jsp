@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <h1>Spring MVC - Send e-mail with attachments</h1>
+    <h1>Send e-mail to us</h1>
 
     <form:form method="POST" modelAttribute="emailSenderModel">
         <table border="0" width="80%">

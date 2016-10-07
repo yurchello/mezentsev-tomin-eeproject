@@ -9,9 +9,9 @@
     <title>Add New Word</title>
 </head>
 <body>
-<h1>Add New Word to ${wordsGroupId} group</h1>
+<h1>Add New Word to ${wordsGroup.name} group</h1>
 <form:form method="POST" modelAttribute="word">
-    <input type="hidden" id="wordsGroupId" name="wordsGroupId" value="${wordsGroupId}">
+    <input type="hidden" id="wordsGroupId" name="wordsGroupId" value="${wordsGroup.id}">
     <form:input type="hidden" path="id" id="id"/>
     <div>
         <div>
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div>
-            <input type="submit" value="Add" id="addWord" class="btn btn-primary btn-sm"/> or <a href="/view-group?wordsGroupId=${wordsGroupId}&ssoId=${ssoId}">Cancel</a>
+            <input type="submit" value="Add" id="addWord" class="btn btn-primary btn-sm"/> or <a href="/view-group?wordsGroupId=${wordsGroup.id}&ssoId=${ssoId}">Cancel</a>
         </div>
     </div>
 </form:form>
