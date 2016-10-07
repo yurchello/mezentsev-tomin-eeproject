@@ -12,12 +12,6 @@
 <!-- default header name is X-CSRF-TOKEN -->
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
-<%--<head>--%>
-<%--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">--%>
-<%--<title>User Registration Form</title>--%>
-<%--<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>--%>
-<%--<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>--%>
-<%--</head>--%>
 <script>
 
     $(function () {
@@ -29,15 +23,9 @@
     });
 
     function avatarUpload() {
-
         var formData = new FormData();
         formData.append('mainImage', $('#file')[0].files[0]);
-        //formData.append('mainImage', $('#output').val());
-        //alert();
         $.ajax({
-//            headers: {
-//                Accept : "application/json; charset=utf-8"
-//            },
             url: '/avatarUpload',
             data: formData,
             processData: false,
@@ -62,10 +50,6 @@
 </script>
 <body>
 <div class="generic-container">
-    <%--<sec:authorize access="isAuthenticated()">--%>
-        <%--<%@include file="../authheader.jsp" %>--%>
-    <%--</sec:authorize>--%>
-
     <h1>Personal Page</h1>
     <form:form method="POST" modelAttribute="user" class="form-horizontal">
         <form:input type="hidden" path="id" id="id"/>
@@ -154,8 +138,6 @@
                 </td>
             </tr>
         </table>
-
-
     </form:form>
 </div>
 </body>

@@ -8,8 +8,6 @@
 </head>
 <body>
 <form:form method="POST" modelAttribute="wordsGroup">
-    <%--<input type="hidden" id="wordsGroupId" name="wordsGroupId" value="${wordsGroupId}">--%>
-    <%--<form:input type="hidden" path="id" id="id"/>--%>
     <div>
         <div>
             <label for="name">Group Name</label>
@@ -22,7 +20,7 @@
         </div>
 
         <div>
-            <input type="submit" value="Add" id="addNewGroup" class="btn btn-primary btn-sm"/> or <a href="<c:url value='/groupsList-${user.ssoId}'/>">Cancel</a>
+            <input type="submit" value="Add" id="addNewGroup" class="btn btn-primary btn-sm"/> or <a href="<c:url value='/groupsList-${ssoId}'/>">Cancel</a>
         </div>
     </div>
 </form:form>

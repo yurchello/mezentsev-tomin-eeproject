@@ -6,12 +6,6 @@
 
 <html>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<%--<head>--%>
-	<%--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">--%>
-	<%--<title>User Registration Form</title>--%>
-	<%--<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>--%>
-	<%--<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>--%>
-<%--</head>--%>
 
 <script>
 	function checkPasswordStrength() {
@@ -37,12 +31,10 @@
 						label.innerHTML = "Low protection";
 						label.style.color = "";
 						break;
-
 				}
 			}
 		});
 	}
-
 
 	function confirmPassword(){
 		var password1 = document.getElementById('password1').value;
@@ -60,7 +52,6 @@
 	}
 
 	function doUpdateAvatar() {
-
 		$.ajax({
 			url: 'doUpdateAvatar',
 			data: ({aaa :$('#firstName').val()}),
@@ -70,16 +61,10 @@
 		});
 	}
 
-
-
 </script>
 
 <body>
  	<div class="generic-container">
-		<sec:authorize access="isAuthenticated()">
-			<%@include file="authheader.jsp" %>
-		</sec:authorize>
-
 		<div class="well lead">User Registration Form</div>
 	 	<form:form method="POST" modelAttribute="user" class="form-horizontal">
 			<form:input type="hidden" path="id" id="id"/>
@@ -126,9 +111,6 @@
 					</div>
 				</div>
 			</div>
-
-
-
 
 			<div class="row">
 				<div class="form-group col-md-12">
@@ -178,19 +160,7 @@
 			</div>
 
 			<form:input type="hidden"  name="photo"   path="photo"/>
-			<%--<div class="row">--%>
-				<%--<div class="form-group col-md-12">--%>
-					<%--<label class="col-md-3 control-lable" for="photo">Photo test(todo add upload)</label>--%>
-					<%--<div class="col-md-7">--%>
-						<%--<form:input type="text" path="photo" id="description" class="form-control input-sm" />--%>
-						<%--<div class="has-error">--%>
-							<%--<form:errors path="photo" class="help-inline"/>--%>
-						<%--</div>--%>
-					<%--</div>--%>
-				<%--</div>--%>
-			<%--</div>--%>
-			<%--<textarea name='test' id='test' w><c:out value="wdfwdlfkdvlvmkla;sklsaklssnknklnn" /> </textarea>--%>
-			<%--<form:input type="hidden"  name="userProfiles" value="[USER]"  path="userProfiles"/>--%>
+
 			<sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
 			<div class="row">
 				<div class="form-group col-md-12">
@@ -206,7 +176,6 @@
 					</div>
 				</div>
 			</div>
-
 			</sec:authorize>
 
 			<sec:authorize access="hasRole('ANONYMOUS')">

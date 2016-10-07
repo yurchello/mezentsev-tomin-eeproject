@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Result</title>
+    <title>Error Sending Email</title>
 </head>
 <body>
 <center>

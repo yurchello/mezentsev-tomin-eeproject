@@ -27,7 +27,6 @@
                     <th>Delete</th>
                 </c:if>
 
-                <%--<th width="100"></th>--%>
             </tr>
             </thead>
             <tbody>
@@ -43,7 +42,6 @@
                         <td><a href='/deleteWord?wordId=${word.id}&wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}'
                                class="btn btn-danger custom-width">Delete</a></td>
                     </c:if>
-                        <%--<td>${word.id}</td>--%>
                 </tr>
             </c:forEach>
             </tbody>
@@ -58,16 +56,12 @@
         </div>
     </div>
 
-
-
-
 </div>
 
 </body>
 <script>
     $(document).ready(function () {
         var table = $('#wordsList').DataTable();
-
         $('#wordsList tbody').on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
@@ -77,7 +71,6 @@
                 $(this).addClass('selected');
             }
         });
-
         $('#button').click(function () {
             table.row('.selected').remove().draw(false);
         });

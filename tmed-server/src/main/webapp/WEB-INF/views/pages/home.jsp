@@ -2,7 +2,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>--%>
 
 <script type="text/javascript" src="/static/js/jquery-1.12.3.js"></script>
 <script type="text/javascript" src="/static/js/jquery.dataTables.min.js"></script>
@@ -21,7 +20,6 @@
    </head>
 <script>
     var editor; // use a global for the submit and return data rendering in the examples
-
     $(document).ready(function() {
         editor = new $.fn.dataTable.Editor( {
             ajax: "../php/staff.php",
@@ -76,7 +74,7 @@
     } );
 </script>
 <head>
-    <%--<link rel="shortcut icon" href="/favicon.ico" />--%>
+
 </head>
 <body>
 

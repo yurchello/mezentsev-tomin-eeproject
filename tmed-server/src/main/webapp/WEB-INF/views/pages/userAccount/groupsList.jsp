@@ -6,14 +6,9 @@
 <html>
 
 <head>
-	<%--<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--%>
 	<link href="<c:url value='/static/css/jquery.dataTables.min.css' />" rel="stylesheet"/>
 	<script type="text/javascript" src="/static/js/jquery-1.12.3.js"></script>
 	<script type="text/javascript" src="/static/js/jquery.dataTables.min.js"></script>
-	<%--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">--%>
-	<%--<title>Users List</title>--%>
-	<%--<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>--%>
-	<%--<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>--%>
 </head>
 
 
@@ -31,15 +26,12 @@
 							<c:if test="${edit}">
 								<th>Delete</th>
 							</c:if>
-
-						<%--<th width="100"></th>--%>
 					</tr>
 		    	</thead>
 	    		<tbody>
 				<c:forEach items="${wordsGroups}" var="wordsGroup" varStatus="status">
 					<tr>
 						<td>${wordsGroup.name}</td>
-
 							<td><a href='/view-group?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-success custom-width">Edit/View</a></td>
 						<c:if test="${edit}">
 							<td><a href='/delete-group?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}' class="btn btn-danger custom-width">Delete</a></td>
@@ -62,7 +54,6 @@
 <script>
 	$(document).ready(function() {
 		var table = $('#groupListTable').DataTable();
-
 		$('#groupListTable tbody').on( 'click', 'tr', function () {
 			if ( $(this).hasClass('selected') ) {
 				$(this).removeClass('selected');
@@ -72,7 +63,6 @@
 				$(this).addClass('selected');
 			}
 		} );
-
 		$('#button').click( function () {
 			table.row('.selected').remove().draw( false );
 		} );

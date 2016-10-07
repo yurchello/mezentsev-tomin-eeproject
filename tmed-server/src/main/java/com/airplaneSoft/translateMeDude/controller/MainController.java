@@ -359,37 +359,6 @@ public class MainController extends BaseController{
     }
 
 
-
-
-//    private String getRawFileFromDrive(String path){
-//        if (path==null)return null;
-//        File file = new File(path);
-//        try {
-//            FileInputStream fis=new FileInputStream(file);
-//            ByteArrayOutputStream bos=new ByteArrayOutputStream();
-//            int b;
-//            byte[] buffer = new byte[1024];
-//            while((b=fis.read(buffer))!=-1){
-//                bos.write(buffer,0,b);
-//            }
-//            byte[] fileBytes=bos.toByteArray();
-//            fis.close();
-//            bos.close();
-//            byte[] encoded=
-//                    org.apache.commons.codec.binary.Base64.encodeBase64(fileBytes);
-//            return new String(encoded);
-//        } catch (IOException e) {
-//            logger.debug("Fife not found",e);
-//        }
-//        return  null;
-//    }
-//
-//    private String getRawFileFromDrive(byte[] fileBytes){
-//            byte[] encoded=
-//                    org.apache.commons.codec.binary.Base64.encodeBase64(fileBytes);
-//            return new String(encoded);
-//    }
-
     /**
      * This method will provide UserProfile list to views
      */
@@ -397,11 +366,6 @@ public class MainController extends BaseController{
     public List<UserProfile> initializeProfiles() {
         return userProfileService.findAll();
     }
-//
-//    @ModelAttribute("loggedinuser")
-//    public String initLoggedinuser(){
-//        return getPrincipal();
-//    }
 
     private boolean isAccountOwner(String ssoId){
         if (ssoId == null) return false;

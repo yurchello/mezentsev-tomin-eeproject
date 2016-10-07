@@ -5,21 +5,9 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
-<%--<meta name="_csrf" content="${_csrf.token}"/>--%>
-<%--<meta name="_csrf_header" content="${_csrf.headerName}"/>--%>
-
-<%--<head>--%>
-<%--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">--%>
-<%--<title>User Registration Form</title>--%>
-<%--<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>--%>
-<%--<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>--%>
-<%--</head>--%>
-
 
 <body>
 <div class="generic-container">
-    <%--<%@include file="../authheader.jsp" %>--%>
-
     <h1>Edit Personal Page</h1>
     <form:form method="POST" modelAttribute="user" class="form-horizontal">
         <form:input type="hidden" path="id" id="id"/>
@@ -124,11 +112,6 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="col-md-3 control-lable">Photo:</label>
-                            <%--<div>--%>
-
-                                <%--<img src="/static/images/default.JPG" width="117" height="160" alt="df" id="statImg">--%>
-                            <%--</div>--%>
-
                             <div>
                                 <c:if test="${user.photo != ''}">
                                     <img src="data:image/jpeg;base64,${photoPath}" id="output" width="117" height="160"
