@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<fx:root type= "com.airplaneSoft.translateMeDude.winApp.settings.settingsView.SettingsDialogView" xmlns:fx="http://javafx.com/fxml/1"
+         xmlns="http://javafx.com/javafx/8">
+    <dialogPane>
+        <DialogPane fx:id="settingDialogPane">
+            <content>
+                <VBox>
+                    <children>
+                        <GridPane fx:id="gridPane1">
+                            <Label text="%ui.settings.label.connection.url" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </Label>
+                            <TextField prefWidth="200" fx:id="urlField" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </TextField>
+                            <CheckBox text="%ui.settings.label.for.checkbox.show" GridPane.rowIndex="0" GridPane.columnIndex="2">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </CheckBox>
+
+                            <Label text="%ui.settings.label.ssoid" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </Label>
+                            <PasswordField prefWidth="200" fx:id="ssoidField" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </PasswordField>
+
+                            <Label text="%ui.settings.label.password" GridPane.rowIndex="2" GridPane.columnIndex="0">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </Label>
+                            <PasswordField prefWidth="200" fx:id="passwordField" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </PasswordField>
+                            <CheckBox text="%ui.settings.checkbox.autoupdate" GridPane.rowIndex="3" GridPane.columnIndex="0">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </CheckBox>
+                        </GridPane>
+                        <Separator orientation="HORIZONTAL"/>
+                        <GridPane fx:id="gridPane2">
+                            <Label text="%ui.settings.label.show" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </Label>
+
+                            <RadioButton text="%ui.settings.combobox.by.random" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </RadioButton>
+                            <RadioButton text="%ui.settings.combobox.by.value" GridPane.rowIndex="2" GridPane.columnIndex="0">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </RadioButton>
+                            <TextField prefWidth="70" fx:id="timerValueField" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="5" left="3"/>
+                                </GridPane.margin>
+                            </TextField>
+                            <Label text="%ui.settings.label.for.timer.field" GridPane.rowIndex="2" GridPane.columnIndex="2">
+                                <GridPane.margin>
+                                    <Insets top="3" bottom="3" right="15" left="3"/>
+                                </GridPane.margin>
+                            </Label>
+
+
+                        </GridPane>
+                    </children>
+                </VBox>
+
+
+
+                <!--<BorderPane fx:id="settingBorderPane">-->
+                    <!--<center>-->
+                    <!--</center>-->
+                    <!--<bottom>-->
+                        <!--<Separator orientation="HORIZONTAL"/>-->
+                    <!--</bottom>-->
+                <!--</BorderPane>-->
+            </content>
+            <ButtonType fx:id="btOk" fx:constant="OK"/>
+            <ButtonType fx:id="btApply" fx:constant="APPLY"/>
+            <ButtonType fx:id="btCancel" fx:constant="CANCEL"/>
+        </DialogPane>
+    </dialogPane>
+</fx:root>

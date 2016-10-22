@@ -1,4 +1,5 @@
 import com.airplaneSoft.translateMeDude.models.User;
+import org.controlsfx.control.NotificationPane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +9,8 @@ import java.util.List;
  */
 public class Test {
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        list.stream();
-        User user = new User();
-        System.out.println();
+        NotificationPane notificationPane = new NotificationPane();
+        notificationPane.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
+
     }
 }
