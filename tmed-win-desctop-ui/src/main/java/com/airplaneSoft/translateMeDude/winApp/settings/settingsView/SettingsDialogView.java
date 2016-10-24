@@ -2,16 +2,20 @@ package com.airplaneSoft.translateMeDude.winApp.settings.settingsView;
 
 import com.airplaneSoft.translateMeDude.winApp.AppUtils;
 import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsKeys;
+import com.airplaneSoft.translateMeDude.winApp.utils.GuiUtils;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.converter.BooleanStringConverter;
+import org.controlsfx.validation.ValidationSupport;
 
 import java.io.IOException;
 
@@ -72,14 +76,26 @@ public class SettingsDialogView extends Dialog {
             System.out.println("Ok settings button pressed");
         });
 
-
+        model.getInvalidNodes().addListener((SetChangeListener<Node>) change -> {
+            okButton.disableProperty().setValue(model.getInvalidNodes().size() != 0);
+        });
     }
 
     private void initUIComponents(){
         urlField.textProperty().bindBidirectional(model.getSettingModel(SettingsKeys.URL).valueProperty());
         ssoidField.textProperty().bindBidirectional(model.getSettingModel(SettingsKeys.SSOID).valueProperty());
         passwordField.textProperty().bindBidirectional(model.getSettingModel(SettingsKeys.PASSWORD).valueProperty());
+
         timerValueField.textProperty().bindBidirectional(model.getSettingModel(SettingsKeys.TIMER_VALUE).valueProperty());
+        ValidationSupport validationSupport = new ValidationSupport();
+        validationSupport.invalidProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                model.getInvalidNodes().add(timerValueField);
+            }else {
+                model.getInvalidNodes().remove(timerValueField);
+            }
+        });
+        validationSupport.registerValidator(timerValueField, true, GuiUtils.TEN_DIGIT_LIMITED_VALIDATOR);
 
         showCheckBox.selectedProperty().set(Boolean.valueOf(model.getSettingModel(SettingsKeys.SHOW).getValue()));
         Bindings.bindBidirectional(model.getSettingModel(SettingsKeys.SHOW).valueProperty(), showCheckBox.selectedProperty(), new BooleanStringConverter());
