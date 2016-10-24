@@ -4,7 +4,9 @@ package com.airplaneSoft.translateMeDude.winApp;
  * Created by Mezentsev.Y on 10/20/2016.
  */
 import com.airplaneSoft.translateMeDude.winApp.dialogComponent.CloseButton;
+import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsImpl;
 import com.airplaneSoft.translateMeDude.winApp.settings.settingsView.SettingsDialogView;
+import com.airplaneSoft.translateMeDude.winApp.utils.GuiUtils;
 import javafx.application.*;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -20,21 +22,20 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.IOException;
 
-import static com.airplaneSoft.translateMeDude.winApp.AppInitializer.getStringProperty;
+import static com.airplaneSoft.translateMeDude.winApp.AppUtils.getStringProperty;
 
 // Java 8 code
 public class App extends Application {
 
     private static final String TRAY_IMAGE_LOCATION = "tray_icon_16x16.png";
     private static final String STAGE_IMAGE_LOCATION = "stage_icon.png";
-    private Stage stage;
+    private static Stage mainStage;
 
     @Override
     public void start(final Stage stage) {
-        this.stage = stage;
+        this.mainStage = stage;
 
         // instructs the javafx system not to exit implicitly when the last application window is shut.
         Platform.setImplicitExit(false);
@@ -66,8 +67,9 @@ public class App extends Application {
     private static void notifier() {
 
         Platform.runLater(() -> {
-                    Stage owner = new Stage(StageStyle.TRANSPARENT);
+                    //Stage owner = new Stage(StageStyle.TRANSPARENT);
 
+                    Stage owner = mainStage;
                     owner.getIcons().add(new Image(App.class.getResourceAsStream(STAGE_IMAGE_LOCATION)));
                     StackPane root = new StackPane();
                     root.setStyle("-fx-background-color: TRANSPARENT");
@@ -166,9 +168,13 @@ public class App extends Application {
             java.awt.Font defaultFont = java.awt.Font.decode(null);
             java.awt.Font boldFont = defaultFont.deriveFont(java.awt.Font.BOLD);
             openItem.setFont(boldFont);
+            SettingsImpl.getInstance();
             openItem.addActionListener(event -> {
                 Platform.runLater(() -> {
                     //call settings
+
+                    //SettingsImpl.getInstance();
+
                     new SettingsDialogView().show();
                 });
             });
@@ -195,5 +201,9 @@ public class App extends Application {
 
     public static void main(String[] args) throws IOException, java.awt.AWTException {
         launch(args);
+    }
+
+    public static Stage getMainStage() {
+        return mainStage;
     }
 }

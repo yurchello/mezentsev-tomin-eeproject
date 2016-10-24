@@ -22,7 +22,7 @@
                                     <Insets top="3" bottom="3" right="15" left="3"/>
                                 </GridPane.margin>
                             </TextField>
-                            <CheckBox text="%ui.settings.label.for.checkbox.show" GridPane.rowIndex="0" GridPane.columnIndex="2">
+                            <CheckBox fx:id="showCheckBox" text="%ui.settings.label.for.checkbox.show" GridPane.rowIndex="0" GridPane.columnIndex="2">
                                 <GridPane.margin>
                                     <Insets top="3" bottom="3" right="15" left="3"/>
                                 </GridPane.margin>
@@ -33,11 +33,11 @@
                                     <Insets top="3" bottom="3" right="15" left="3"/>
                                 </GridPane.margin>
                             </Label>
-                            <PasswordField prefWidth="200" fx:id="ssoidField" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                            <TextField prefWidth="200" fx:id="ssoidField" GridPane.rowIndex="1" GridPane.columnIndex="1">
                                 <GridPane.margin>
                                     <Insets top="3" bottom="3" right="15" left="3"/>
                                 </GridPane.margin>
-                            </PasswordField>
+                            </TextField>
 
                             <Label text="%ui.settings.label.password" GridPane.rowIndex="2" GridPane.columnIndex="0">
                                 <GridPane.margin>
@@ -49,11 +49,11 @@
                                     <Insets top="3" bottom="3" right="15" left="3"/>
                                 </GridPane.margin>
                             </PasswordField>
-                            <CheckBox text="%ui.settings.checkbox.autoupdate" GridPane.rowIndex="3" GridPane.columnIndex="0">
-                                <GridPane.margin>
-                                    <Insets top="3" bottom="3" right="15" left="3"/>
-                                </GridPane.margin>
-                            </CheckBox>
+                            <!--<CheckBox text="%ui.settings.checkbox.autoupdate" GridPane.rowIndex="3" GridPane.columnIndex="0">-->
+                                <!--<GridPane.margin>-->
+                                    <!--<Insets top="3" bottom="3" right="15" left="3"/>-->
+                                <!--</GridPane.margin>-->
+                            <!--</CheckBox>-->
                         </GridPane>
                         <Separator orientation="HORIZONTAL"/>
                         <GridPane fx:id="gridPane2">
@@ -63,26 +63,24 @@
                                 </GridPane.margin>
                             </Label>
 
-                            <RadioButton text="%ui.settings.combobox.by.random" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                            <RadioButton selected="true" fx:id="rbRandom" text="%ui.settings.combobox.by.random" GridPane.rowIndex="1" GridPane.columnIndex="0">
                                 <GridPane.margin>
                                     <Insets top="3" bottom="3" right="15" left="3"/>
                                 </GridPane.margin>
                             </RadioButton>
-                            <RadioButton text="%ui.settings.combobox.by.value" GridPane.rowIndex="2" GridPane.columnIndex="0">
+                            <RadioButton fx:id="rbTimer" text="%ui.settings.combobox.by.value" GridPane.rowIndex="2" GridPane.columnIndex="0">
                                 <GridPane.margin>
                                     <Insets top="3" bottom="3" right="15" left="3"/>
                                 </GridPane.margin>
                             </RadioButton>
-                            <TextField prefWidth="70" fx:id="timerValueField" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                            <HBox fx:id="timerHBox" GridPane.rowIndex="2" GridPane.columnIndex="1" spacing="5">
+                                <TextField prefWidth="70" fx:id="timerValueField" />
+                                <Label text="%ui.settings.label.for.timer.field" />
                                 <GridPane.margin>
                                     <Insets top="3" bottom="3" right="5" left="3"/>
                                 </GridPane.margin>
-                            </TextField>
-                            <Label text="%ui.settings.label.for.timer.field" GridPane.rowIndex="2" GridPane.columnIndex="2">
-                                <GridPane.margin>
-                                    <Insets top="3" bottom="3" right="15" left="3"/>
-                                </GridPane.margin>
-                            </Label>
+                            </HBox>
+
 
 
                         </GridPane>
@@ -100,7 +98,6 @@
                 <!--</BorderPane>-->
             </content>
             <ButtonType fx:id="btOk" fx:constant="OK"/>
-            <ButtonType fx:id="btApply" fx:constant="APPLY"/>
             <ButtonType fx:id="btCancel" fx:constant="CANCEL"/>
         </DialogPane>
     </dialogPane>

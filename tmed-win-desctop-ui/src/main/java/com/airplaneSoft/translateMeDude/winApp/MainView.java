@@ -1,15 +1,10 @@
 package com.airplaneSoft.translateMeDude.winApp;
 
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsView.SettingsDialogView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -37,7 +32,7 @@ public class MainView extends VBox {
 
     public MainView() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("mainView.fxml"), AppInitializer.resourceBundle);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("mainView.fxml"), AppUtils.resourceBundle);
             loader.setController(this);
             loader.setRoot(this);
             loader.load();
