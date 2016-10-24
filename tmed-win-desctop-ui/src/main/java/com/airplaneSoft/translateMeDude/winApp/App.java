@@ -26,12 +26,12 @@ import java.io.IOException;
 
 import static com.airplaneSoft.translateMeDude.winApp.AppUtils.getStringProperty;
 
-// Java 8 code
 public class App extends Application {
 
     private static final String TRAY_IMAGE_LOCATION = "tray_icon_16x16.png";
     private static final String STAGE_IMAGE_LOCATION = "stage_icon.png";
     private static Stage mainStage;
+    public static boolean isShow;
 
     @Override
     public void start(final Stage stage) {
@@ -45,32 +45,15 @@ public class App extends Application {
 
         // out stage will be translucent, so give it a transparent style.
         stage.initStyle(StageStyle.TRANSPARENT);
-//
-//        // create the layout for the javafx stage.
-//        StackPane layout = new StackPane(createContent());
-//        layout.setStyle(
-//                "-fx-background-color: rgba(255, 255, 255, 0.5);"
-//        );
-//        layout.setPrefSize(300, 200);
-//
-//        // this dummy app just hides itself when the app screen is clicked.
-//        // a real app might have some interactive UI and a separate icon which hides the app window.
-//        layout.setOnMouseClicked(event -> stage.hide());
-//
-//        // a scene with a transparent fill is necessary to implement the translucent app window.
-//        Scene scene = new Scene(layout);
-//        scene.setFill(Color.TRANSPARENT);
-//
-//        stage.setScene(scene);
     }
 
     private static void notifier() {
 
         Platform.runLater(() -> {
-                    //Stage owner = new Stage(StageStyle.TRANSPARENT);
 
+                    //Stage owner = new Stage(StageStyle.TRANSPARENT);
                     Stage owner = mainStage;
-                    owner.getIcons().add(new Image(App.class.getResourceAsStream(STAGE_IMAGE_LOCATION)));
+                    owner.getIcons().add(AppUtils.ICON_IMAGE);
                     StackPane root = new StackPane();
                     root.setStyle("-fx-background-color: TRANSPARENT");
                     Scene scene = new Scene(root, 1, 1);
@@ -80,37 +63,18 @@ public class App extends Application {
                     owner.setHeight(1);
                     owner.toBack();
                     owner.show();
-
-                    Button button = new Button("dffffffffffffffiddddddddddddddddddddddddddddddddddddddddiiiffffffff");
-
-                    Pane pane = new Pane();
-                    pane.getChildren().add(button);
                     MainView mainView = new MainView();
-                    Notifications notifications = getNotifications(mainView, owner);
-                    notifications.show();
-            button.setOnAction((event) -> {
-                owner.close();
-            });
-
-//                    PopOver popOver = new PopOver();
-//                    popOver.setContentNode(pane);
-//                    popOver.setArrowLocation(PopOver.ArrowLocation.BOTTOM_CENTER);
-//                    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-//                    popOver.setX((primScreenBounds.getWidth() - popOver.getWidth()));
-//                    popOver.setY((primScreenBounds.getHeight() - popOver.getHeight()));
-//            //popOver.detach();
-//            popOver.setDetachable(false);
-//
-//                    popOver.show(owner);
-
+                    if (!isShow) {
+                        isShow = true;
+                        Notifications notifications = getNotifications(mainView, owner);
+                        notifications.show();
+                    }
                 }
         );
     }
 
     public static  Notifications getNotifications(Node content, Stage owner){
-
         GridPane gridPane = new GridPane();
-        //Rectangle rectangle = new Rectangle(7,7);
         CloseButton closeButton = new CloseButton(owner);
         HBox titleHBox = new HBox(new Label(getStringProperty("ui.mainView.header")));
         titleHBox.setAlignment(Pos.BASELINE_RIGHT);
@@ -123,8 +87,6 @@ public class App extends Application {
 
         VBox vBox = new VBox(gridPane,content);
         return Notifications.create()
-
-                //.title("TranslateMe, dude!")
                 .hideAfter(Duration.INDEFINITE)
                 .graphic(vBox)
                 .darkStyle()
@@ -172,9 +134,6 @@ public class App extends Application {
             openItem.addActionListener(event -> {
                 Platform.runLater(() -> {
                     //call settings
-
-                    //SettingsImpl.getInstance();
-
                     new SettingsDialogView().show();
                 });
             });
@@ -205,5 +164,13 @@ public class App extends Application {
 
     public static Stage getMainStage() {
         return mainStage;
+    }
+
+    public static boolean isShow() {
+        return isShow;
+    }
+
+    public static void setIsShow(boolean isShow) {
+        App.isShow = isShow;
     }
 }

@@ -1,5 +1,6 @@
 package com.airplaneSoft.translateMeDude.winApp.dialogComponent;
 
+import com.airplaneSoft.translateMeDude.winApp.App;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,6 +24,7 @@ public class CloseButton extends Parent {
             imageView.setImage(notSelect);
             stageToClose.close();
             imageView.setImage(select);
+            App.setIsShow(false);
         });
 
         imageView.setOnMouseReleased(evt -> {

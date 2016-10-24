@@ -1,5 +1,6 @@
 package com.airplaneSoft.translateMeDude.winApp;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -42,6 +43,9 @@ public class MainView extends VBox {
     }
     @FXML
     private void initialize() {
+        updateButton.addEventFilter(ActionEvent.ACTION, (event) -> {
 
+            System.out.println("Update button pressed");
+        });
     }
 }
