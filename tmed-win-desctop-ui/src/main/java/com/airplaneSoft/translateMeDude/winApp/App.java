@@ -4,9 +4,12 @@ package com.airplaneSoft.translateMeDude.winApp;
  * Created by Mezentsev.Y on 10/20/2016.
  */
 import com.airplaneSoft.translateMeDude.winApp.dialogComponent.CloseButton;
+import com.airplaneSoft.translateMeDude.winApp.dialogComponent.LoadingDialogView;
 import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsImpl;
 import com.airplaneSoft.translateMeDude.winApp.settings.settingsView.SettingsDialogView;
+import com.airplaneSoft.translateMeDude.winApp.tasks.UpdateVocabularyTask;
 import com.airplaneSoft.translateMeDude.winApp.utils.GuiUtils;
+import com.airplaneSoft.translateMeDude.winApp.view.AWTMenuView;
 import javafx.application.*;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -23,6 +26,8 @@ import org.controlsfx.control.Notifications;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static com.airplaneSoft.translateMeDude.winApp.AppUtils.getStringProperty;
 
@@ -50,7 +55,6 @@ public class App extends Application {
     private static void notifier() {
 
         Platform.runLater(() -> {
-
                     //Stage owner = new Stage(StageStyle.TRANSPARENT);
                     Stage owner = mainStage;
                     owner.getIcons().add(AppUtils.ICON_IMAGE);
@@ -126,31 +130,11 @@ public class App extends Application {
                 });
             });
 
-            java.awt.MenuItem openItem = new java.awt.MenuItem(getStringProperty("ui.mainView.tray.menu.settings"));
-            java.awt.Font defaultFont = java.awt.Font.decode(null);
-            java.awt.Font boldFont = defaultFont.deriveFont(java.awt.Font.BOLD);
-            openItem.setFont(boldFont);
-            SettingsImpl.getInstance();
-            openItem.addActionListener(event -> {
-                Platform.runLater(() -> {
-                    //call settings
-                    new SettingsDialogView().show();
-                });
-            });
-
-
-            java.awt.MenuItem exitItem = new java.awt.MenuItem("Exit");
-            exitItem.addActionListener(event -> {
+            // setup the popup menu for the application.
+            trayIcon.setPopupMenu(new AWTMenuView(()->{
                 Platform.exit();
                 tray.remove(trayIcon);
-            });
-
-            // setup the popup menu for the application.
-            final java.awt.PopupMenu popup = new java.awt.PopupMenu();
-            popup.add(openItem);
-            popup.addSeparator();
-            popup.add(exitItem);
-            trayIcon.setPopupMenu(popup);
+            }));
             tray.add(trayIcon);
         } catch (java.awt.AWTException | IOException e) {
             System.out.println("Unable to init system tray");

@@ -30,7 +30,7 @@ public class WordGroupApi {
     @Transactional
     @RequestMapping(value="/getGroupsList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WordsGroup>> getGroupsList(@RequestBody User user){
-        User ownerUser = userService.findById(user.getId());
+        User ownerUser = userService.findBySSO(user.getSsoId());
         if (!Utils.getPasswordEncoder().matches(user.getPassword(), ownerUser.getPassword()))
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         List<WordsGroup> list = wordGroupService.findAllUserGroups(ownerUser);
@@ -40,7 +40,7 @@ public class WordGroupApi {
 
     @RequestMapping(value="/testConnection", method = RequestMethod.POST)
     ResponseEntity<Void> testConnection(@RequestBody User user){
-        User ownerUser = userService.findById(user.getId());
+        User ownerUser = userService.findBySSO(user.getSsoId());
         if (!Utils.getPasswordEncoder().matches(user.getPassword(), ownerUser.getPassword()))
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         else return new ResponseEntity<>(HttpStatus.OK);

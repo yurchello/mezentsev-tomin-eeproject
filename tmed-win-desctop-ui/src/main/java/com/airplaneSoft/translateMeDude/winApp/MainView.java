@@ -24,12 +24,7 @@ public class MainView extends VBox {
     @FXML
     TextArea exampleTextArea;
     @FXML
-    Button updateButton;
-    @FXML
     Button translateButton;
-
-
-
 
     public MainView() {
         try {
@@ -43,9 +38,6 @@ public class MainView extends VBox {
     }
     @FXML
     private void initialize() {
-        updateButton.addEventFilter(ActionEvent.ACTION, (event) -> {
 
-            System.out.println("Update button pressed");
-        });
     }
 }

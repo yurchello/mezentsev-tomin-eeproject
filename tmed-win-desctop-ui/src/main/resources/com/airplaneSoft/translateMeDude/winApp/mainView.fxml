@@ -64,11 +64,11 @@
             </VBox.margin>
         </TextArea>
         <GridPane >
-            <Button fx:id="updateButton" text="%ui.mainView.button.update.vocabulary" GridPane.rowIndex="0" GridPane.columnIndex="1">
-                <GridPane.margin>
-                    <Insets top="3" bottom="3" right="15" left="3"/>
-                </GridPane.margin>
-            </Button>
+            <!--<Button fx:id="updateButton" text="%ui.mainView.button.update.vocabulary" GridPane.rowIndex="0" GridPane.columnIndex="1">-->
+                <!--<GridPane.margin>-->
+                    <!--<Insets top="3" bottom="3" right="15" left="3"/>-->
+                <!--</GridPane.margin>-->
+            <!--</Button>-->
 
             <Button fx:id="translateButton" text="%ui.mainView.button.translate" GridPane.rowIndex="0" GridPane.columnIndex="0">
                 <GridPane.margin>

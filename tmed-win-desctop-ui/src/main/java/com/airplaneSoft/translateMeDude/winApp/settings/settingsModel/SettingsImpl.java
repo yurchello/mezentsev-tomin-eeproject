@@ -154,4 +154,15 @@ public class SettingsImpl implements Settings {
 
     }
 
+    public static String getAppFolder() {
+        return APP_FOLDER;
+    }
+
+    public static Path getAppPath() {
+        return APP_PATH;
+    }
+
+    public static File getSettingsFile() {
+        return SETTINGS_FILE;
+    }
 }
