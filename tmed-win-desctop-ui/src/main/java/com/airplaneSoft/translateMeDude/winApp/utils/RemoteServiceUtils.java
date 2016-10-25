@@ -34,7 +34,6 @@ public class RemoteServiceUtils {
     public List<WordsGroup> getWordGroupsList(){
         final String URL_FULL_PATH = url + AppUtils.getStringProperty("rest.vocabulary.update");
         User user = new User();
-        //user.setId(46);
         user.setSsoId(ssoId);
         user.setPassword(password);
         int status = 0;

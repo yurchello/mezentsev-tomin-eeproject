@@ -20,20 +20,15 @@ public class UpdateVocabularyTask extends Task<Void> {
     private RemoteServiceUtils remoteServiceUtils;
     private VocabularyUtils vocabularyUtils;
 
-
-    public UpdateVocabularyTask(String url, String ssoId, String password) {
-        this.url = url;
-        this.ssoId = ssoId;
-        this.password = password;
-        this.remoteServiceUtils = new RemoteServiceUtils(this.url,this.ssoId,this.password);
-        this.vocabularyUtils = new VocabularyUtilsImpl();
+    public UpdateVocabularyTask(VocabularyUtils vocabularyUtils, RemoteServiceUtils remoteServiceUtils) {
+        this.vocabularyUtils = vocabularyUtils;
+        this.remoteServiceUtils = remoteServiceUtils;
     }
 
     @Override
     protected Void call() throws Exception {
         List<WordsGroup> list = remoteServiceUtils.getWordGroupsList();
         vocabularyUtils.saveFullVocabulary(list);
-        Thread.sleep(3000);
         return null;
     }
 }

@@ -4,8 +4,6 @@ import com.airplaneSoft.translateMeDude.winApp.AppUtils;
 import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsKeys;
 import com.airplaneSoft.translateMeDude.winApp.utils.GuiUtils;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,8 +40,10 @@ public class SettingsDialogView extends Dialog {
     HBox timerHBox;
     @FXML
     TextField timerValueField;
+    @FXML
+    Button testButton;
 
-    private SettingsDialogViewModel model = new SettingsDialogViewModel();
+    private SettingsDialogViewModel viewModel = new SettingsDialogViewModel();
 
     public SettingsDialogView() {
         loadFXML();
@@ -68,42 +68,59 @@ public class SettingsDialogView extends Dialog {
         stage.getIcons().add(ICON_IMAGE);
         setTitle(getStringProperty("ui.settings.header"));
         final Button okButton = (Button) getDialogPane().lookupButton(ButtonType.OK);
-        final Button cancel_b = (Button) getDialogPane().lookupButton(ButtonType.CANCEL);
+        final Button cancelButton = (Button) getDialogPane().lookupButton(ButtonType.CANCEL);
+        final Button applyButton = (Button) getDialogPane().lookupButton(ButtonType.APPLY);
         initUIComponents();
 
         okButton.addEventFilter(ActionEvent.ACTION, (event) -> {
-            model.saveToFile();
+            viewModel.saveToFile();
             System.out.println("Ok settings button pressed");
         });
 
-        model.getInvalidNodes().addListener((SetChangeListener<Node>) change -> {
-            okButton.disableProperty().setValue(model.getInvalidNodes().size() != 0);
+        applyButton.addEventFilter(ActionEvent.ACTION, (event) -> {
+            viewModel.saveModel();
+            System.out.println("Apply settings button pressed");
+            event.consume();
+        });
+
+        cancelButton.addEventFilter(ActionEvent.ACTION, (event) -> {
+            System.out.println("Cancel settings button pressed");
+        });
+
+        viewModel.getInvalidNodes().addListener((SetChangeListener<Node>) change -> {
+            okButton.disableProperty().setValue(viewModel.getInvalidNodes().size() != 0);
+            applyButton.disableProperty().setValue(viewModel.getInvalidNodes().size() != 0);
+        });
+
+        testButton.addEventFilter(ActionEvent.ACTION, (event) -> {
+            viewModel.testConnection();
+            System.out.println("Test connection button pressed");
         });
     }
 
     private void initUIComponents(){
-        urlField.textProperty().bindBidirectional(model.getSettingModel(SettingsKeys.URL).valueProperty());
-        ssoidField.textProperty().bindBidirectional(model.getSettingModel(SettingsKeys.SSOID).valueProperty());
-        passwordField.textProperty().bindBidirectional(model.getSettingModel(SettingsKeys.PASSWORD).valueProperty());
+        urlField.textProperty().bindBidirectional(viewModel.getSettingModel(SettingsKeys.URL).valueProperty());
+        ssoidField.textProperty().bindBidirectional(viewModel.getSettingModel(SettingsKeys.SSOID).valueProperty());
+        passwordField.textProperty().bindBidirectional(viewModel.getSettingModel(SettingsKeys.PASSWORD).valueProperty());
 
-        timerValueField.textProperty().bindBidirectional(model.getSettingModel(SettingsKeys.TIMER_VALUE).valueProperty());
+        timerValueField.textProperty().bindBidirectional(viewModel.getSettingModel(SettingsKeys.TIMER_VALUE).valueProperty());
         ValidationSupport validationSupport = new ValidationSupport();
         validationSupport.invalidProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                model.getInvalidNodes().add(timerValueField);
+                viewModel.getInvalidNodes().add(timerValueField);
             }else {
-                model.getInvalidNodes().remove(timerValueField);
+                viewModel.getInvalidNodes().remove(timerValueField);
             }
         });
         validationSupport.registerValidator(timerValueField, true, GuiUtils.TEN_DIGIT_LIMITED_VALIDATOR);
 
-        showCheckBox.selectedProperty().set(Boolean.valueOf(model.getSettingModel(SettingsKeys.SHOW).getValue()));
-        Bindings.bindBidirectional(model.getSettingModel(SettingsKeys.SHOW).valueProperty(), showCheckBox.selectedProperty(), new BooleanStringConverter());
+        showCheckBox.selectedProperty().set(Boolean.valueOf(viewModel.getSettingModel(SettingsKeys.SHOW).getValue()));
+        Bindings.bindBidirectional(viewModel.getSettingModel(SettingsKeys.SHOW).valueProperty(), showCheckBox.selectedProperty(), new BooleanStringConverter());
 
         ToggleGroup toggleGroup = new ToggleGroup();
         rbRandom.setToggleGroup(toggleGroup);
         rbTimer.setToggleGroup(toggleGroup);
-        String timerMode = model.getSettingModel(SettingsKeys.SHOW_TIMER).getValue();
+        String timerMode = viewModel.getSettingModel(SettingsKeys.SHOW_TIMER).getValue();
         if (SettingsKeys.TimerValues.RANDOM.equals(timerMode)){
             rbRandom.selectedProperty().set(true);
             timerHBox.setDisable(true);
@@ -115,11 +132,11 @@ public class SettingsDialogView extends Dialog {
             RadioButton radioButton = (RadioButton) (newValue.getToggleGroup().getSelectedToggle());
             switch (radioButton.getId()){
                 case "rbRandom":
-                    model.getSettingModel(SettingsKeys.SHOW_TIMER).setValue(SettingsKeys.TimerValues.RANDOM);
+                    viewModel.getSettingModel(SettingsKeys.SHOW_TIMER).setValue(SettingsKeys.TimerValues.RANDOM);
                     timerHBox.setDisable(true);
                     break;
                 case "rbTimer":
-                    model.getSettingModel(SettingsKeys.SHOW_TIMER).setValue(SettingsKeys.TimerValues.TIMER);
+                    viewModel.getSettingModel(SettingsKeys.SHOW_TIMER).setValue(SettingsKeys.TimerValues.TIMER);
                     timerHBox.setDisable(false);
                     break;
             }
