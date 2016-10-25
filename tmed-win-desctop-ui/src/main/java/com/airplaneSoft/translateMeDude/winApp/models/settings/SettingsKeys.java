@@ -1,4 +1,4 @@
-package com.airplaneSoft.translateMeDude.winApp.settings.settingsModel;
+package com.airplaneSoft.translateMeDude.winApp.models.settings;
 
 /**
  * Created by Mezentsev.Y on 10/24/2016.

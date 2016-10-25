@@ -1,4 +1,4 @@
-package com.airplaneSoft.translateMeDude.winApp.dialogComponent;
+package com.airplaneSoft.translateMeDude.winApp.view.components;
 
 import com.airplaneSoft.translateMeDude.winApp.App;
 import javafx.scene.Parent;

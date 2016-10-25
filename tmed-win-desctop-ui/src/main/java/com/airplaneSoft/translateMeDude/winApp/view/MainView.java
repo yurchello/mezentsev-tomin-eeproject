@@ -1,6 +1,6 @@
-package com.airplaneSoft.translateMeDude.winApp;
+package com.airplaneSoft.translateMeDude.winApp.view;
 
-import javafx.event.ActionEvent;
+import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;

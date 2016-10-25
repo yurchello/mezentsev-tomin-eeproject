@@ -3,21 +3,16 @@ package com.airplaneSoft.translateMeDude.winApp;
 /**
  * Created by Mezentsev.Y on 10/20/2016.
  */
-import com.airplaneSoft.translateMeDude.winApp.dialogComponent.CloseButton;
-import com.airplaneSoft.translateMeDude.winApp.dialogComponent.LoadingDialogView;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsImpl;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsView.SettingsDialogView;
-import com.airplaneSoft.translateMeDude.winApp.tasks.UpdateVocabularyTask;
-import com.airplaneSoft.translateMeDude.winApp.utils.GuiUtils;
+import com.airplaneSoft.translateMeDude.winApp.view.MainView;
+import com.airplaneSoft.translateMeDude.winApp.view.components.CloseButton;
+import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
 import com.airplaneSoft.translateMeDude.winApp.view.AWTMenuView;
 import javafx.application.*;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
@@ -26,10 +21,8 @@ import org.controlsfx.control.Notifications;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
-import static com.airplaneSoft.translateMeDude.winApp.AppUtils.getStringProperty;
+import static com.airplaneSoft.translateMeDude.winApp.utils.AppUtils.getStringProperty;
 
 public class App extends Application {
 

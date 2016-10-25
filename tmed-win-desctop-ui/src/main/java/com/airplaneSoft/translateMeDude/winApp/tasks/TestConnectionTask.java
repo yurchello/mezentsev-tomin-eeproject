@@ -1,8 +1,8 @@
 package com.airplaneSoft.translateMeDude.winApp.tasks;
 
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.Settings;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsImpl;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsKeys;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.Settings;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingsImpl;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingsKeys;
 import com.airplaneSoft.translateMeDude.winApp.utils.RemoteServiceUtils;
 
 import javafx.concurrent.Task;

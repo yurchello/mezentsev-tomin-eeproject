@@ -1,9 +1,8 @@
 package com.airplaneSoft.translateMeDude.winApp.utils.vocabularyUtils;
 
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsImpl;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingsImpl;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.airplaneSoft.translateMeDude.winApp;
+package com.airplaneSoft.translateMeDude.winApp.utils;
 
 import javafx.scene.image.Image;
 

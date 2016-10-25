@@ -1,12 +1,11 @@
 package com.airplaneSoft.translateMeDude.winApp.view;
 
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsView.SettingsDialogView;
 import com.airplaneSoft.translateMeDude.winApp.viewModel.AWTMenuModel;
 import javafx.application.Platform;
 
 import java.awt.*;
 
-import static com.airplaneSoft.translateMeDude.winApp.AppUtils.getStringProperty;
+import static com.airplaneSoft.translateMeDude.winApp.utils.AppUtils.getStringProperty;
 
 /**
  * Created by Mezentsev.Y on 10/25/2016.

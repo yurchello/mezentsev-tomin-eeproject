@@ -1,16 +1,15 @@
-package com.airplaneSoft.translateMeDude.winApp.settings.settingsView;
+package com.airplaneSoft.translateMeDude.winApp.viewModel;
 
-import com.airplaneSoft.translateMeDude.winApp.AppUtils;
-import com.airplaneSoft.translateMeDude.winApp.dialogComponent.LoadingDialogView;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingModel;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.Settings;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsImpl;
+import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
+import com.airplaneSoft.translateMeDude.winApp.view.LoadingDialogView;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingModel;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.Settings;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingsImpl;
 import com.airplaneSoft.translateMeDude.winApp.tasks.TestConnectionTask;
 import com.airplaneSoft.translateMeDude.winApp.utils.GuiUtils;
 import javafx.collections.FXCollections;
 
 import javafx.collections.ObservableSet;
-import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
 import javafx.scene.Node;
 

@@ -1,15 +1,8 @@
 package com.airplaneSoft.translateMeDude.winApp.utils;
 
-import com.airplaneSoft.translateMeDude.winApp.App;
-import com.airplaneSoft.translateMeDude.winApp.AppUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Control;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import org.controlsfx.validation.Severity;
 import org.controlsfx.validation.ValidationResult;
 import org.controlsfx.validation.Validator;

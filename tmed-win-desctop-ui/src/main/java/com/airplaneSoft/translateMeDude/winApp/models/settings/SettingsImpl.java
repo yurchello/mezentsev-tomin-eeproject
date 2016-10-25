@@ -1,6 +1,6 @@
-package com.airplaneSoft.translateMeDude.winApp.settings.settingsModel;
+package com.airplaneSoft.translateMeDude.winApp.models.settings;
 
-import com.airplaneSoft.translateMeDude.winApp.AppUtils;
+import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -18,8 +18,6 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
-
-import static com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsKeys.*;
 
 
 public class SettingsImpl implements Settings {
@@ -58,12 +56,12 @@ public class SettingsImpl implements Settings {
     @Override
     public void clearSettingsMap() {
         settingsMap.clear();
-        set(URL, AppUtils.getStringProperty("settings.url"));
-        set(SSOID, AppUtils.getStringProperty("settings.ssoid"));
-        set(PASSWORD, AppUtils.getStringProperty("settings.password"));
-        set(SHOW, AppUtils.getStringProperty("settings.show"));
-        set(SHOW_TIMER, SettingsKeys.TimerValues.RANDOM);
-        set(TIMER_VALUE, AppUtils.getStringProperty("settings.timer.value.min"));
+        set(SettingsKeys.URL, AppUtils.getStringProperty("settings.url"));
+        set(SettingsKeys.SSOID, AppUtils.getStringProperty("settings.ssoid"));
+        set(SettingsKeys.PASSWORD, AppUtils.getStringProperty("settings.password"));
+        set(SettingsKeys.SHOW, AppUtils.getStringProperty("settings.show"));
+        set(SettingsKeys.SHOW_TIMER, SettingsKeys.TimerValues.RANDOM);
+        set(SettingsKeys.TIMER_VALUE, AppUtils.getStringProperty("settings.timer.value.min"));
     }
 
     public void save() {

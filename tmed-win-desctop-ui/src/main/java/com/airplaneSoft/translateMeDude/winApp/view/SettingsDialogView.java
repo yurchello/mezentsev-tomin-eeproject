@@ -1,7 +1,8 @@
-package com.airplaneSoft.translateMeDude.winApp.settings.settingsView;
+package com.airplaneSoft.translateMeDude.winApp.view;
 
-import com.airplaneSoft.translateMeDude.winApp.AppUtils;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsKeys;
+import com.airplaneSoft.translateMeDude.winApp.viewModel.SettingsDialogViewModel;
+import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingsKeys;
 import com.airplaneSoft.translateMeDude.winApp.utils.GuiUtils;
 import javafx.beans.binding.Bindings;
 import javafx.collections.SetChangeListener;
@@ -17,8 +18,8 @@ import org.controlsfx.validation.ValidationSupport;
 
 import java.io.IOException;
 
-import static com.airplaneSoft.translateMeDude.winApp.AppUtils.ICON_IMAGE;
-import static com.airplaneSoft.translateMeDude.winApp.AppUtils.getStringProperty;
+import static com.airplaneSoft.translateMeDude.winApp.utils.AppUtils.ICON_IMAGE;
+import static com.airplaneSoft.translateMeDude.winApp.utils.AppUtils.getStringProperty;
 
 /**
  * Created by Mezentsev.Y on 10/21/2016.

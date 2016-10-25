@@ -1,4 +1,4 @@
-package com.airplaneSoft.translateMeDude.winApp;
+package com.airplaneSoft.translateMeDude.winApp.models;
 
 import com.airplaneSoft.translateMeDude.models.User;
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;

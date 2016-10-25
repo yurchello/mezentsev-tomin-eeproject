@@ -1,11 +1,8 @@
 package com.airplaneSoft.translateMeDude.winApp.tasks;
 
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
-import com.airplaneSoft.translateMeDude.winApp.dialogComponent.LoadingDialogView;
 import com.airplaneSoft.translateMeDude.winApp.utils.RemoteServiceUtils;
 import com.airplaneSoft.translateMeDude.winApp.utils.vocabularyUtils.VocabularyUtils;
-import com.airplaneSoft.translateMeDude.winApp.utils.vocabularyUtils.VocabularyUtilsImpl;
-import javafx.application.Platform;
 import javafx.concurrent.Task;
 
 import java.util.List;

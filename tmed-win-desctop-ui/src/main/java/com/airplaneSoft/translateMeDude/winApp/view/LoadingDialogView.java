@@ -1,7 +1,6 @@
-package com.airplaneSoft.translateMeDude.winApp.dialogComponent;
+package com.airplaneSoft.translateMeDude.winApp.view;
 
-import com.airplaneSoft.translateMeDude.winApp.AppUtils;
-import javafx.beans.NamedArg;
+import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -16,7 +15,7 @@ import javafx.stage.StageStyle;
  */
 public class LoadingDialogView extends Alert {
 
-    private final ImageView IMAGE_VIEW = new ImageView(new Image(AppUtils.class.getResourceAsStream("loading32x32.gif")));
+    private final ImageView IMAGE_VIEW = new ImageView(new Image(LoadingDialogView.class.getResourceAsStream("loading32x32.gif")));
     public LoadingDialogView(String information) {
         super(AlertType.INFORMATION);
         ((Stage)getDialogPane().getScene().getWindow()).getIcons().add(AppUtils.ICON_IMAGE);

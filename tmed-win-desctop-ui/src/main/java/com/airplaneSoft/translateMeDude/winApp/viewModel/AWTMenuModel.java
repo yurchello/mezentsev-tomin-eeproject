@@ -1,20 +1,16 @@
 package com.airplaneSoft.translateMeDude.winApp.viewModel;
 
-import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
-import com.airplaneSoft.translateMeDude.winApp.AppUtils;
-import com.airplaneSoft.translateMeDude.winApp.dialogComponent.LoadingDialogView;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.Settings;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsImpl;
-import com.airplaneSoft.translateMeDude.winApp.settings.settingsModel.SettingsKeys;
+import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
+import com.airplaneSoft.translateMeDude.winApp.view.LoadingDialogView;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.Settings;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingsImpl;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingsKeys;
 import com.airplaneSoft.translateMeDude.winApp.tasks.UpdateVocabularyTask;
 import com.airplaneSoft.translateMeDude.winApp.utils.GuiUtils;
 import com.airplaneSoft.translateMeDude.winApp.utils.RemoteServiceUtils;
 import com.airplaneSoft.translateMeDude.winApp.utils.vocabularyUtils.VocabularyUtilsImpl;
 import javafx.application.Platform;
 import javafx.concurrent.Worker;
-
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Mezentsev.Y on 10/25/2016.
