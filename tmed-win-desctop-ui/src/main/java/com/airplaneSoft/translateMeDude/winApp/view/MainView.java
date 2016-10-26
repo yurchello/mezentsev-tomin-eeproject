@@ -1,6 +1,9 @@
 package com.airplaneSoft.translateMeDude.winApp.view;
 
 import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
+import com.airplaneSoft.translateMeDude.winApp.viewModel.ForeignNativeMainViewModel;
+import com.airplaneSoft.translateMeDude.winApp.viewModel.MainViewModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -20,11 +23,15 @@ public class MainView extends VBox {
     @FXML
     Label statusLabel;
     @FXML
-    Label translationLabel;
+    Label wordLabel;
+    @FXML
+    Label correctTranslationLabel;
     @FXML
     TextArea exampleTextArea;
     @FXML
     Button translateButton;
+
+    private MainViewModel viewModel = new ForeignNativeMainViewModel();
 
     public MainView() {
         try {
@@ -38,6 +45,16 @@ public class MainView extends VBox {
     }
     @FXML
     private void initialize() {
+        wordLabel.textProperty().bind(viewModel.wordPropertyProperty());
+        correctTranslationLabel.textProperty().bind(viewModel.correctTranslationPropertyProperty());
+        viewModel.translationPropertyProperty().bind(wordTranslationTextField.textProperty());
+        exampleTextArea.textProperty().bind(viewModel.descriptionPropertyProperty());
+
+        translateButton.addEventFilter(ActionEvent.ACTION, (event) -> {
+viewModel.translationPropertyProperty();
+            //todo call comparsion module
+            System.out.println("Translate button pressed");
+        });
 
     }
 }

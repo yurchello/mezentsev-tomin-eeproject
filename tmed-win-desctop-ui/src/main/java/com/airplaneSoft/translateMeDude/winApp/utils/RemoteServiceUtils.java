@@ -4,12 +4,16 @@ import com.airplaneSoft.translateMeDude.models.User;
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
 
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,7 +50,7 @@ public class RemoteServiceUtils {
             status = response.getStatus();
             if (status == Response.Status.OK.getStatusCode()) {
                 System.out.println("URL: " + URL_FULL_PATH + " " + user + " http status = OK");
-                wordsGroups = response.getEntity(List.class);
+                wordsGroups = response.getEntity(new GenericType<List<WordsGroup>>(){});
                 return wordsGroups;
             }
             if (status == Response.Status.BAD_REQUEST.getStatusCode()) {

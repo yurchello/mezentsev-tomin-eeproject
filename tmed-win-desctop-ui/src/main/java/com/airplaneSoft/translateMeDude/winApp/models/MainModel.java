@@ -1,5 +1,9 @@
 package com.airplaneSoft.translateMeDude.winApp.models;
 
+import com.airplaneSoft.translateMeDude.core.wordGenerator.RandomWordGenerator;
+import com.airplaneSoft.translateMeDude.core.wordGenerator.WordGenerator;
+import com.airplaneSoft.translateMeDude.core.wordManager.WordsManager;
+import com.airplaneSoft.translateMeDude.core.wordManager.WordsManagerImpl;
 import com.airplaneSoft.translateMeDude.models.User;
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
 import com.sun.jersey.api.client.Client;
@@ -18,4 +22,6 @@ import java.util.List;
  */
 public class MainModel {
 
+//    private static WordGenerator wordGenerator = new RandomWordGenerator();
+//    private static WordsManager wordsManager = new WordsManagerImpl();
 }

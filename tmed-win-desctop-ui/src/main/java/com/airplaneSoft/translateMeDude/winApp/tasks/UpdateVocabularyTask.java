@@ -11,9 +11,6 @@ import java.util.List;
  * Created by Mezentsev.Y on 10/25/2016.
  */
 public class UpdateVocabularyTask extends Task<Void> {
-    private String url;
-    private String ssoId;
-    private String password;
     private RemoteServiceUtils remoteServiceUtils;
     private VocabularyUtils vocabularyUtils;
 

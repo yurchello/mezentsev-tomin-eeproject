@@ -19,7 +19,7 @@
                     <Insets top="3" bottom="3" right="15" left="3"/>
                 </GridPane.margin>
             </Label>
-            <Label text="Dog" GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <Label fx:id="wordLabel" GridPane.rowIndex="0" GridPane.columnIndex="1">
                 <GridPane.margin>
                     <Insets top="3" bottom="3" right="15" left="3"/>
                 </GridPane.margin>
@@ -46,7 +46,7 @@
                     <Insets top="3" bottom="3" right="15" left="3"/>
                 </GridPane.margin>
             </Label>
-            <Label fx:id="translationLabel" text="ывамиваививиыаыи" GridPane.rowIndex="2" GridPane.columnIndex="1">
+            <Label fx:id="correctTranslationLabel" text="ывамиваививиыаыи" GridPane.rowIndex="2" GridPane.columnIndex="1">
                 <GridPane.margin>
                     <Insets top="3" bottom="3" right="15" left="3"/>
                 </GridPane.margin>

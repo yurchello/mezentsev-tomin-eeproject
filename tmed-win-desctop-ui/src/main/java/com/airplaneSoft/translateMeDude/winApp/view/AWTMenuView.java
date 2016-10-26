@@ -47,9 +47,7 @@ public class AWTMenuView extends java.awt.PopupMenu {
         java.awt.Font boldFont = defaultFont.deriveFont(java.awt.Font.BOLD);
         menuItem.setFont(boldFont);
         menuItem.addActionListener(event -> {
-            Platform.runLater(() -> {
-                callFunction.call();
-            });
+            Platform.runLater(callFunction::call);
         });
         return menuItem;
     }
@@ -57,9 +55,7 @@ public class AWTMenuView extends java.awt.PopupMenu {
     private java.awt.MenuItem createMenuItem(String label, CallFunction callFunction) {
         java.awt.MenuItem menuItem = new java.awt.MenuItem(label);
         menuItem.addActionListener(event -> {
-            Platform.runLater(() -> {
-                callFunction.call();
-            });
+            Platform.runLater(callFunction::call);
         });
         return menuItem;
     }

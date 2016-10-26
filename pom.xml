@@ -14,6 +14,7 @@
         <module>tmed-core</module>
         <module>tmed-win-desctop-ui</module>
         <module>tmed-persistence</module>
+        <module>tmed-common</module>
     </modules>
 
 
