@@ -76,7 +76,9 @@ public class App extends Application {
     public static  Notifications getNotifications(Node content, Stage owner){
         GridPane gridPane = new GridPane();
         CloseButton closeButton = new CloseButton(owner);
-        HBox titleHBox = new HBox(new Label(getStringProperty("ui.mainView.header")));
+        Label label = new Label(getStringProperty("ui.mainView.header"));
+        label.setStyle("-fx-font-weight: bold; -fx-text-fill: #ff8105; -fx-font-size: 20px;" );
+        HBox titleHBox = new HBox(label);
         titleHBox.setAlignment(Pos.BASELINE_RIGHT);
         HBox closeHBox = new HBox(closeButton);
         closeHBox.setAlignment(Pos.BASELINE_RIGHT);

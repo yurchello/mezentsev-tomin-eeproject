@@ -83,13 +83,14 @@ public class MainView extends VBox {
     }
 
     private void setStatusLabel(boolean setVisible, boolean isCorrect){
+        getChildren().remove(helpVBox);
         getChildren().add(1,helpVBox);
         statusLabel.setVisible(setVisible);
         if (isCorrect){
-            statusLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: green");
+            statusLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #79c963; -fx-font-size: 15px;");
             statusLabel.setText(AppUtils.getStringProperty("ui.mainView.label.status.passed"));
         }else {
-            statusLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: red");
+            statusLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #ff2a36;");
             statusLabel.setText(AppUtils.getStringProperty("ui.mainView.label.status.failed"));
         }
     }

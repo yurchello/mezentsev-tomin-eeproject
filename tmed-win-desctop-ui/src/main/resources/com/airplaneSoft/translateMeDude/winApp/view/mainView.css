@@ -1,0 +1,9 @@
+#wordIdLabel,
+#translationIdLabel,
+#correctTranslationIdLabel,
+#exampleIdLabel{
+    -fx-text-fill: #ffbe00;
+}
+.button{
+    -fx-background-color: #b1bcc3;
+}
