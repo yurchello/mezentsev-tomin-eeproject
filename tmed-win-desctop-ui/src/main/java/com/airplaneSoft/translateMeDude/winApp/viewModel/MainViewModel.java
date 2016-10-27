@@ -24,6 +24,8 @@ public abstract class MainViewModel {
 
     public abstract void init();
 
+    public abstract boolean isCorrectTranslate();
+
     public boolean getCorrectTranslationProperty(){
         //todo comparsion service
         return false;

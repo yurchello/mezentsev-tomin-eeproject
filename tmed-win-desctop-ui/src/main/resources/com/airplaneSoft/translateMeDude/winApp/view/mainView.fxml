@@ -35,53 +35,59 @@
                     <Insets top="3" bottom="3" right="15" left="3"/>
                 </GridPane.margin>
             </TextField>
-            <Label fx:id="statusLabel" text="Correct" prefWidth="50" GridPane.rowIndex="1" GridPane.columnIndex="2">
+            <Label fx:id="statusLabel" visible="false" prefWidth="50" GridPane.rowIndex="1" GridPane.columnIndex="2">
                 <GridPane.margin>
                     <Insets top="3" bottom="3" right="15" left="3"/>
                 </GridPane.margin>
             </Label>
 
-            <Label text="%ui.mainView.correct.translation" GridPane.rowIndex="2" GridPane.columnIndex="0">
-                <GridPane.margin>
-                    <Insets top="3" bottom="3" right="15" left="3"/>
-                </GridPane.margin>
-            </Label>
-            <Label fx:id="correctTranslationLabel" text="ывамиваививиыаыи" GridPane.rowIndex="2" GridPane.columnIndex="1">
-                <GridPane.margin>
-                    <Insets top="3" bottom="3" right="15" left="3"/>
-                </GridPane.margin>
-            </Label>
-        </GridPane>
-
-        <Label text="%ui.mainView.label.example">
-            <VBox.margin>
-                <Insets top="3" bottom="3" right="15" left="3"/>
-            </VBox.margin>
-        </Label>
-        <TextArea fx:id="exampleTextArea" editable="false" prefWidth="200" prefHeight="50">
-            <VBox.margin>
-                <Insets top="3" bottom="3" right="15" left="3"/>
-            </VBox.margin>
-        </TextArea>
-        <GridPane >
-            <!--<Button fx:id="updateButton" text="%ui.mainView.button.update.vocabulary" GridPane.rowIndex="0" GridPane.columnIndex="1">-->
+            <!--<Label text="%ui.mainView.correct.translation" GridPane.rowIndex="2" GridPane.columnIndex="0">-->
                 <!--<GridPane.margin>-->
                     <!--<Insets top="3" bottom="3" right="15" left="3"/>-->
                 <!--</GridPane.margin>-->
-            <!--</Button>-->
+            <!--</Label>-->
+            <!--<Label fx:id="correctTranslationLabel" text="ывамиваививиыаыи" GridPane.rowIndex="2" GridPane.columnIndex="1">-->
+                <!--<GridPane.margin>-->
+                    <!--<Insets top="3" bottom="3" right="15" left="3"/>-->
+                <!--</GridPane.margin>-->
+            <!--</Label>-->
+        </GridPane>
 
-            <Button fx:id="translateButton" text="%ui.mainView.button.translate" GridPane.rowIndex="0" GridPane.columnIndex="0">
+        <VBox fx:id="helpVBox">
+            <GridPane>
+                <Label text="%ui.mainView.correct.translation" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                    <GridPane.margin>
+                        <Insets top="3" bottom="3" right="15" left="3"/>
+                    </GridPane.margin>
+                </Label>
+                <Label fx:id="correctTranslationLabel" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                    <GridPane.margin>
+                        <Insets top="3" bottom="3" right="15" left="3"/>
+                    </GridPane.margin>
+                </Label>
+                <Label text="%ui.mainView.label.example" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                    <GridPane.margin>
+                        <Insets top="3" bottom="3" right="15" left="3"/>
+                    </GridPane.margin>
+                </Label>
+            </GridPane>
+            <TextArea fx:id="exampleTextArea" editable="false" prefWidth="200" prefHeight="50">
+                <VBox.margin>
+                    <Insets top="3" bottom="3" right="15" left="3"/>
+                </VBox.margin>
+            </TextArea>
+        </VBox>
+
+        <GridPane >
+            <Button fx:id="translateButton" text="%ui.mainView.button.translate"  GridPane.rowIndex="0" GridPane.columnIndex="0">
                 <GridPane.margin>
                     <Insets top="3" bottom="3" right="15" left="3"/>
                 </GridPane.margin>
             </Button>
-
             <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS" halignment="LEFT"/>
                 <ColumnConstraints hgrow="ALWAYS" halignment="RIGHT"/>
             </columnConstraints>
         </GridPane>
-
-
     </children>
 </fx:root>

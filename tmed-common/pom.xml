@@ -22,6 +22,12 @@
             <artifactId>tmed-persistence</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--TestNg-->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.9.10</version>
+        </dependency>
     </dependencies>
 
     <build>

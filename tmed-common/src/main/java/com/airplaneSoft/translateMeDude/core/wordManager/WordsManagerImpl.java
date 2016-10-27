@@ -32,6 +32,7 @@ public class WordsManagerImpl implements WordsManager {
             return a;
         }).get();
 
+
         return new ArrayList<>(wordSet);
     }
 

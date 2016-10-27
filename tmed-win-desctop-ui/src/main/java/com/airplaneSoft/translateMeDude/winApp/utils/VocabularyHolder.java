@@ -11,7 +11,7 @@ import com.airplaneSoft.translateMeDude.winApp.utils.vocabularyUtils.VocabularyU
  * Created by Mezentsev.Y on 10/26/2016.
  */
 public class VocabularyHolder {
-    private static VocabularyHolder vocabularyHolder;
+    private static VocabularyHolder instance;
     private WordsManager wordsManager;
     private WordGenerator wordGenerator;
     private VocabularyHolder() {
@@ -22,9 +22,11 @@ public class VocabularyHolder {
     }
 
     public  static VocabularyHolder getInstance(){
-        if (vocabularyHolder == null){
-            return new VocabularyHolder();
-        }else return vocabularyHolder;
+        if (instance == null){
+            instance = new VocabularyHolder();
+            return instance;
+        }
+        return instance;
     }
 
     public WordsManager getWordsManager() {
