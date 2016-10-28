@@ -6,9 +6,19 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by Mezentsev.Y on 10/26/2016.
+ * Provide to get list of the word entities
  */
 public interface WordsManager {
+    /**
+     *
+     * @return all words list
+     */
     List<Word> getWords();
+
+    /**
+     *
+     * @param groupNames the names of the WordGroup to filtered
+     * @return
+     */
     List<Word> getWords(String... groupNames);
 }

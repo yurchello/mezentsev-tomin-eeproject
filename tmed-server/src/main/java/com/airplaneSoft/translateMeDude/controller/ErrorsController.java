@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
- * Created by Mezentsev.Y on 9/24/2016.
+ * This controller error handling
  */
 //@Controller
 @ControllerAdvice

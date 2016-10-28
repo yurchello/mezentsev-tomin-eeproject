@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
+/**
+ * This controller provide part of header menu to view
+ */
 @Controller
 @RequestMapping("/")
 public class AppController extends BaseController{
@@ -20,7 +22,5 @@ public class AppController extends BaseController{
 	public String aboutPage(ModelMap model) {
 		return "about";
 	}
-
-
 
 }

@@ -37,6 +37,7 @@ public class App extends Application {
     @Override
     public void start(final Stage stage) {
         this.mainStage = stage;
+        mainStage.setAlwaysOnTop(true);
 
         // instructs the javafx system not to exit implicitly when the last application window is shut.
         Platform.setImplicitExit(false);

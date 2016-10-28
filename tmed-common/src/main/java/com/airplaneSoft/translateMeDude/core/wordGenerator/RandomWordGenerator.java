@@ -1,20 +1,22 @@
 package com.airplaneSoft.translateMeDude.core.wordGenerator;
 
 import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
-
 import java.util.*;
 
 /**
- * Created by Mezentsev.Y on 10/26/2016.
+ * Provide get the word by random order
  */
 public class RandomWordGenerator implements WordGenerator {
     private List<Word> words;
-
 
     public RandomWordGenerator(List<Word> words) {
         this.words = words;
     }
 
+    /**
+     *
+     * @return random Word entity from collection
+     */
     @Override
     public Word getWord() {
         if (words == null){

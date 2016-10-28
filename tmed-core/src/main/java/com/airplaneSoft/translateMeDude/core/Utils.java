@@ -4,9 +4,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * Created by Mezentsev.Y on 9/30/2016.
+ * Utility class
  */
 public class Utils {
+    /**
+     * Provide password encryption for User entity
+     * @return
+     */
     public static PasswordEncoder getPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }

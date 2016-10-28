@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Mezentsev.Y on 9/24/2016.
+ * This controller provide to download application for desktop
  */
 @Controller
 public class DesktopDownloadController extends BaseController {
@@ -22,6 +22,9 @@ public class DesktopDownloadController extends BaseController {
     private static String DOWNLOAD_IOS_DESKTOP_LOCATION = "C:/desktop_dude/ios/";
     private static String DOWNLOAD_ANDROID_DESKTOP_LOCATION = "C:/desktop_dude/android/";
 
+    /**
+     *This method provide download page to view
+     */
     @RequestMapping(value = { "/download"}, method = RequestMethod.GET)
     public String downloadPage(ModelMap model) {
         model.addAttribute("windowsFiles", getFilesList(DOWNLOAD_WINDOWS_DESKTOP_LOCATION));
@@ -46,6 +49,9 @@ public class DesktopDownloadController extends BaseController {
     }
 
 
+    /**
+     *This method provide to redirect file output stream to HttpServletResponse
+     */
     private String getFile(HttpServletResponse response,String filesLocation, String file, ModelMap model) {
         try {
             File fileDownload = new File(filesLocation ,file);

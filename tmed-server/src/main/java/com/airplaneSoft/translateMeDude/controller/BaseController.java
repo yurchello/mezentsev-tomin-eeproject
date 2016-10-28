@@ -17,7 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
- * Created by Mezentsev.Y on 10/6/2016.
+ * This controller provide base functionality of other controllers
  */
 @Controller
 public class BaseController {
@@ -52,7 +52,10 @@ public class BaseController {
         return authenticationTrustResolver.isAnonymous(authentication);
     }
 
-    protected String getSSOIdifAutentificated(){
+    /**
+     *This method returns the SSOID of authenticated user
+     */
+    protected String getSSOIdifAuthenticated(){
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
@@ -60,9 +63,8 @@ public class BaseController {
      * This method returns the principal[user-name] of logged-in user.
      */
     protected String getPrincipal(){
-        String userName = null;
+        String userName;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         if (principal instanceof UserDetails) {
             userName = ((UserDetails)principal).getUsername();
         } else {
@@ -71,6 +73,7 @@ public class BaseController {
         return userName;
     }
 
+    //// TODO: 10/28/2016 remove
     protected boolean isLoggedInUser(){
         return !"anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }

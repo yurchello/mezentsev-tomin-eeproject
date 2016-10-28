@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-/**
- * Created by Mezentsev.Y on 10/27/2016.
- */
 public class TranslationVerifierImpl implements TranslationVerifier {
+    /**
+     * Verify translation from input form and vocabulary word translation
+     * @param inputString is string from dialog form
+     * @param vocabularyString is string from vocabulary
+     * @return true if translation is correct
+     */
     @Override
     public boolean verify(String inputString, String vocabularyString) {
         List<String> inputStringList = getWords(inputString);

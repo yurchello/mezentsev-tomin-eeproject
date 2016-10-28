@@ -1,17 +1,11 @@
 package com.airplaneSoft.translateMeDude.models;
 
-
-
 import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
 
 @Entity
 @Table(name="USER")
@@ -46,10 +40,6 @@ public class User implements Serializable{
 	@Column(name="EMAIL", nullable=false)
 	private String email;
 
-//	@NotEmpty
-//	@Column(name = "TESTCOL", nullable=false)
-//	private String testcol;
-
 	@Column(name = "DESCRIPTION")
 	private String description;
 
@@ -62,12 +52,6 @@ public class User implements Serializable{
              joinColumns = { @JoinColumn(name = "USER_ID") },
              inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
 	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
-
-//	@ManyToMany(fetch = FetchType.EAGER)
-//	@JoinTable(name = "user_w_group",
-//			joinColumns = { @JoinColumn(name = "USER_ID") },
-//			inverseJoinColumns = { @JoinColumn(name = "W_GROUP_ID") })
-//	private Set<WordsGroup> wordsGroups = new HashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -141,14 +125,6 @@ public class User implements Serializable{
 		this.photo = photo;
 	}
 
-//	public Set<WordsGroup> getWordsGroups() {
-//		return wordsGroups;
-//	}
-//
-//	public void setWordsGroups(Set<WordsGroup> wordsGroups) {
-//		this.wordsGroups = wordsGroups;
-//	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -180,25 +156,6 @@ public class User implements Serializable{
 		return true;
 	}
 
-	/*
-	 * DO-NOT-INCLUDE passwords in toString function.
-	 * It is done here just for convenience purpose.
-	 */
-//	@Override
-	public String toString2() {
-		return "User [id=" + id + ", ssoId=" + ssoId + ", password=" + password
-				+ ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", email=" + email + "]";
-	}
-
-//	public String getTestcol() {
-//		return testcol;
-//	}
-//
-//	public void setTestcol(String testcol) {
-//		this.testcol = testcol;
-//	}
-
 	@Override
 	public String toString() {
 		return "User [id=" + id +
@@ -207,7 +164,6 @@ public class User implements Serializable{
 				", firstName=" + firstName  +
 				", lastName=" + lastName +
 				", email=" + email +
-//				", testcol" + testcol +
 				", description='" + description  +
 				", photo='" + photo +
 				", userProfiles=" + userProfiles +

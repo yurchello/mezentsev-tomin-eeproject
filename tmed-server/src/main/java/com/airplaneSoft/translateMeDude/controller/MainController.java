@@ -1,31 +1,16 @@
 package com.airplaneSoft.translateMeDude.controller;
 
-
-
 import com.airplaneSoft.translateMeDude.models.User;
 import com.airplaneSoft.translateMeDude.models.UserProfile;
 import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
-import com.airplaneSoft.translateMeDude.service.UserProfileService;
-import com.airplaneSoft.translateMeDude.service.WordGroupService;
-import com.airplaneSoft.translateMeDude.service.WordService;
-import com.airplaneSoft.translateMeDude.service.UserService;
 import com.airplaneSoft.translateMeDude.utils.FileUtilities;
 import org.apache.commons.io.FilenameUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -36,26 +21,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
-
-/**
- * Created by Mezentsev.Y on 7/17/2016.
- */
 
 @Controller
 @RequestMapping("/")
 @SessionAttributes("roles")
 public class MainController extends BaseController{
 
+    /**
+     *This method provide save user avatar photo do drive
+     */
     //@ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/avatarUpload", method = RequestMethod.POST)
     public void addAdvert(@RequestParam(name = "mainImage", required = false) MultipartFile mainImage) throws IOException {
-        String ssoId = getSSOIdifAutentificated();
+        String ssoId = getSSOIdifAuthenticated();
         String fileName = ssoId + "." + FilenameUtils.getExtension(mainImage.getOriginalFilename());
         String path = FileUtilities.saveFile(mainImage, UPLOAD_LOCATION, fileName);
         User user = userService.findBySSO(ssoId);
@@ -71,9 +52,8 @@ public class MainController extends BaseController{
 //    }
 
     /**
-     * checking password length
-     * @param password
-     * @return
+     * This method provide checking password length
+     * @return length status to view
      */
     @RequestMapping(value = { "/checkStrength" }, method = RequestMethod.GET, produces = {"text/html"})
     public @ResponseBody String checkStrength(String password){
@@ -92,7 +72,7 @@ public class MainController extends BaseController{
     }
 
     /**
-     * This method will provide the medium to add a new user.
+     * This method provide to add a new user.
      */
     @RequestMapping(value = { "/newuser" }, method = RequestMethod.GET)
     public String newUser(ModelMap model) {
@@ -128,7 +108,8 @@ public class MainController extends BaseController{
         }
 
         if(!userService.isUserSSOUnique(user.getId(), user.getSsoId())){
-            FieldError ssoError =new FieldError("user","ssoId",messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
+            FieldError ssoError =new FieldError("user","ssoId",
+                    messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
             result.addError(ssoError);
             return "registration";
         }
@@ -139,25 +120,35 @@ public class MainController extends BaseController{
 
     /**
      * This method handles login GET requests.
-     * If users is already logged-in and tries to goto login page again, will be redirected to list page.
+     * If users is already logged-in and tries to goto login page again,
+     * will be redirected to personal page.
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
         if (isCurrentAuthenticationAnonymous()) {
             return "home";
         } else {
-            String ssoId = getSSOIdifAutentificated();
+            String ssoId = getSSOIdifAuthenticated();
             return "redirect:/user-" + ssoId;
         }
 
     }
 
+    /**
+     *
+     * This method handles login GET requests.
+     * If user is logged in, it will be redirected to personal page.
+     */
     @RequestMapping(value = { "/"}, method = RequestMethod.GET)
-    public String listUsers(ModelMap model) {
-        String ssoId = getSSOIdifAutentificated();
+    public String personalPage(ModelMap model) {
+        String ssoId = getSSOIdifAuthenticated();
         return "redirect:/user-" + ssoId;
     }
 
+    /**
+     * This method handles GET requests.
+     * It provides personal data to account page view
+     */
     @RequestMapping(value = { "/user-{ssoId}" }, method = RequestMethod.GET)
     public String customAccount(@PathVariable String ssoId, ModelMap model){
         if (!isLoggedInUser()) return "accessDeniedUnregistered";
@@ -175,6 +166,9 @@ public class MainController extends BaseController{
         return "account";
     }
 
+    /**
+     * This method provide personal data to edit
+     */
     @RequestMapping(value = {"/editUser-{ssoId}"}, method = RequestMethod.GET)
     public String editProfile(@PathVariable String ssoId, ModelMap model){
         if (!isAccountOwner(ssoId)) return "accessDeniedHard";
@@ -191,6 +185,10 @@ public class MainController extends BaseController{
         return "editProfile";
     }
 
+    /**
+     * This method be will be called on form submission, handling POST request for
+     * edit personal user data and save it to database. It also validates the user input
+     */
     @RequestMapping(value = {"/editUser-{ssoId}"}, method = RequestMethod.POST)
     public String updateProfile(@Valid User user, BindingResult result,
                                 ModelMap model, HttpServletRequest request){
@@ -202,6 +200,10 @@ public class MainController extends BaseController{
         return "redirect:/user-{ssoId}";
     }
 
+    /**
+     * This method handles GET requests.
+     * It provides words groups list to view
+     */
     @RequestMapping(value = {"/groupsList-{ssoId}"}, method = RequestMethod.GET)
     public String groupView(@PathVariable String ssoId, ModelMap model){
         if (!isLoggedInUser()) return "accessDeniedUnregistered";
@@ -213,6 +215,9 @@ public class MainController extends BaseController{
         return "groupsList";
     }
 
+    /**
+     * This method provides to delete selected words group
+     */
     @RequestMapping(value = {"delete-group"}, method = RequestMethod.GET)
     public String deleteGroup(@RequestParam Integer wordsGroupId, @RequestParam String ssoId, ModelMap model){
         if (!isAccountOwner(ssoId)) return "accessDeniedHard";
@@ -221,6 +226,9 @@ public class MainController extends BaseController{
         return "redirect:/groupsList-" + ssoId;
     }
 
+    /**
+     * This method provides to view words group and all words are there
+     */
     @RequestMapping(value = {"view-group"}, method = RequestMethod.GET)
     public String editGroup(@RequestParam Integer wordsGroupId, @RequestParam String ssoId, ModelMap model){
         if (!isLoggedInUser()) return "accessDeniedUnregistered";
@@ -232,6 +240,9 @@ public class MainController extends BaseController{
         return "viewGroup";
     }
 
+    /**
+     * This method provides to create a new words group from view
+     */
     @RequestMapping(value = {"/newGroup"}, method = RequestMethod.GET)
     public String createGroup(@RequestParam String ssoId, ModelMap model){
         if (!isAccountOwner(ssoId)) return "accessDeniedHard";
@@ -240,6 +251,10 @@ public class MainController extends BaseController{
         return "newGroup";
     }
 
+    /**
+     * This method handling POST request for creating a new words group
+     * and save it in database
+     */
     @RequestMapping(value = {"/newGroup"}, method = RequestMethod.POST)
     public String createGroupAdd(@Valid WordsGroup wordsGroup, BindingResult result, String ssoId, ModelMap model, RedirectAttributes redirectAttributes){
         if (result.hasErrors()){
@@ -252,6 +267,9 @@ public class MainController extends BaseController{
         return "redirect:/view-group";
     }
 
+    /**
+     * This method provides to create a new word from view
+     */
     @RequestMapping(value = {"newWord"}, method = RequestMethod.GET)
     public String newWord(@RequestParam Integer wordsGroupId, @RequestParam String ssoId, ModelMap model){
         if (!isAccountOwner(ssoId)) return "accessDeniedHard";
@@ -263,6 +281,10 @@ public class MainController extends BaseController{
         return "newWord";
     }
 
+    /**
+     * This method handling POST request for creating a new word
+     * and save it in database
+     */
     @RequestMapping(value = {"/newWord"}, method = RequestMethod.POST )
     public String newWordAdd(@Valid Word word, BindingResult result, Integer wordsGroupId, String ssoId, ModelMap model, RedirectAttributes redirectAttributes){
         if (result.hasErrors()){
@@ -276,6 +298,9 @@ public class MainController extends BaseController{
         return "redirect:/view-group";
     }
 
+    /**
+     * This method provides to edit word of selected words group from view
+     */
     @RequestMapping(value = {"/editWord"}, method = RequestMethod.GET)
     public String editWord(@RequestParam Integer wordId, @RequestParam Integer wordsGroupId,@RequestParam String ssoId, ModelMap model){
         if (!isAccountOwner(ssoId)) return "accessDeniedHard";
@@ -287,6 +312,10 @@ public class MainController extends BaseController{
         return "editWord";
     }
 
+    /**
+     * This method handling POST request for editing word
+     * and update it in database
+     */
     @RequestMapping(value = {"/editWord"}, method = RequestMethod.POST )
     public String editDone(@Valid Word word, BindingResult result, Integer wordsGroupId, String ssoId,ModelMap model, RedirectAttributes redirectAttributes){
         if (result.hasErrors()){
@@ -298,6 +327,9 @@ public class MainController extends BaseController{
         return "redirect:/view-group";
     }
 
+    /**
+     * This method provides to delete word from selected words group from view
+     */
     @RequestMapping(value = {"/deleteWord"}, method = RequestMethod.GET)
     public String deleteWord(Integer wordId, Integer wordsGroupId, String ssoId,  RedirectAttributes redirectAttributes){
         if (!isAccountOwner(ssoId)) return "accessDeniedHard";
@@ -309,6 +341,9 @@ public class MainController extends BaseController{
         return "redirect:/view-group";
     }
 
+    /**
+     *This method handles Access Denied request
+     */
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
         //model.addAttribute("loggedinuser", getPrincipal());
@@ -330,6 +365,9 @@ public class MainController extends BaseController{
         return "redirect:/login?logout";
     }
 
+    /**
+     *This method provides to get users list to view
+     */
     @RequestMapping(value="/usersList", method = RequestMethod.GET)
     public String userList(ModelMap model){
         if (!isLoggedInUser()) return "accessDeniedUnregistered";
@@ -350,7 +388,7 @@ public class MainController extends BaseController{
     }
 
     /**
-     * This method will delete an user by it's SSOID value.
+     * This method will delete an user by SSOID value.
      */
     @RequestMapping(value = { "/delete-user-{ssoId}" }, method = RequestMethod.GET)
     public String deleteUser(@PathVariable String ssoId) {
@@ -369,9 +407,12 @@ public class MainController extends BaseController{
 
     private boolean isAccountOwner(String ssoId){
         if (ssoId == null) return false;
-        return ssoId.equals(getSSOIdifAutentificated());
+        return ssoId.equals(getSSOIdifAuthenticated());
     }
 
+    /**
+     *This method provides to set user roles to current user
+     */
     private void setUserRoles(User user, List<UserProfile> userProfiles){
         Set<UserProfile> set = new HashSet<>();
         for (UserProfile userProfile: userProfiles){
@@ -382,6 +423,9 @@ public class MainController extends BaseController{
         user.setUserProfiles(set);
     }
 
+    /**
+     *This method provides to set user roles to current user
+     */
     private void setUserRoles(User user, UserProfile... userProfiles){
         Set<UserProfile> set = new HashSet<>();
         for (UserProfile userProfile: userProfiles){

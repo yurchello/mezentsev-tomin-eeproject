@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Mezentsev.Y on 9/30/2016.
+ * Base REST API for desctop and mobile client
  */
 @RestController
 @RequestMapping(value = "/api")
@@ -26,7 +26,13 @@ public class WordGroupApi {
     @Autowired
     UserService userService;
 
-    //{"id":46,"ssoId":null,"password":"$2a$10$SJ2PcT/U4LvpypN76WYfkemo1C39tEf77W5IQpD9LQOhGvJ8l0PYG","firstName":null,"lastName":null,"email":null,"description":null,"photo":null,"userProfiles":[]}
+    /**
+     *
+     * @param user may contains only ssoId and password
+     * @return Response with  List<WordsGroup>, where user is owner.
+     * returns HttpStatus.BAD_REQUEST if user not found.
+     * returns HttpStatus.NOT_FOUND if user  was found, but no one word group was created
+     */
     @Transactional
     @RequestMapping(value="/getGroupsList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WordsGroup>> getGroupsList(@RequestBody User user){
@@ -38,6 +44,12 @@ public class WordGroupApi {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    /**
+     * Allows to test connection from client.
+     * @param user may contains only ssoId and password
+     * @return HttpStatus.BAD_REQUEST if user not found
+     * HttpStatus.OK if user was found
+     */
     @RequestMapping(value="/testConnection", method = RequestMethod.POST)
     ResponseEntity<Void> testConnection(@RequestBody User user){
         User ownerUser = userService.findBySSO(user.getSsoId());

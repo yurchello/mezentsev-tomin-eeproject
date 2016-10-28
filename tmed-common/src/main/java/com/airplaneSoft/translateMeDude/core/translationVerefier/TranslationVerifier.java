@@ -1,9 +1,9 @@
 package com.airplaneSoft.translateMeDude.core.translationVerefier;
 
-/**
- * Created by Mezentsev.Y on 10/27/2016.
- */
 public interface TranslationVerifier {
+    /**
+     * delimiter char for word translation
+     */
     String DELIMITER = ",";
 
     /**

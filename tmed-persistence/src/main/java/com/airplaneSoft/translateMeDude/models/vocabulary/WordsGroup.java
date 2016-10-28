@@ -22,19 +22,8 @@ public class WordsGroup implements Serializable {
     @Column(name="word_group", nullable=false)
     private String name;
 
-
-//    @Column(name="user_id", nullable=false)
-//    private String userId;
     @ManyToOne
     private User user;
-
-//    public String getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(String userId) {
-//        this.userId = userId;
-//    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "groups_word",

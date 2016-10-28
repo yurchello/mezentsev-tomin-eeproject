@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
- * Created by Mezentsev.Y on 9/16/2016.
+ * This controller provide a send email
  */
 @Controller
 @RequestMapping("/")
@@ -27,6 +27,9 @@ public class EmailSendController extends BaseController{
     @Autowired
     private MailSender mailSender;
 
+    /**
+     *This method provide contact page to view
+     */
     @RequestMapping(value = { "/contactus"}, method = RequestMethod.GET)
     public String contactUsPage(ModelMap model) {
         EmailSenderModel emailSenderModel = new EmailSenderModel();
@@ -34,6 +37,9 @@ public class EmailSendController extends BaseController{
         return "contactus";
     }
 
+    /**
+     *This method provide to get information from contact page and sed email
+     */
     @RequestMapping(value = { "/contactus"}, method = RequestMethod.POST)
     public String sendEmail(@Valid EmailSenderModel emailSenderModel , BindingResult result, ModelMap model, HttpServletRequest request){
         if (result.hasErrors()){

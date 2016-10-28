@@ -3,7 +3,7 @@ package com.airplaneSoft.translateMeDude.core.wordGenerator;
 import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
 
 /**
- * Created by Mezentsev.Y on 10/26/2016.
+ * Provide to get Word entity to display on popup balloon
  */
 //@FunctionalInterface
 public interface WordGenerator {

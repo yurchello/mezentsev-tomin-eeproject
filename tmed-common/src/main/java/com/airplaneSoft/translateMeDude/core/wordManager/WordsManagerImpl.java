@@ -6,15 +6,8 @@ import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
-/**
- * Created by Mezentsev.Y on 10/26/2016.
- */
 public class WordsManagerImpl implements WordsManager {
-
     private List<WordsGroup> wordsGroupList;
 
     public WordsManagerImpl(List<WordsGroup> wordsGroupList) {
