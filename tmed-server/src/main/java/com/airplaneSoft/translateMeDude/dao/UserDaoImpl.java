@@ -1,6 +1,5 @@
 package com.airplaneSoft.translateMeDude.dao;
 
-
 import com.airplaneSoft.translateMeDude.models.User;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
@@ -9,9 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
-
 
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {

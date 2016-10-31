@@ -3,29 +3,29 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-    <title>Download Dude</title>
+    <title>Download</title>
 </head>
 <body>
 <h1>Download Desktop TranslateMe Dude</h1>
 <div>
     <div>
-            <dl>
-                <dt><label>Windows</label></dt>
-                <dd>
-                    <c:if test="${fn:length(windowsFiles) != 0}">
+        <dl>
+            <dt><label>Windows</label></dt>
+            <dd>
+                <c:if test="${fn:length(windowsFiles) != 0}">
                     <c:forEach items="${windowsFiles}" var="file" varStatus="status">
                         <div>
                             <a href="<c:url value='/download/windows-${file}' />">${file}</a>
                         </div>
                     </c:forEach>
-                    </c:if>
-                </dd>
-                <dd>
-                    <c:if test="${fn:length(windowsFiles) == 0}">
-                        Sorry, dude... But, this OS not supported yet...
-                    </c:if>
-                </dd>
-            </dl>
+                </c:if>
+            </dd>
+            <dd>
+                <c:if test="${fn:length(windowsFiles) == 0}">
+                    Sorry, dude... But, this OS not supported yet...
+                </c:if>
+            </dd>
+        </dl>
     </div>
 
     <div>

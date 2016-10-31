@@ -8,7 +8,7 @@ import com.airplaneSoft.translateMeDude.winApp.utils.vocabularyUtils.VocabularyU
 import com.airplaneSoft.translateMeDude.winApp.utils.vocabularyUtils.VocabularyUtilsImpl;
 
 /**
- * Created by Mezentsev.Y on 10/26/2016.
+ * This class provide keep vocabulary in memory
  */
 public class VocabularyHolder {
     private static VocabularyHolder instance;

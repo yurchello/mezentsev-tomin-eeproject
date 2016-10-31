@@ -1,14 +1,11 @@
 package com.airplaneSoft.translateMeDude.dao;
 
-
 import com.airplaneSoft.translateMeDude.models.UserProfile;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
-
 
 @Repository("userProfileDao")
 public class UserProfileDaoImpl extends AbstractDao<Integer, UserProfile>implements UserProfileDao{

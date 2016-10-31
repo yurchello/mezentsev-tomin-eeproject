@@ -18,6 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
+/**
+ * This class provide Spring Security configuration
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -64,6 +67,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.exceptionHandling().accessDeniedPage("/Access_Denied");
 	}
 
+	/**
+	 *
+	 * Set passworg encoder, that will be provide secure storage in database
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return Utils.getPasswordEncoder();
@@ -77,6 +84,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return authenticationProvider;
 	}
 
+	/**
+	 *This method provide Remember Me - function for user.
+	 */
 	@Bean
 	public PersistentTokenBasedRememberMeServices getPersistentTokenBasedRememberMeServices() {
 		PersistentTokenBasedRememberMeServices tokenBasedservice = new PersistentTokenBasedRememberMeServices(

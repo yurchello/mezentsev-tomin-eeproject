@@ -22,7 +22,7 @@ import static com.airplaneSoft.translateMeDude.winApp.utils.AppUtils.ICON_IMAGE;
 import static com.airplaneSoft.translateMeDude.winApp.utils.AppUtils.getStringProperty;
 
 /**
- * Created by Mezentsev.Y on 10/21/2016.
+ * Settings dialog view component
  */
 public class SettingsDialogView extends Dialog {
     @FXML
@@ -88,6 +88,8 @@ public class SettingsDialogView extends Dialog {
             System.out.println("Cancel settings button pressed");
         });
 
+        //invalid characters handling. Ok and apply buttons will be disabled,
+        // if the invalid characters are present.
         viewModel.getInvalidNodes().addListener((SetChangeListener<Node>) change -> {
             okButton.disableProperty().setValue(viewModel.getInvalidNodes().size() != 0);
             applyButton.disableProperty().setValue(viewModel.getInvalidNodes().size() != 0);
@@ -99,6 +101,9 @@ public class SettingsDialogView extends Dialog {
         });
     }
 
+    /**
+     * UI component initialization and bindings initialization
+     */
     private void initUIComponents(){
         urlField.textProperty().bindBidirectional(viewModel.getSettingModel(SettingsKeys.URL).valueProperty());
         ssoidField.textProperty().bindBidirectional(viewModel.getSettingModel(SettingsKeys.SSOID).valueProperty());

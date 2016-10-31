@@ -7,13 +7,14 @@ import java.nio.file.Path;
 import java.util.List;
 
 /**
- * Created by Mezentsev.Y on 10/24/2016.
+ * This interface describes signature of vocabulary object saving
  */
 public interface VocabularyUtils {
     String VOCABULARY_FILE_NAME = "vocabulary.vcb";
     Path VOCABULARY_FILE_PATH = SettingsImpl.getAppPath().resolve(VOCABULARY_FILE_NAME);
 
     boolean saveFullVocabulary(List<WordsGroup> wordsGroupList);
+
     List<WordsGroup> getFullVocabulary();
 
 }

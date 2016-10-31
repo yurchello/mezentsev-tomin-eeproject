@@ -17,14 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Mezentsev.Y on 10/24/2016.
+ * This class provides to control vocabulary from remote personal account by REST full api
  */
 public class RemoteServiceUtils {
+    //main site url
     private String url;
+    //user ssoid
     private String ssoId;
+    //user password
     private String password;
-
-
 
     public RemoteServiceUtils(String url, String ssoId, String password) {
         this.url = url;
@@ -32,7 +33,10 @@ public class RemoteServiceUtils {
         this.password = password;
     }
 
-
+    /**
+     * Get full vocabulary
+     * @return
+     */
     public List<WordsGroup> getWordGroupsList(){
         final String URL_FULL_PATH = url + AppUtils.getStringProperty("rest.vocabulary.update");
         User user = new User();
@@ -69,10 +73,13 @@ public class RemoteServiceUtils {
         return null;
     }
 
+    /**
+     * Provides to test connection with personal account
+     * @return
+     */
     public boolean testConnection(){
         final String URL_FULL_PATH = url + AppUtils.getStringProperty("rest.vocabulary.update");
         User user = new User();
-        user.setId(46);
         user.setSsoId(ssoId);
         user.setPassword(password);
         try {

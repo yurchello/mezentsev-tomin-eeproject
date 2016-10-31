@@ -3,7 +3,6 @@ package com.airplaneSoft.translateMeDude.winApp.models.settings;
 import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,7 +18,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
-
+/**
+ * This class allows keep settings as settings map as key-value model with
+ * hard drive saving.
+ */
 public class SettingsImpl implements Settings {
 
     private static final String SETTINGS_FILE_NAME = "settings.xml";
@@ -64,6 +66,10 @@ public class SettingsImpl implements Settings {
         set(SettingsKeys.TIMER_VALUE, AppUtils.getStringProperty("settings.timer.value.min"));
     }
 
+    /**
+     * This method provides to save settings to hard drive as xml file.
+     * If file doesn't exist, it will be create.
+     */
     public void save() {
         try {
             if(SETTINGS_FILE == null){
@@ -90,6 +96,9 @@ public class SettingsImpl implements Settings {
         }
     }
 
+    /**
+     * Puts settings map to DOM document
+     */
     private void putSettingsToDocument(Document document){
         Element rootElement = document.createElement("settings");
         document.appendChild(rootElement);
@@ -118,6 +127,9 @@ public class SettingsImpl implements Settings {
 
     }
 
+    /**
+     * Load settings from settings file to settingsMap
+     */
     public void load() {
         clearSettingsMap();
         try {
@@ -136,6 +148,7 @@ public class SettingsImpl implements Settings {
         }
     }
 
+
     private void fillSettingsMap() throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -152,14 +165,23 @@ public class SettingsImpl implements Settings {
 
     }
 
+    /**
+     * @return application folder name
+     */
     public static String getAppFolder() {
         return APP_FOLDER;
     }
 
+    /**
+     * @return path to application system folder
+     */
     public static Path getAppPath() {
         return APP_PATH;
     }
 
+    /**
+     * @return settings xml file
+     */
     public static File getSettingsFile() {
         return SETTINGS_FILE;
     }

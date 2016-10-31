@@ -26,7 +26,8 @@
                 </GridPane.margin>
             </Label>
 
-            <Label fx:id="translationIdLabel" text="%ui.mainView.label.translation" GridPane.rowIndex="1" GridPane.columnIndex="0">
+            <Label fx:id="translationIdLabel" text="%ui.mainView.label.translation" GridPane.rowIndex="1"
+                   GridPane.columnIndex="0">
                 <GridPane.margin>
                     <Insets top="3" bottom="3" right="15" left="3"/>
                 </GridPane.margin>
@@ -41,22 +42,12 @@
                     <Insets top="3" bottom="3" right="15" left="3"/>
                 </GridPane.margin>
             </Label>
-
-            <!--<Label text="%ui.mainView.correct.translation" GridPane.rowIndex="2" GridPane.columnIndex="0">-->
-                <!--<GridPane.margin>-->
-                    <!--<Insets top="3" bottom="3" right="15" left="3"/>-->
-                <!--</GridPane.margin>-->
-            <!--</Label>-->
-            <!--<Label fx:id="correctTranslationLabel" text="ывамиваививиыаыи" GridPane.rowIndex="2" GridPane.columnIndex="1">-->
-                <!--<GridPane.margin>-->
-                    <!--<Insets top="3" bottom="3" right="15" left="3"/>-->
-                <!--</GridPane.margin>-->
-            <!--</Label>-->
         </GridPane>
 
         <VBox fx:id="helpVBox">
             <GridPane>
-                <Label fx:id="correctTranslationIdLabel" text="%ui.mainView.correct.translation" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                <Label fx:id="correctTranslationIdLabel" text="%ui.mainView.correct.translation" GridPane.rowIndex="0"
+                       GridPane.columnIndex="0">
                     <GridPane.margin>
                         <Insets top="3" bottom="3" right="15" left="3"/>
                     </GridPane.margin>
@@ -66,7 +57,8 @@
                         <Insets top="3" bottom="3" right="15" left="3"/>
                     </GridPane.margin>
                 </Label>
-                <Label fx:id="exampleIdLabel" text="%ui.mainView.label.example" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                <Label fx:id="exampleIdLabel" text="%ui.mainView.label.example" GridPane.rowIndex="1"
+                       GridPane.columnIndex="0">
                     <GridPane.margin>
                         <Insets top="3" bottom="3" right="15" left="3"/>
                     </GridPane.margin>
@@ -79,8 +71,9 @@
             </TextArea>
         </VBox>
 
-        <GridPane >
-            <Button fx:id="translateButton" text="%ui.mainView.button.translate"  GridPane.rowIndex="0" GridPane.columnIndex="0">
+        <GridPane>
+            <Button fx:id="translateButton" text="%ui.mainView.button.translate" GridPane.rowIndex="0"
+                    GridPane.columnIndex="0">
                 <GridPane.margin>
                     <Insets top="3" bottom="3" right="15" left="3"/>
                 </GridPane.margin>

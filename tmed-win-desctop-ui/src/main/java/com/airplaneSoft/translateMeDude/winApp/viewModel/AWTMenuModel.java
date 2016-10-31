@@ -13,7 +13,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Worker;
 
 /**
- * Created by Mezentsev.Y on 10/25/2016.
+ * AWT context menu model
  */
 public class AWTMenuModel {
     private final Settings settings;
@@ -23,7 +23,11 @@ public class AWTMenuModel {
         this.settings = SettingsImpl.getInstance();
     }
 
+    /**
+     * This method call vocabulary update with loading dialog
+     */
     public void update(){
+        //AWT isn't runs in javafx thread
         Platform.runLater(() -> {
             loadingDialog = new LoadingDialogView(AppUtils.getStringProperty("ui.loading.dialog.loading.vocabulary"));
             loadingDialog.show();

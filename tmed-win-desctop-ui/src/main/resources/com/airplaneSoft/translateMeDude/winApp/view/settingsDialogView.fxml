@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <fx:root type="com.airplaneSoft.translateMeDude.winApp.view.SettingsDialogView"
          xmlns:fx="http://javafx.com/fxml/1"
@@ -30,12 +29,6 @@
                                     <Insets top="3" bottom="3" right="15" left="3"/>
                                 </GridPane.margin>
                             </Button>
-                            <!--<CheckBox fx:id="showCheckBox" text="%ui.settings.label.for.checkbox.show" GridPane.rowIndex="0" GridPane.columnIndex="2">-->
-                            <!--<GridPane.margin>-->
-                            <!--<Insets top="3" bottom="3" right="15" left="3"/>-->
-                            <!--</GridPane.margin>-->
-                            <!--</CheckBox>-->
-
                             <Label text="%ui.settings.label.ssoid" GridPane.rowIndex="1" GridPane.columnIndex="0">
                                 <GridPane.margin>
                                     <Insets top="3" bottom="3" right="15" left="3"/>
@@ -65,12 +58,6 @@
                                     <Insets top="3" bottom="3" right="15" left="3"/>
                                 </GridPane.margin>
                             </CheckBox>
-
-                            <!--<CheckBox text="%ui.settings.checkbox.autoupdate" GridPane.rowIndex="3" GridPane.columnIndex="0">-->
-                            <!--<GridPane.margin>-->
-                            <!--<Insets top="3" bottom="3" right="15" left="3"/>-->
-                            <!--</GridPane.margin>-->
-                            <!--</CheckBox>-->
                         </GridPane>
                         <Separator orientation="HORIZONTAL"/>
                         <GridPane fx:id="gridPane2">
@@ -99,20 +86,10 @@
                                     <Insets top="3" bottom="3" right="5" left="3"/>
                                 </GridPane.margin>
                             </HBox>
-
-
                         </GridPane>
                     </children>
                 </VBox>
 
-
-                <!--<BorderPane fx:id="settingBorderPane">-->
-                <!--<center>-->
-                <!--</center>-->
-                <!--<bottom>-->
-                <!--<Separator orientation="HORIZONTAL"/>-->
-                <!--</bottom>-->
-                <!--</BorderPane>-->
             </content>
 
             <ButtonType fx:id="btApply" fx:constant="APPLY"/>

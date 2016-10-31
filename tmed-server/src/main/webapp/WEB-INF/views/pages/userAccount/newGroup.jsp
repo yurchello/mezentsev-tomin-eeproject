@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>New Word Group</title>
+    <title>New Words Group</title>
 </head>
 <body>
 <form:form method="POST" modelAttribute="wordsGroup">

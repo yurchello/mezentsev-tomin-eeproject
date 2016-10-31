@@ -1,10 +1,7 @@
 package com.airplaneSoft.translateMeDude.service;
 
-
 import com.airplaneSoft.translateMeDude.models.User;
-
 import java.util.List;
-
 
 public interface UserService {
 	

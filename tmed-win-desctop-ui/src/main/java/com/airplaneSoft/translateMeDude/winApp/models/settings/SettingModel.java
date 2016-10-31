@@ -3,7 +3,7 @@ package com.airplaneSoft.translateMeDude.winApp.models.settings;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Created by Mezentsev.Y on 7/18/2016.
+ * Settings model for view.
  */
 public class SettingModel {
     private String key;

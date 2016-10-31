@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 
 /**
- * Created by Mezentsev.Y on 10/7/2016.
+ * Utility class for work with drive file system
  */
 public class FileUtilities {
     public static String saveFile(MultipartFile multipartFile, String dirName, String fileName) throws IOException {

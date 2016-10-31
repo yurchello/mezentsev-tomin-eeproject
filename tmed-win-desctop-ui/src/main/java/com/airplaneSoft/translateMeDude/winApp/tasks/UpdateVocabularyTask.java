@@ -8,7 +8,8 @@ import javafx.concurrent.Task;
 import java.util.List;
 
 /**
- * Created by Mezentsev.Y on 10/25/2016.
+ * This class provide vocabulary updating.
+ * Vocabulary update will be saved on drive
  */
 public class UpdateVocabularyTask extends Task<Void> {
     private RemoteServiceUtils remoteServiceUtils;

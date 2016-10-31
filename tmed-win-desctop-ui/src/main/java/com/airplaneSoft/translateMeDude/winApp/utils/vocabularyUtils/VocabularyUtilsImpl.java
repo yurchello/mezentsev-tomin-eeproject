@@ -8,9 +8,14 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Created by Mezentsev.Y on 10/24/2016.
+ * This class provide save vocabulary to drive and get it from drive.
  */
 public class VocabularyUtilsImpl implements VocabularyUtils {
+    /**
+     * Serialize  wordsGroupList to hard drive.
+     * @param wordsGroupList
+     * @return
+     */
     @Override
     public boolean saveFullVocabulary(List<WordsGroup> wordsGroupList) {
         Objects.requireNonNull(wordsGroupList);
@@ -34,6 +39,10 @@ public class VocabularyUtilsImpl implements VocabularyUtils {
         return true;
     }
 
+    /**
+     * Deserialize from hard drive.
+     * @return
+     */
     @Override
     public List<WordsGroup> getFullVocabulary() {
         try (FileInputStream fileInputStream = new FileInputStream(VOCABULARY_FILE_PATH.toFile());

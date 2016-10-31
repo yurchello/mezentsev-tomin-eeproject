@@ -1,36 +1,30 @@
 package com.airplaneSoft.translateMeDude.winApp;
 
-/**
- * Created by Mezentsev.Y on 10/20/2016.
- */
 import com.airplaneSoft.translateMeDude.winApp.view.MainView;
 import com.airplaneSoft.translateMeDude.winApp.view.components.CloseButton;
 import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
 import com.airplaneSoft.translateMeDude.winApp.view.AWTMenuView;
 import javafx.application.*;
-import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-
 import javax.imageio.ImageIO;
 import java.io.IOException;
-
 import static com.airplaneSoft.translateMeDude.winApp.utils.AppUtils.getStringProperty;
 
+/**
+ * Main app run class. This class contains AWT UI components, that provides to create windows tray app.
+ */
 public class App extends Application {
 
     private static final String TRAY_IMAGE_LOCATION = "tray_icon_16x16.png";
-    private static final String STAGE_IMAGE_LOCATION = "stage_icon.png";
     private static Stage mainStage;
     public static boolean isShow;
 
@@ -38,19 +32,19 @@ public class App extends Application {
     public void start(final Stage stage) {
         this.mainStage = stage;
         mainStage.setAlwaysOnTop(true);
-
-        // instructs the javafx system not to exit implicitly when the last application window is shut.
+        // instructs the javafx system not to exit implicitly
+        // when the last application window is shut.
         Platform.setImplicitExit(false);
-
         // sets up the tray icon (using awt code run on the swing thread).
         javax.swing.SwingUtilities.invokeLater(this::addAppToTray);
-
-        // out stage will be translucent, so give it a transparent style.
+        // give it a transparent style.
         stage.initStyle(StageStyle.TRANSPARENT);
     }
 
+    /**
+     * Call main popup balloon
+     */
     private static void notifier() {
-
         Platform.runLater(() -> {
                     //Stage owner = new Stage(StageStyle.TRANSPARENT);
                     Stage owner = mainStage;
@@ -64,6 +58,7 @@ public class App extends Application {
                     owner.setHeight(1);
                     owner.toBack();
                     owner.show();
+                    //creating main popup content
                     MainView mainView = new MainView();
                     if (!isShow) {
                         isShow = true;
@@ -74,7 +69,13 @@ public class App extends Application {
         );
     }
 
-    public static  Notifications getNotifications(Node content, Stage owner){
+    /**
+     * Create styled notification balloon
+     * @param content
+     * @param owner
+     * @return
+     */
+    private static  Notifications getNotifications(Node content, Stage owner){
         GridPane gridPane = new GridPane();
         CloseButton closeButton = new CloseButton(owner);
         Label label = new Label(getStringProperty("ui.mainView.header"));
@@ -94,9 +95,12 @@ public class App extends Application {
                 .graphic(vBox)
                 .darkStyle()
                 .hideCloseButton();
-
     }
 
+    /**
+     * Set specific grid view constraints
+     * @param nodes
+     */
     private static void setGridStyle(Node... nodes) {
         for (Node node : nodes) {
             GridPane.setMargin(node, new Insets(0, 3, 0, 0));
@@ -117,22 +121,18 @@ public class App extends Application {
             if (!java.awt.SystemTray.isSupported()) {
                 Platform.exit();
             }
-
             // set up a system tray icon.
             java.awt.SystemTray tray = java.awt.SystemTray.getSystemTray();
-            java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(ImageIO.read(getClass().getResourceAsStream(TRAY_IMAGE_LOCATION)));
+            java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(ImageIO.read(getClass()
+                    .getResourceAsStream(TRAY_IMAGE_LOCATION)));
             // if the user double-clicks on the tray icon, show the main app stage.
             trayIcon.addActionListener(event -> {
-                Platform.runLater(() -> {
-                    //show word
-                    notifier();
-                });
+                Platform.runLater(App::notifier);
             });
-
             // setup the popup menu for the application.
             trayIcon.setPopupMenu(new AWTMenuView(()->{
                 Platform.exit();
-                tray.remove(trayIcon);
+                tray.remove(trayIcon);//clean icon
             }));
             tray.add(trayIcon);
         } catch (java.awt.AWTException | IOException e) {
@@ -149,6 +149,9 @@ public class App extends Application {
         return mainStage;
     }
 
+    /**
+     * @return true if main popup is shown.
+     */
     public static boolean isShow() {
         return isShow;
     }

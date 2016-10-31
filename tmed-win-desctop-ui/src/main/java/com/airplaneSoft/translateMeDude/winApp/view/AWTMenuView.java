@@ -2,13 +2,11 @@ package com.airplaneSoft.translateMeDude.winApp.view;
 
 import com.airplaneSoft.translateMeDude.winApp.viewModel.AWTMenuModel;
 import javafx.application.Platform;
-
 import java.awt.*;
-
 import static com.airplaneSoft.translateMeDude.winApp.utils.AppUtils.getStringProperty;
 
 /**
- * Created by Mezentsev.Y on 10/25/2016.
+ * AWT view Menu component
  */
 public class AWTMenuView extends java.awt.PopupMenu {
     private CallFunction callToExitApp;
@@ -21,11 +19,15 @@ public class AWTMenuView extends java.awt.PopupMenu {
     }
 
     private void init() {
-        add(createMenuItemStyled(getStringProperty("ui.mainView.tray.menu.settings"), () -> new SettingsDialogView().show()));
+        //settings menu item handler
+        add(createMenuItemStyled(getStringProperty("ui.mainView.tray.menu.settings"),
+                () -> new SettingsDialogView().show()));
+        //update vocabulary menu item handler
         add(createMenuItemStyledMainThread(getStringProperty("ui.mainView.tray.menu.update"), () -> {
             model.update();
         }));
         addSeparator();
+        //exit menu item handler
         add(createMenuItem(getStringProperty("ui.mainView.tray.menu.exit"), this.callToExitApp));
     }
 

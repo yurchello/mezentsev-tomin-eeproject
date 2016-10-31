@@ -10,7 +10,7 @@ import org.controlsfx.validation.Validator;
 import java.text.MessageFormat;
 
 /**
- * Created by Mezentsev.Y on 10/24/2016.
+ * This class provides to create UI components.
  */
 public class GuiUtils {
 
@@ -58,6 +58,7 @@ public class GuiUtils {
         alert.show();
     }
 
+    @Deprecated
     public static Alert createAlert(Alert.AlertType alertType, String title, String header, String text) {
         Alert alert = new Alert(alertType);
         ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(AppUtils.ICON_IMAGE);

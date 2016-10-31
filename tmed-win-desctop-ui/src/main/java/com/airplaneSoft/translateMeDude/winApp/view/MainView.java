@@ -1,29 +1,20 @@
 package com.airplaneSoft.translateMeDude.winApp.view;
 
 import com.airplaneSoft.translateMeDude.core.translationVerefier.TranslationVerifierImpl;
-import com.airplaneSoft.translateMeDude.winApp.App;
 import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
 import com.airplaneSoft.translateMeDude.winApp.viewModel.ForeignNativeMainViewModel;
 import com.airplaneSoft.translateMeDude.winApp.viewModel.MainViewModel;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 
 /**
- * Created by Mezentsev.Y on 10/21/2016.
+ * Main popup view
  */
 public class MainView extends VBox {
     @FXML
@@ -65,9 +56,11 @@ public class MainView extends VBox {
         exampleTextArea.textProperty().bind(viewModel.descriptionPropertyProperty());
 
         translateButton.addEventFilter(ActionEvent.ACTION, (event) -> {
-           translate();
+            translate();
+            System.out.println("Translate button pressed");
         });
 
+        //handling the enter key pressed
         wordTranslationTextField.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode() == KeyCode.ENTER) translate();
             if (keyEvent.getCode() == KeyCode.ESCAPE) {
@@ -76,15 +69,23 @@ public class MainView extends VBox {
         });
     }
 
+    /**
+     * start translation verification
+     */
     private void translate(){
-        viewModel.translationPropertyProperty();
-        setStatusLabel(true, viewModel.isCorrectTranslate());
-        System.out.println("Translate button pressed");
-    }
-
-    private void setStatusLabel(boolean setVisible, boolean isCorrect){
+        //add content to view status, examples and correct translation
         getChildren().remove(helpVBox);
         getChildren().add(1,helpVBox);
+        viewModel.translationPropertyProperty();
+        setStatusLabel(true, viewModel.isCorrectTranslate());
+    }
+
+    /**
+     * Set view style of status label only
+     * @param setVisible
+     * @param isCorrect
+     */
+    private void setStatusLabel(boolean setVisible, boolean isCorrect){
         statusLabel.setVisible(setVisible);
         if (isCorrect){
             statusLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #79c963; -fx-font-size: 15px;");

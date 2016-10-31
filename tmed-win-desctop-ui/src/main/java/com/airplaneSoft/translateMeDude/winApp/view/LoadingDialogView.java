@@ -11,11 +11,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Created by Mezentsev.Y on 10/25/2016.
+ * Animated Loading dialog view component to show the process in progress
  */
 public class LoadingDialogView extends Alert {
 
-    private final ImageView IMAGE_VIEW = new ImageView(new Image(LoadingDialogView.class.getResourceAsStream("loading32x32.gif")));
+    private final ImageView IMAGE_VIEW = new ImageView(
+            new Image(LoadingDialogView.class.getResourceAsStream("loading32x32.gif")));
     public LoadingDialogView(String information) {
         super(AlertType.INFORMATION);
         ((Stage)getDialogPane().getScene().getWindow()).getIcons().add(AppUtils.ICON_IMAGE);

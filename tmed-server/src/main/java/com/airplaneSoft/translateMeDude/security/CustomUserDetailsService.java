@@ -18,7 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * This class provide correct Spring Security context working.
+ */
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -26,7 +28,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	private UserService userService;
-	
+
+	@Override
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(String ssoId)
 			throws UsernameNotFoundException {
@@ -40,9 +43,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 				 true, true, true, true, getGrantedAuthorities(user));
 	}
 
-	
+	/**
+	 *
+	 * @param user
+	 * @return all awaible user rolles
+	 */
 	private List<GrantedAuthority> getGrantedAuthorities(User user){
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		List<GrantedAuthority> authorities = new ArrayList<>();
 		
 		for(UserProfile userProfile : user.getUserProfiles()){
 			logger.info("UserProfile : {}", userProfile);

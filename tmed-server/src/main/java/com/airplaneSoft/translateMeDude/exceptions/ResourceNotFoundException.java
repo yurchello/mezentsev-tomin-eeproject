@@ -1,7 +1,7 @@
 package com.airplaneSoft.translateMeDude.exceptions;
 
 /**
- * Created by Mezentsev.Y on 9/25/2016.
+ * This Exception wil be generated if some resources not found.
  */
 public class ResourceNotFoundException extends RuntimeException {
     private String msg;

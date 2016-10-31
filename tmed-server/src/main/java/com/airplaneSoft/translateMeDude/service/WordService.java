@@ -7,8 +7,13 @@ import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
  */
 
 public interface WordService {
+
     Word findById(Integer id);
+
     void delete(Integer id);
+
     void create(Word word);
+
     void update(Word word);
+
 }

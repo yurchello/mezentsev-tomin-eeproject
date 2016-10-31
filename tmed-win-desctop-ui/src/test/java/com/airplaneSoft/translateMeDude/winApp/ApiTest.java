@@ -22,7 +22,6 @@ public class ApiTest {
     public void wordGroupClientTest(){
         final String URL = "http://localhost:8080/api/getGroupsList";
         User user = new User();
-        user.setId(46);
         user.setSsoId("qqq");
         user.setFirstName("ddd");
         user.setPassword("qqq");

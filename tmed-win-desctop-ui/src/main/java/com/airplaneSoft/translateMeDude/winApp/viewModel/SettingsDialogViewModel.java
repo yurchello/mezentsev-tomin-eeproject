@@ -8,11 +8,9 @@ import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingsImpl;
 import com.airplaneSoft.translateMeDude.winApp.tasks.TestConnectionTask;
 import com.airplaneSoft.translateMeDude.winApp.utils.GuiUtils;
 import javafx.collections.FXCollections;
-
 import javafx.collections.ObservableSet;
 import javafx.concurrent.Worker;
 import javafx.scene.Node;
-
 import java.util.HashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -20,7 +18,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by Mezentsev.Y on 10/24/2016.
+ * Settings view model
  */
 public class SettingsDialogViewModel {
     private Set<SettingModel> settingModels = new HashSet<>();
@@ -33,10 +31,16 @@ public class SettingsDialogViewModel {
         settingsMap.forEach((k, v) -> settingModels.add(new SettingModel(k, v)));
     }
 
+    /**
+     * Save changed settings from UI to map without saving file
+     */
     public void saveModel(){
         settingModels.forEach(SettingModel::save);
     }
 
+    /**
+     * Save changed settings from UI to file
+     */
     public void saveToFile(){
         saveModel();
         saveSettingsToFile();
@@ -51,6 +55,10 @@ public class SettingsDialogViewModel {
         }
     }
 
+    /**
+     * @param key settings key
+     * @return settings value from settings map by key. Returns null if settings key not present.
+     */
     public SettingModel getSettingModel(String key){
         try{
             return settingModels.stream().filter(settingStateModel -> settingStateModel.getKey().equals(key)).findFirst().get();
@@ -60,6 +68,9 @@ public class SettingsDialogViewModel {
         }
     }
 
+    /**
+     * Call connection to personal account test with loading dialog
+     */
     public void testConnection(){
         LoadingDialogView loadingDialog = new LoadingDialogView(AppUtils.getStringProperty("ui.loading.dialog.test.connection"));
         loadingDialog.show();

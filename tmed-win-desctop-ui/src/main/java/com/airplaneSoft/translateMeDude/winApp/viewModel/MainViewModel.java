@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- * Created by Mezentsev.Y on 10/24/2016.
+ * Main popup view model
  */
 public abstract class MainViewModel {
     protected StringProperty wordProperty = new SimpleStringProperty(this,"wordProperty");
@@ -14,7 +14,6 @@ public abstract class MainViewModel {
     protected StringProperty correctTranslationProperty = new SimpleStringProperty(this,"correctTranslationProperty");
     protected StringProperty descriptionProperty = new SimpleStringProperty(this,"descriptionProperty");;
     protected StringProperty transcriptionProperty = new SimpleStringProperty(this,"transcriptionProperty");
-    //private boolean getCorrectTranslationProperty;
     protected Word wordEntity;
 
     public MainViewModel() {
@@ -22,14 +21,16 @@ public abstract class MainViewModel {
         init();
     }
 
+    /**
+     * Initialise properties. Depends on translation direction
+     */
     public abstract void init();
 
+    /**
+     * Depends on translation direction
+     * @return true if translation is correct
+     */
     public abstract boolean isCorrectTranslate();
-
-    public boolean getCorrectTranslationProperty(){
-        //todo comparsion service
-        return false;
-    }
 
     public String getWordProperty() {
         return wordProperty.get();

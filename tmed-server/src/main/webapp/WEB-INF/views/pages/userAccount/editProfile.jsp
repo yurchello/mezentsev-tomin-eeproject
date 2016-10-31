@@ -18,8 +18,9 @@
                         <div class="form-group col-md-12">
                             <label class="col-md-3 control-lable" for="firstName">First Name</label>
                             <div class="col-md-7">
-                                <form:input type="text" path="firstName" onkeyup="doUpdateAvatar()" id="firstName" class="form-control input-sm"/>
-                                <label id="hhh" />
+                                <form:input type="text" path="firstName" onkeyup="doUpdateAvatar()" id="firstName"
+                                            class="form-control input-sm"/>
+                                <label id="hhh"/>
                                 <div class="has-error">
                                     <form:errors path="firstName" class="help-inline"/>
                                 </div>
@@ -40,7 +41,7 @@
                     </div>
 
                     <div>
-                        <form:hidden path="photo" id="photo" />
+                        <form:hidden path="photo" id="photo"/>
                     </div>
 
                     <div class="row">

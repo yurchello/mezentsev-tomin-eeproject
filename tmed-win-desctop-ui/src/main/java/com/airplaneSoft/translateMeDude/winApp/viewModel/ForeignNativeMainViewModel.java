@@ -3,7 +3,7 @@ package com.airplaneSoft.translateMeDude.winApp.viewModel;
 import com.airplaneSoft.translateMeDude.core.translationVerefier.TranslationVerifier;
 
 /**
- * Created by Mezentsev.Y on 10/27/2016.
+ * This class provide specific translation direction view model
  */
 public class ForeignNativeMainViewModel extends MainViewModel{
     private TranslationVerifier translationVerifier;
@@ -16,7 +16,6 @@ public class ForeignNativeMainViewModel extends MainViewModel{
     public void init(){
         wordProperty.setValue(this.wordEntity.getWord());
         correctTranslationProperty.setValue(this.wordEntity.getTranslation());
-        //translation = this.wordEntity.getTranslation();
         descriptionProperty.setValue(this.wordEntity.getDescription());
         transcriptionProperty.setValue(this.wordEntity.getTranscription());
     }

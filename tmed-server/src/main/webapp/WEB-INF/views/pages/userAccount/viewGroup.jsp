@@ -12,7 +12,7 @@
 
 <body>
 <h1>Group Name: ${wordsGroup.name}</h1>
-<div >
+<div>
     <div style=" height:80%; overflow:auto">
         <!-- Default panel contents -->
         <table class="display" cellspacing="0" width="100%" id="wordsList">

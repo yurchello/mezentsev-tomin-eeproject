@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import java.util.ResourceBundle;
 
 /**
- * Created by Mezentsev.Y on 10/21/2016.
+ * Utils class that provides basic functionality for resources getting etc.
  */
 public class AppUtils {
     public static ResourceBundle resourceBundle = ResourceBundle.getBundle("tmd");

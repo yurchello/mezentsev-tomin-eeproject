@@ -8,7 +8,7 @@ import com.airplaneSoft.translateMeDude.winApp.utils.RemoteServiceUtils;
 import javafx.concurrent.Task;
 
 /**
- * Created by Mezentsev.Y on 10/25/2016.
+ * REST Api test connection verification task
  */
 public class TestConnectionTask extends Task<Boolean>{
     private Settings settings;

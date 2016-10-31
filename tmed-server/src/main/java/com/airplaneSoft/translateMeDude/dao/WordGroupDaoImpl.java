@@ -21,6 +21,7 @@ import java.util.List;
 @Repository("wordGroupDao")
 public class WordGroupDaoImpl extends AbstractDao<Integer, WordsGroup> implements WordGroupDao{
 
+    @SuppressWarnings("unchecked")
     public List<WordsGroup> findAllGroups(){
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("name"));
         Session session = getSession();
@@ -34,8 +35,6 @@ public class WordGroupDaoImpl extends AbstractDao<Integer, WordsGroup> implement
     public void createGroup(WordsGroup wordsGroup, User user) {
         wordsGroup.setUser(user);
         persist(wordsGroup);
-//        Session session = getSession();
-//        session.save(wordsGroup);
     }
 
     @Override

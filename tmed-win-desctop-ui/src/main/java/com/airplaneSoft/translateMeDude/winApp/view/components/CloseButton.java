@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
- * Created by Mezentsev.Y on 10/21/2016.
+ * Main popup close button component
  */
 public class CloseButton extends Parent {
     private final static String SELECT_BUTTON = "cls_select.png";

@@ -1,14 +1,12 @@
 package com.airplaneSoft.translateMeDude.models;
 
-
-
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
 
 /**
- * Created by Mezentsev.Y on 9/16/2016.
+ * This class is entity for contact page. Email send block.
  */
 public class EmailSenderModel implements Serializable {
     @Email

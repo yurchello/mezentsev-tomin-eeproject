@@ -4,7 +4,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
 /**
- * Created by Mezentsev.Y on 9/11/2016.
+ * This class  provide sending email by specific credentials
  */
 
 public class EmailSender {
