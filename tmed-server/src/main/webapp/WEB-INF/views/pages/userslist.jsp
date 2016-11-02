@@ -39,7 +39,7 @@
                     <td>${user.email}</td>
                     <td>
                         <c:if test="${images[i.index] == null}">
-                            <img id="output" alt="df" width="20" src="/static/images/default.JPG">
+                            <img id="output" alt="df" width="20" src="/static/img/default.JPG">
                         </c:if>
                         <c:if test="${images[i.index] != null}">
                             <img src="data:image/jpeg;base64,${images[i.index]}" id="output" width="20" alt="df">

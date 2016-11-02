@@ -120,7 +120,7 @@
 
                                 </c:if>
                                 <c:if test="${user.photo == ''}">
-                                    <img id="output" alt="df" width="117" height="160" src="/static/images/default.JPG">
+                                    <img id="output" alt="df" width="117" height="160" src="/static/img/default.JPG">
                                 </c:if>
                             </div>
                         </div>
