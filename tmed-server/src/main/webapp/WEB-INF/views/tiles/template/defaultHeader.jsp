@@ -9,9 +9,8 @@
     <link href="<c:url value='/static/css/headerMenu.css' />" rel="stylesheet"/>
 </head>
 <body>
-
-<ul class="hrMenu">
-	<li> <a href="${pageContext.request.contextPath}/">Home</a></li>
+<ul class="hrMenu nav nav-tabs nav-justified">
+	<li> <a  href="${pageContext.request.contextPath}/">Home</a></li>
     <li> <a href="${pageContext.request.contextPath}/download">Download</a></li>
     <li> <a href="${pageContext.request.contextPath}/about">About Us</a></li>
     <li> <a href="${pageContext.request.contextPath}/help">Help</a></li>
