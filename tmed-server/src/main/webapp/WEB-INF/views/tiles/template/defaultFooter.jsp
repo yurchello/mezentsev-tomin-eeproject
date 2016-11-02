@@ -5,16 +5,15 @@
 
 <html>
 <head>
-
   <link href="<c:url value='/static/css/footerMenu.css' />" rel="stylesheet"/>
 </head>
 <body>
 <div>
   <ul class="hrFooterMenu">
-  <li> <a href="https://www.google.com.ua/">Google Translate</a></li>
-  <li> <a href="https://www.google.com.ua/">Movies with subtitles</a></li>
-  <li> <a href="https://www.google.com.ua/">Online E-Books</a></li>
-</ul>
+    <li> <a target="_blank" href="https://translate.google.com/">Google Translate</a></li>
+    <li> <a target="_blank" href="http://moviesub.org/">Movies with subtitles</a></li>
+    <li> <a target="_blank" href="https://howdoyou.do/">Live Conversation</a></li>
+  </ul>
 
 </div>
 </body>

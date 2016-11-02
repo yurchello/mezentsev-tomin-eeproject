@@ -75,31 +75,11 @@
 
 </head>
 <body>
-
-<div width="70%">
-    <%--<table id="example" class="display" cellspacing="0" width="100%">--%>
-    <%--<thead>--%>
-    <%--<tr>--%>
-    <%--<th>Name</th>--%>
-    <%--<th>Position</th>--%>
-    <%--<th>Office</th>--%>
-    <%--<th>Extn.</th>--%>
-    <%--<th>Start date</th>--%>
-    <%--<th>Salary</th>--%>
-    <%--</tr>--%>
-    <%--</thead>--%>
-    <%--<tfoot>--%>
-    <%--<tr>--%>
-    <%--<th>Name</th>--%>
-    <%--<th>Position</th>--%>
-    <%--<th>Office</th>--%>
-    <%--<th>Extn.</th>--%>
-    <%--<th>Start date</th>--%>
-    <%--<th>Salary</th>--%>
-    <%--</tr>--%>
-    <%--</tfoot>--%>
-    <%--</table>--%>
+<div class="well lead">Home</div>
+<div class="generic-container col-xs-12" style="height:50px;">
+  Home
 </div>
+
 
 </body>
 </html>

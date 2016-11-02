@@ -4,6 +4,9 @@
     <title>About</title>
 </head>
 <body>
-About page
+<div class="well lead">About Us</div>
+<div class="generic-container col-xs-12" style="height:50px;">
+    About page
+</div>
 </body>
 </html>

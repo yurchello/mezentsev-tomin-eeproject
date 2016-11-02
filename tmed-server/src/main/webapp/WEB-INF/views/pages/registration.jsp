@@ -101,7 +101,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-2 control-lable" for="description">Description</label>
                 <div class="col-md-4">
-                    <form:textarea type="text" path="description" id="description" rows="5" cols="30"
+                    <form:textarea style="resize:none" type="text" path="description" id="description" rows="5" cols="30"
                                    class="form-control input-sm"/>
                     <div class="has-error">
                         <form:errors path="description" class="help-inline"/>

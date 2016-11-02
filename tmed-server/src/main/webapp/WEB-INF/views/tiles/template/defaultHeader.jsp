@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <link href="<c:url value='/static/css/headerMenu.css' />" rel="stylesheet"/>
 </head>
 <body>

@@ -6,8 +6,8 @@
     <title>Download</title>
 </head>
 <body>
-<h1>Download Desktop TranslateMe Dude</h1>
-<div>
+<div class="well lead">Download TranslateMe Dude Application</div>
+<div class="generic-container col-xs-12" style="height:50px;">
     <div>
         <dl>
             <dt><label>Windows</label></dt>

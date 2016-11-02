@@ -4,6 +4,9 @@
     <title>Help</title>
 </head>
 <body>
-Help page
+<div class="well lead">Help</div>
+<div class="generic-container col-xs-12" style="height:50px;">
+    Help page
+</div>
 </body>
 </html>

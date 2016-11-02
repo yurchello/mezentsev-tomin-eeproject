@@ -42,7 +42,7 @@ body{
     position: fixed;
     font-family: 'bgMed',arial,helvetica,sans-serif;
 
-    font-size: 0.6em;
+    font-size: 1em;
     color: #ff94eb;
     /*z-index: 15;*/
 
@@ -118,3 +118,6 @@ body{
     /*min-width: 200px;*/
 }
 
+.has-error{
+    color:red;
+}
