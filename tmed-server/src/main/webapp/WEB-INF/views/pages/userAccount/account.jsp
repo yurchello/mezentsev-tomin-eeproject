@@ -12,6 +12,139 @@
 <!-- default header name is X-CSRF-TOKEN -->
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
+
+<body>
+<div class="well lead">Personal Page</div>
+<div class="generic-container col-xs-12" style="height:50px;">
+    <form:form method="POST" modelAttribute="user" class="form-horizontal">
+        <form:input type="hidden" path="id" id="id"/>
+        <table cellspacing="0" cellpadding="5">
+            <tr>
+                <td width="400" valign="top">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-8 control-lable" for="ssoid">SSOID</label>
+                            <div class="col-md-4">
+                                <label id="ssoid"
+                                       class="control-lable">${user.ssoId}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-8 control-lable" for="firstName">First Name</label>
+                            <div class="col-md-4">
+                                <label id="firstName"
+                                       class="control-lable">${user.firstName}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-8 control-lable" for="lastName">Last Name</label>
+                            <div class="col-md-4">
+                                <label id="lastName"
+                                       class="control-lable">${user.lastName}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-8 control-lable" for="email">Email</label>
+                            <div class="col-md-4">
+                                <label id="email"
+                                       class="control-lable">${user.email}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="form-group col-md-12">
+                                <label class="col-md-8 control-lable" for="description">Description</label>
+                            </div>
+                            <div class="col-md-12">
+                                <form:textarea style="resize:none" type="text" path="description" id="description"
+                                               rows="5" cols="30"
+                                               class="form-control input-sm" readonly="true"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="col-md-12">
+                                <a class="btn btn-primary btn-block" href="<c:url value='/editUser-${user.ssoId}'/>">Edit
+                                    Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="col-md-12">
+                                <a class="btn btn-primary btn-block" href="<c:url value='/groupsList-${user.ssoId}'/>">View
+                                    vocabulary</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+                <td width="400" valign="top" >
+                    <div class="accountImageArea">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <div class=" col-md-12">
+                                    <c:if test="${user.photo != ''}">
+                                        <img src="data:image/jpeg;base64,${photoPath}" id="output" width="200"
+                                             alt="df">
+                                    </c:if>
+                                    <c:if test="${user.photo == ''}">
+                                        <img id="output" alt="df" width="200" src="/static/img/default.JPG">
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
+
+
+                            <sec:authorize access="isAuthenticated()">
+                                <c:if test="${loggedinuser==user.ssoId}">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <div class="col-md-12">
+                                                <label class="col-md-12 btn btn-primary btn-block btn-file">
+                                                    Browse... <input onchange="loadFile(event)" id="file" type="file"
+                                                                     path="file" style="display: none;">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <div class="col-md-12">
+                                                <a class="btn btn-primary btn-block btn-sm" name="refresh" id="refresh"
+                                                   type="button" onclick="avatarUpload()">Refresh</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <div class="col-md-12">
+                                                <a class="btn btn-primary btn-block btn-sm"
+                                                   href="<c:url value='/user-${user.ssoId}'/>">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </c:if>
+                            </sec:authorize>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </form:form>
+</div>
+</body>
 <script>
 
     $(function () {
@@ -48,97 +181,4 @@
 
 
 </script>
-<body>
-<div class="generic-container">
-    <h1>Personal Page</h1>
-    <form:form method="POST" modelAttribute="user" class="form-horizontal">
-        <form:input type="hidden" path="id" id="id"/>
-
-        <table>
-            <tr>
-                <td>
-                    <div id="opt-in" style="display:none;">
-                        <form>
-                            <input type="email" placeholder="Your email goes here...">
-                            <input type="submit" value="Free Instant Access!">
-                        </form>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="col-md-3 control-lable">First Name: ${user.firstName}</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="col-md-3 control-lable">Last Name: ${user.lastName}</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="col-md-3 control-lable">SSO ID: ${user.ssoId}</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="col-md-3 control-lable">Email: ${user.email}</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="col-md-3 control-lable" for="description">Description: </label>
-                            <div class="col-md-7">
-                                <form:textarea type="text" path="description" id="description" rows="5" cols="30"
-                                               class="form-control input-sm" readonly="true"/>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label class="col-md-3 control-lable">Photo:</label>
-                            <div>
-                                <c:if test="${user.photo != ''}">
-                                    <img src="data:image/jpeg;base64,${photoPath}" id="output" width="117"
-                                         alt="df">
-                                </c:if>
-                                <c:if test="${user.photo == ''}">
-                                    <img id="output" alt="df" width="117" src="/static/img/default.JPG">
-                                </c:if>
-                            </div>
-
-                            <sec:authorize access="isAuthenticated()">
-                                <c:if test="${loggedinuser==user.ssoId}">
-                                    <div>
-                                        <div>
-                                            <input id="file" type="file" path="file"
-                                                   onchange="loadFile(event)" accept="image/jpeg,image/png"/>
-                                        </div>
-                                        <div>
-                                            <button name="refresh" id="refresh" type="button"
-                                                    onclick="avatarUpload()">Refresh
-                                            </button>
-                                            <a href="<c:url value='/user-${user.ssoId}'/>">Cancel</a>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <a href="<c:url value='/editUser-${user.ssoId}'/>">Edit Profile</a>
-                                    </div>
-                                </c:if>
-                                <div>
-                                    <a href="<c:url value='/groupsList-${user.ssoId}'/>">View vocabulary</a>
-                                </div>
-                            </sec:authorize>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </form:form>
-</div>
-</body>
 </html>

@@ -77,7 +77,46 @@
 <body>
 <div class="well lead">Home</div>
 <div class="generic-container col-xs-12" style="height:50px;">
-  Home
+<table width="100%" cellspacing="0" cellpadding="5">
+    <tr>
+        <td width="200" valign="top" style="background-color: #f0ad4e">
+            <img  style="background-color: #f0ad4e" id="output" alt="df" width="117" src="/static/img/default.JPG">
+        </td>
+        <td valign="top" style="background-color: green">
+            <label  class="control-lable" for="firstName">First Name</label>
+            <div >
+                <label style="background-color: #f0ad4e" id="firstName" class="control-lable">${user.firstName}</label>
+            </div>
+        </td>
+    </tr>
+</table>
+    <%--<div class="container">--%>
+        <%--&lt;%&ndash;<div class="row">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<div class="col-lg-5" style="height:400px; background:green;">&ndash;%&gt;--%>
+
+                <%--&lt;%&ndash;<div class="row">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<div class="form-group" style="background-color: red">&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;&lt;%&ndash;<label style="background-color: green" class="control-lable" for="firstName">First Name</label>&ndash;%&gt;&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;&lt;%&ndash;<div class="col-lg-4">&ndash;%&gt;&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;&lt;%&ndash;<label style="background-color: #f0ad4e" id="firstName" class="control-lable">Yura</label>&ndash;%&gt;&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;&lt;%&ndash;</div>&ndash;%&gt;&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<div class="row">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<div class="form-group" style="background-color: yellow">&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;&lt;%&ndash;<label style="background-color: green" class="control-lable" for="ssoid">SSOID</label>&ndash;%&gt;&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;&lt;%&ndash;<div class="col-lg-4">&ndash;%&gt;&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;&lt;%&ndash;<label style="background-color: #f0ad4e" id="ssoid" class="control-lable">Yurchello</label>&ndash;%&gt;&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;&lt;%&ndash;</div>&ndash;%&gt;&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+
+            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<div class="col-lg-5" style="height:400px; background:orange;">&ndash;%&gt;--%>
+
+            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+    <%--</div>--%>
 </div>
 
 
