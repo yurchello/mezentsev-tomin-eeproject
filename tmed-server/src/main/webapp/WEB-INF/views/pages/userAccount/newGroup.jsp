@@ -10,21 +10,41 @@
 <form:form method="POST" modelAttribute="wordsGroup">
 <div class="well lead">New Words Group</div>
 <div style=" height:80%; overflow:auto">
-    <div>
-        <div>
-            <label for="name">Group Name</label>
-            <div class="has-error">
-                <form:errors path="name" class="help-inline"/>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label class="col-md-2 control-lable" for="name">Words Group Name</label>
+            <div class="col-md-4">
+                <div class="has-error">
+                    <form:errors path="name" class="help-inline"/>
+                </div>
+                <form:input type="text" path="name" id="name" class="form-control input-sm"/>
             </div>
-            <div class="col-md-7">
-                <form:input type="text" path="name" id="name" />
-            </div>
-        </div>
-
-        <div>
-            <input type="submit" value="Add" id="addNewGroup" class="btn btn-primary btn-sm"/> or <a href="<c:url value='/groupsList-${ssoId}'/>">Cancel</a>
         </div>
     </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <div class="col-md-4">
+                <input type="submit" value="Add" id="addNewGroup" class="btn btn-success btn-sm"/> or <a href="<c:url value='/groupsList-${ssoId}'/>">Cancel</a>
+            </div>
+        </div>
+    </div>
+
+
+    <%--<div>--%>
+        <%--<div>--%>
+            <%--<label for="name">Group Name</label>--%>
+            <%--<div class="has-error">--%>
+                <%--<form:errors path="name" class="help-inline"/>--%>
+            <%--</div>--%>
+            <%--<div class="col-md-7">--%>
+                <%--<form:input type="text" path="name" id="name" />--%>
+            <%--</div>--%>
+        <%--</div>--%>
+
+        <%--<div>--%>
+            <%--<input type="submit" value="Add" id="addNewGroup" class="btn btn-primary btn-sm"/> or <a href="<c:url value='/groupsList-${ssoId}'/>">Cancel</a>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 </form:form>
 </body>
 </html>

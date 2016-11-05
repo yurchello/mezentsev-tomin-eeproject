@@ -192,6 +192,9 @@ public class MainController extends BaseController{
     @RequestMapping(value = {"/editUser-{ssoId}"}, method = RequestMethod.POST)
     public String updateProfile(@Valid User user, BindingResult result,
                                 ModelMap model, HttpServletRequest request){
+        if (result.hasErrors()){
+            return "editProfile";
+        }
         if (user.getUserProfiles() == null || user.getUserProfiles().size() == 0){
             setUserRoles(user, (List<UserProfile>) model.get("roles"));
         }
