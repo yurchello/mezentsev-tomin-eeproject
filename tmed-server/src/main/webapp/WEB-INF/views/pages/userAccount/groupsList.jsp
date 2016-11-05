@@ -9,13 +9,12 @@
     <link href="<c:url value='/static/css/jquery.dataTables.min.css' />" rel="stylesheet"/>
     <script type="text/javascript" src="/static/js/jquery-1.12.3.js"></script>
     <script type="text/javascript" src="/static/js/jquery.dataTables.min.js"></script>
+    <title>Words Groups</title>
 </head>
 <body>
-<h1>Words Groups</h1>
-<div>
-    <div class="panel panel-default">
-
-        <div style=" height:80%; overflow:auto">
+<div class="well lead">Words Groups</div>
+<div style=" height:80%; overflow:auto">
+    <div class="generic-container">
             <table id="groupListTable" class="display" cellspacing="0" width="100%">
                 <thead>
                 <tr>
@@ -40,9 +39,9 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div>
+            <div class="well">
                 <c:if test="${edit}">
-                    <a href="/newGroup?ssoId=${user.ssoId}">Add New Group</a>
+                    <a href="/newGroup?ssoId=${user.ssoId}">Add New Words Group</a>
                 </c:if>
             </div>
         </div>

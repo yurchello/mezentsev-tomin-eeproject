@@ -9,7 +9,8 @@
     <title>Add New Word</title>
 </head>
 <body>
-<h1>Add New Word to ${wordsGroup.name} group</h1>
+<div class="well lead">Add New Word to ${wordsGroup.name}</div>
+<div style=" height:80%; overflow:auto">
 <form:form method="POST" modelAttribute="word">
     <input type="hidden" id="wordsGroupId" name="wordsGroupId" value="${wordsGroup.id}">
     <form:input type="hidden" path="id" id="id"/>

@@ -8,8 +8,12 @@
     <title>Error Sending Email</title>
 </head>
 <body>
-<center>
-    <h3><%=request.getAttribute("message")%></h3>
-</center>
+<div class="well lead">Success</div>
+<div class="generic-container col-xs-12" style="height:50px;">
+    <div style="text-align: center">
+        <div><h3>%=request.getAttribute("message")%</h3></div>
+    </div>
+</div>
 </body>
+
 </html>

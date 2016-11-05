@@ -52,7 +52,7 @@
 
                             <div class="input-group input-sm">
                                 <div  >
-                                    <a  href="<c:url value='/newuser' />">Registration</a>
+                                    <a href="<c:url value='/newuser' />">Registration</a>
                                 </div>
                             </div>
 

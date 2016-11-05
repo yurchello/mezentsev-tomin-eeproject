@@ -8,6 +8,8 @@
 </head>
 <body>
 <form:form method="POST" modelAttribute="wordsGroup">
+<div class="well lead">New Words Group</div>
+<div style=" height:80%; overflow:auto">
     <div>
         <div>
             <label for="name">Group Name</label>

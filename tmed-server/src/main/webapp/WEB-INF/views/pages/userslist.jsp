@@ -9,13 +9,14 @@
     <link href="<c:url value='/static/css/jquery.dataTables.min.css' />" rel="stylesheet"/>
     <script type="text/javascript" src="/static/js/jquery-1.12.3.js"></script>
     <script type="text/javascript" src="/static/js/jquery.dataTables.min.js"></script>
+    <title>User List</title>
 </head>
 
 <body>
 <div class="generic-container">
-    <div class="panel panel-default" style=" height:80%; overflow:auto">
+    <div class="well lead">User List</div>
+    <div style=" height:80%; overflow:auto">
         <!-- Default panel contents -->
-        <h1>Find User</h1>
         <table id="userListTable" class="display" cellspacing="0" width="100%">
             <thead>
             <tr>

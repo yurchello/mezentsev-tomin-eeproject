@@ -8,8 +8,11 @@
     <title>Send e-mail result</title>
 </head>
 <body>
-<center>
-    <h2>Thank you, your email has been sent.</h2>
-</center>
+<div class="well lead">Success</div>
+<div class="generic-container col-xs-12" style="height:50px;">
+    <div style="text-align: center">
+        <div><h1>Thank you, your email has been sent.</h1></div>
+    </div>
+</div>
 </body>
 </html>

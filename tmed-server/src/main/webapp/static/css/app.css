@@ -18,7 +18,7 @@ body{
     top: 0px;
 
     width: 100%;
-	height: 41px;
+	height: 40px;
 	position: fixed;
 	font-family: 'bgMed',arial,helvetica,sans-serif;
 
@@ -57,7 +57,7 @@ body{
 
 
 #sidemenu {
-    width: 20%;
+    width: 250px;
     background-color: #ebad98;
     height: 100%;
     overflow: auto;
@@ -65,7 +65,7 @@ body{
     /*z-index: 20;*/
     position: fixed;
     left: 0px;
-    margin-top:42px;
+    margin-top:40px;
 }
 
 #sidemenu #menu {
@@ -83,6 +83,11 @@ body{
     font-size: 1.2em;
     padding-right:0px;
 }
+
+/*#sidemenu{*/
+    /*min-width: 300px;*/
+    /*max-width: 300px;*/
+/*}*/
 
 #sidemenu #menu li a {
     text-decoration: none;
@@ -104,7 +109,7 @@ body{
 }
 
 #site-content {
-    width: 80%;
+    width: 70%;
     height: 100%;
     /*overflow: auto;*/
     float: left;
@@ -113,7 +118,7 @@ body{
     min-height: 600px;
     margin-top:40px;
     margin-bottom:40px;
-    margin-left: 20%;
+    margin-left: 250px;
     padding-left:0px;
     /*min-width: 200px;*/
 }
@@ -139,6 +144,11 @@ body{
 }
 
 .accountImageArea{
+    display: table;
+    margin: 0 auto;
+}
+
+.hrMenu{
     display: table;
     margin: 0 auto;
 }
@@ -182,3 +192,4 @@ body{
     cursor: inherit;
     display: block;
 }
+

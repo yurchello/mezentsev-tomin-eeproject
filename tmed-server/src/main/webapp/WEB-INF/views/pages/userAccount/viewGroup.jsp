@@ -7,13 +7,14 @@
     <link href="<c:url value='/static/css/jquery.dataTables.min.css' />" rel="stylesheet"/>
     <script type="text/javascript" src="/static/js/jquery-1.12.3.js"></script>
     <script type="text/javascript" src="/static/js/jquery.dataTables.min.js"></script>
-    <title>View Words Group</title>
+    <title>Words Group</title>
 </head>
 
 <body>
-<h1>Group Name: ${wordsGroup.name}</h1>
+<div class="well lead">Group Name: ${wordsGroup.name}</div>
+<div style=" height:80%; overflow:auto">
 <div>
-    <div style=" height:80%; overflow:auto">
+
         <!-- Default panel contents -->
         <table class="display" cellspacing="0" width="100%" id="wordsList">
             <thead>
