@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Send an e-mail</title>
 </head>
-<body>
+<body class="text-colour">
 <div class="well lead">Contact Us</div>
 <div class="generic-container col-xs-12" style="height:50px;">
     <form:form method="POST" modelAttribute="emailSenderModel">

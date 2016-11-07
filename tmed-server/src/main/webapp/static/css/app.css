@@ -5,7 +5,7 @@ html{
 
 body{
 	height: 100%;
-    background-color: #c7bdbb;
+    background-color: #424242;
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 0px;
@@ -27,7 +27,7 @@ body{
     /*z-index: 15;*/
 
     text-transform: uppercase;
-    background-color: #f16743;
+    background-color: #313131;
     /*border-bottom: 2px solid hsl(180,70%,55%);*/
     /*padding-top:5px;*/
     text-align:center;
@@ -43,11 +43,11 @@ body{
     font-family: 'bgMed',arial,helvetica,sans-serif;
 
     font-size: 1em;
-    color: #ff94eb;
+    color: #DEDFD6;
     /*z-index: 15;*/
 
     text-transform: uppercase;
-    background-color: rgb(135, 98, 89);
+    background-color: #DEDFD6;
     /*border-bottom: 2px solid hsl(180,70%,55%);*/
     /*padding-top:20px;*/
     padding-bottom:5px;
@@ -58,7 +58,7 @@ body{
 
 #sidemenu {
     width: 250px;
-    background-color: #ebad98;
+    background-color: #3a3a3a;
     height: 100%;
     overflow: auto;
     float: left;
@@ -193,3 +193,11 @@ body{
     display: block;
 }
 
+.labeled-text{
+    text-align: center;
+    color: #F7F7F7;
+}
+
+.text-colour{
+    color: #F7F7F7;
+}

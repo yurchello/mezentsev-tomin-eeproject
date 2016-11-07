@@ -77,7 +77,75 @@
 <body>
 <div class="well lead">Home</div>
 <div class="generic-container col-xs-12" style="height:50px;">
+    <div class=labeled-text>
+        <div align="center">
+            <h1>Improve yourself!</h1>
+        </div>
+        <div class=labeled-text>
+            <table cellspacing="0" cellpadding="5" align="center">
+                <tr>
+                    <td width="200" valign="top">
+                        <div class="accountImageArea">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <div class=" col-md-12">
+                                        <img  alt="df" width="150" src="/static/img/voc_emblem.png">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <div class=" col-md-12 labeled-text">
+                                        <h3>Vocabulary</h3>
+                                        Create foreign language vocabulary.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="200" valign="top">
+                        <div class="accountImageArea">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <div class=" col-md-12">
+                                        <img  alt="df" width="150" src="/static/img/mobile_emblem.png">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <div class=" col-md-12 labeled-text">
+                                        <h3>Mobile Application</h3>
+                                        Download mobile application for Android and iOS.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="200" valign="top">
+                        <div class="accountImageArea">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <div class=" col-md-12">
+                                        <img  alt="df" width="150" src="/static/img/pc_emblem.png">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <div class=" col-md-12 labeled-text">
+                                        <h3>Desktop Application</h3>
+                                        Download desktop application for Windows and MAC.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
 
+                </tr>
+            </table>
+        </div>
+    </div>
 
 </div>
 

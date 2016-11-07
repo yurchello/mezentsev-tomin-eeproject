@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
 </head>
 <body>
-<div id="mainWrapper">
+<div id="mainWrapper" class="text-colour">
     <div class="login-container">
         <div class="login-card">
             <div class="login-form">
@@ -62,14 +62,14 @@
                     <div>
                         <%@include file="pages/authheader.jsp" %>
                     </div>
-                    <div align="center">
-                        <div>
-                            <a href="<c:url value='/user-${loggedinuser}' />">My Account</a>
-                        </div>
-                        <div>
-                            <a href="<c:url value='/usersList' />">Find User</a>
-                        </div>
-                    </div>
+                    <%--<div align="left">--%>
+                        <%--<div>--%>
+                            <%--<a href="<c:url value='/user-${loggedinuser}' />">My Account</a>--%>
+                        <%--</div>--%>
+                        <%--<div>--%>
+                            <%--<a href="<c:url value='/usersList' />">Find User</a>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                 </sec:authorize>
                 </form>
             </div>

@@ -8,7 +8,7 @@
 <body>
 <div class="well lead">Download TranslateMe Dude Application</div>
 <div class="generic-container col-xs-12" style="height:50px;">
-    <div>
+    <div class="text-colour">
         <dl>
             <dt><label>Windows</label></dt>
             <dd>
@@ -28,7 +28,7 @@
         </dl>
     </div>
 
-    <div>
+    <div class="text-colour">
         <dl>
             <dt><label>Android</label></dt>
             <dd>
@@ -48,7 +48,7 @@
         </dl>
     </div>
 
-    <div>
+    <div class="text-colour">
         <dl>
             <dt><label>IOS</label></dt>
             <dd>
