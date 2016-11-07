@@ -3,6 +3,7 @@ package com.airplaneSoft.translateMeDude.dao;
 import com.airplaneSoft.translateMeDude.models.User;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
