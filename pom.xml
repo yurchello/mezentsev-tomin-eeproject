@@ -10,11 +10,11 @@
 
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>tmed-server</module>
-        <module>tmed-core</module>
-        <module>tmed-win-desctop-ui</module>
         <module>tmed-persistence</module>
+        <module>tmed-core</module>
         <module>tmed-common</module>
+        <module>tmed-server</module>
+        <module>tmed-win-desctop-ui</module>
     </modules>
 
 
