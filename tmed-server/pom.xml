@@ -203,7 +203,6 @@
             <artifactId>tiles-jsp</artifactId>
             <version>${apachetiles.version}</version>
         </dependency>
-
         <!--Email sending-->
         <dependency>
             <groupId>javax.mail</groupId>
