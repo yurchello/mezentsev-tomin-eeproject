@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar $PATH_TO_JAR
+web:    java -jar tmed-server/target/dependency/webapp-runner.jar --port $PORT tmed-server/target/SpringMVCHibernateWithSpringSecurityExample.war
