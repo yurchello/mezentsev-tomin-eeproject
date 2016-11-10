@@ -9,13 +9,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Send an e-mail</title>
 </head>
-<body class="text-colour">
+<body >
 <div class="well lead">Contact Us</div>
 <div class="generic-container col-xs-12" style="height:50px;">
     <form:form method="POST" modelAttribute="emailSenderModel">
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-1 control-lable" for="mailFrom">Your Email</label>
+                <label class="col-md-1 control-lable text-colour" for="mailFrom">Your Email</label>
                 <div class="col-md-4">
                     <div class="has-error">
                         <form:errors path="mailFrom" class="help-inline"/>
@@ -26,7 +26,7 @@
         </div>
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-1 control-lable" for="subject">Subject</label>
+                <label class="col-md-1 control-lable text-colour" for="subject">Subject</label>
                 <div class="col-md-4">
                     <div class="has-error">
                         <form:errors path="subject" class="help-inline"/>
@@ -38,7 +38,7 @@
 
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-1 control-lable" for="message">Message</label>
+                <label class="col-md-1 control-lable text-colour" for="message">Message</label>
                 <div class="col-md-4">
                     <div class="has-error">
                         <form:errors path="message" class="help-inline"/>
@@ -49,7 +49,7 @@
         </div>
         <div class="row">
             <div class="form-group col-md-12">
-                <div class="col-md-4">
+                <div class="col-md-4" >
                     <input type="submit" value="Send E-mail" class="btn btn-success btn-sm"/>
                 </div>
             </div>

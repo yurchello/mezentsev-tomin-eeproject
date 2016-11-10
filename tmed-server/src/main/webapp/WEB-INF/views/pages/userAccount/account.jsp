@@ -93,8 +93,8 @@
                         </div>
 
                     </td>
-                    <td width="400" valign="top" >
-                        <div class="accountImageArea">
+                    <td width="200" valign="top"   >
+                        <%--<div class="accountImageArea">--%>
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <div class=" col-md-12">
@@ -125,7 +125,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <div class="col-md-12">
-                                                <a class="btn btn-primary btn-block btn-sm" name="refresh" id="refresh"
+                                                <a class="btn btn-primary btn-block btn-sm"  name="refresh" id="refresh"
                                                    type="button" onclick="avatarUpload()">Refresh</a>
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@
 
                                 </c:if>
                             </sec:authorize>
-                        </div>
+                        <%--</div>--%>
                     </td>
                 </tr>
             </table>

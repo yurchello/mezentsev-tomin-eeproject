@@ -7,7 +7,7 @@
 <body>
 <div class="well lead">Error</div>
 <div class="generic-container col-xs-12" style="height:50px;">
-    <div style="text-align: center">
+    <div style="text-align: center" class="text-colour">
         <div><h1>Access Denied</h1></div>
         <div>Sorry dude. Please, log in or  <a href="<c:url value='/newuser' />">Register</a></div>
     </div>

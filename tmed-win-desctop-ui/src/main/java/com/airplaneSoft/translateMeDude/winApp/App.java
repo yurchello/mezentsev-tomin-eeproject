@@ -135,6 +135,7 @@ public class App extends Application {
                 tray.remove(trayIcon);//clean icon
             }));
             tray.add(trayIcon);
+            System.out.println("Application run");
         } catch (java.awt.AWTException | IOException e) {
             System.out.println("Unable to init system tray");
             e.printStackTrace();

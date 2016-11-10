@@ -6,7 +6,7 @@
 <body>
 <div class="well lead">Error</div>
 <div class="generic-container col-xs-12" style="height:50px;">
-    <div style="text-align: center">
+    <div style="text-align: center" class="text-colour">
         <div><h1>OOOPS!!! Some ERROR occurred...</h1></div>
         <div>${msg}</div>
     </div>

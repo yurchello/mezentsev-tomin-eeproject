@@ -10,7 +10,7 @@
 <body>
 <div class="well lead">Error</div>
 <div class="generic-container col-xs-12" style="height:50px;">
-    <div style="text-align: center">
+    <div style="text-align: center" class="text-colour">
         <div><h3>%=request.getAttribute("message")%</h3></div>
     </div>
 </div>
