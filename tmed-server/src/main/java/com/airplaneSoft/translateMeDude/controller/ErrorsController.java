@@ -17,7 +17,7 @@ public class ErrorsController extends BaseController{
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public String handle(Exception ex) {
-        logger.debug("NoHandlerFoundException: ",ex);
+        logger.error("NoHandlerFoundException: ",ex);
         return "page404";
     }
 
@@ -26,7 +26,7 @@ public class ErrorsController extends BaseController{
         ModelAndView mav = new ModelAndView();
         mav.addObject("msg", ex.getMessage());
         mav.setViewName("errorOccurred");
-        logger.debug("ResourceNotFoundException: ",ex);
+        logger.error("ResourceNotFoundException: ",ex);
         return mav;
     }
 }
