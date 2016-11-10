@@ -14,8 +14,8 @@
 <body>
 <div class="well lead">Words Groups</div>
 <div style=" height:80%; overflow:auto">
-    <div class="generic-container">
-            <table id="groupListTable" class="display" cellspacing="0" width="100%">
+    <div class="well">
+        <table id="groupListTable" class="display" cellspacing="0" width="100%">
                 <thead>
                 <tr>
                     <th>Group name</th>
@@ -39,13 +39,13 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div class="well">
-                <c:if test="${edit}">
-                    <a href="/newGroup?ssoId=${user.ssoId}">Add New Words Group</a>
-                </c:if>
-            </div>
-        </div>
     </div>
+    <div class="well">
+        <c:if test="${edit}">
+            <a href="/newGroup?ssoId=${user.ssoId}">Add New Words Group</a>
+        </c:if>
+    </div>
+</div>
 
 </div>
 </body>

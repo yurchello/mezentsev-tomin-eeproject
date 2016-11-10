@@ -10,14 +10,14 @@
 </head>
 <body>
 <div class="well lead">Add New Word to ${wordsGroup.name}</div>
-<div style=" height:80%; overflow:auto">
+<div class="generic-container col-xs-12" style="height:50px;">
 <form:form method="POST" modelAttribute="word">
     <input type="hidden" id="wordsGroupId" name="wordsGroupId" value="${wordsGroup.id}">
     <form:input type="hidden" path="id" id="id"/>
 
     <div class="row">
         <div class="form-group col-md-12">
-            <label class="col-md-2 control-lable" for="word">Word</label>
+            <label class="col-md-2 control-lable text-colour" for="word">Word</label>
             <div class="col-md-4">
                 <div class="has-error">
                     <form:errors path="word" class="help-inline"/>
@@ -29,7 +29,7 @@
 
     <div class="row">
         <div class="form-group col-md-12">
-            <label class="col-md-2 control-lable" for="transcription">Transcription</label>
+            <label class="col-md-2 control-lable text-colour" for="transcription">Transcription</label>
             <div class="col-md-4">
                 <div class="has-error">
                     <form:errors path="transcription" class="help-inline"/>
@@ -41,7 +41,7 @@
 
     <div class="row">
         <div class="form-group col-md-12">
-            <label class="col-md-2 control-lable" for="translation">Translation</label>
+            <label class="col-md-2 control-lable text-colour" for="translation">Translation</label>
             <div class="col-md-4">
                 <div class="has-error">
                     <form:errors path="translation" class="help-inline"/>
@@ -53,7 +53,7 @@
 
     <div class="row">
         <div class="form-group col-md-12">
-            <label class="col-md-2 control-lable" for="description">Description</label>
+            <label class="col-md-2 control-lable text-colour" for="description">Description</label>
             <div class="col-md-4">
                 <form:textarea style="resize:none" type="text" path="description" id="description" rows="5" cols="30"
                                class="form-control input-sm"/>
@@ -64,8 +64,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-md-12">
-            <div class="col-md-4">
+        <div class="form-group col-md-12 text-colour">
                 <input type="submit" value="Add" id="registerButton" class="btn btn-success btn-sm"/> or <a href="/view-group?wordsGroupId=${wordsGroup.id}&ssoId=${ssoId}">Cancel</a>
             </div>
         </div>

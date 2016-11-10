@@ -9,10 +9,10 @@
 <body>
 <form:form method="POST" modelAttribute="wordsGroup">
 <div class="well lead">New Words Group</div>
-<div style=" height:80%; overflow:auto">
+<div class="generic-container col-xs-12" style="height:50px;">
     <div class="row">
         <div class="form-group col-md-12">
-            <label class="col-md-2 control-lable" for="name">Words Group Name</label>
+            <label class="col-md-2 control-lable text-colour" for="name">Words Group Name</label>
             <div class="col-md-4">
                 <div class="has-error">
                     <form:errors path="name" class="help-inline"/>
@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="form-group col-md-12">
-            <div class="col-md-4">
+            <div class="col-md-4 text-colour">
                 <input type="submit" value="Add" id="addNewGroup" class="btn btn-success btn-sm"/> or <a href="<c:url value='/groupsList-${ssoId}'/>">Cancel</a>
             </div>
         </div>

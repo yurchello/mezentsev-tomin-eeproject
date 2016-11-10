@@ -18,7 +18,7 @@
 
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-2 control-lable" for="firstName">First Name</label>
+                <label class="col-md-2 control-lable text-colour text-colour" for="firstName">First Name</label>
                 <div class="col-md-4">
                     <div class="has-error">
                         <form:errors path="firstName" class="help-inline"/>
@@ -30,7 +30,7 @@
 
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-2 control-lable" for="lastName">Last Name</label>
+                <label class="col-md-2 control-lable  text-colour" for="lastName">Last Name</label>
                 <div class="col-md-4">
                     <div class="has-error">
                         <form:errors path="lastName" class="help-inline"/>
@@ -42,7 +42,7 @@
 
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-2 control-lable" for="ssoId">SSO ID</label>
+                <label class="col-md-2 control-lable  text-colour" for="ssoId">SSO ID</label>
                 <div class="col-md-4">
                     <c:choose>
                         <c:when test="${edit}">
@@ -62,7 +62,7 @@
 
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-2 control-lable" for="password">Password</label>
+                <label class="col-md-2 control-lable  text-colour" for="password">Password</label>
                 <div class="col-md-4">
                     <div class="has-error">
                         <form:errors path="password" class="help-inline"/>
@@ -76,7 +76,7 @@
         </div>
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-2 control-lable" for="password2">Confirm password</label>
+                <label class="col-md-2 control-lable  text-colour" for="password2">Confirm password</label>
                 <div class="col-md-4">
                     <input type="text" path="password2" id="password2" onkeyup="confirmPassword()"
                            class="form-control input-sm"/>
@@ -87,7 +87,7 @@
 
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-2 control-lable" for="email">Email</label>
+                <label class="col-md-2 control-lable  text-colour" for="email">Email</label>
                 <div class="col-md-4">
                     <div class="has-error">
                         <form:errors path="email" class="help-inline"/>
@@ -99,7 +99,7 @@
 
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-2 control-lable" for="description">Description</label>
+                <label class="col-md-2 control-lable  text-colour" for="description">Description</label>
                 <div class="col-md-4">
                     <form:textarea style="resize:none" type="text" path="description" id="description" rows="5" cols="30"
                                    class="form-control input-sm"/>
@@ -115,7 +115,7 @@
         <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-2 control-lable" for="userProfiles">Roles</label>
+                    <label class="col-md-2 control-lable  text-colour" for="userProfiles">Roles</label>
                     <div class="col-md-4">
                         <form:select path="userProfiles" items="${roles}" multiple="true" itemValue="id"
                                      itemLabel="type" class="form-control input-sm"/>
@@ -131,7 +131,7 @@
         </sec:authorize>
         <div class="row">
             <div class="form-group col-md-12">
-                <div class="col-md-4">
+                <div class="col-md-4 text-colour">
                     <input type="submit" disabled="true" value="Register" id="registerButton" class="btn btn-success btn-sm"/> or <a href="<c:url value='/' />">Cancel</a>
                 </div>
             </div>

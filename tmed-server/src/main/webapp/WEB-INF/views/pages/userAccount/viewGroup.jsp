@@ -12,9 +12,8 @@
 
 <body>
 <div class="well lead">Group Name: ${wordsGroup.name}</div>
-<div style=" height:80%; overflow:auto">
-<div>
-
+<div  style=" height:80%; overflow:auto">
+    <div class="well">
         <!-- Default panel contents -->
         <table class="display" cellspacing="0" width="100%" id="wordsList">
             <thead>
@@ -48,15 +47,12 @@
             </tbody>
 
         </table>
-        <div>
-            <c:if test="${edit}">
-                <div class="well">
-                    <a href="/newWord?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}">Add New Word</a>
-                </div>
-            </c:if>
-        </div>
     </div>
-
+    <div class="well">
+        <c:if test="${edit}">
+            <a href="/newWord?wordsGroupId=${wordsGroup.id}&ssoId=${user.ssoId}">Add New Word</a>
+        </c:if>
+    </div>
 </div>
 
 </body>

@@ -17,43 +17,45 @@
     <div class="well lead">User List</div>
     <div style=" height:80%; overflow:auto">
         <!-- Default panel contents -->
-        <table id="userListTable" class="display" cellspacing="0" width="100%">
-            <thead>
-            <tr>
-                <th>SSO ID</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Photo</th>
-                <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-                    <th>Delete</th>
-                </sec:authorize>
-
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${users}" var="user" varStatus="i">
+        <div class="well">
+            <table  id="userListTable" class="display" cellspacing="0" width="100%">
+                <thead>
                 <tr>
-                    <td><a href="<c:url value='/user-${user.ssoId}'/>">${user.ssoId}</a></td>
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td>
-                    <td>${user.email}</td>
-                    <td>
-                        <c:if test="${images[i.index] == null}">
-                            <img id="output" alt="df" width="20" src="/static/img/default.JPG">
-                        </c:if>
-                        <c:if test="${images[i.index] != null}">
-                            <img src="data:image/jpeg;base64,${images[i.index]}" id="output" width="20" alt="df">
-                        </c:if>
-                    </td>
-                    <sec:authorize access="hasRole('ADMIN')">
-                        <td><a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width">Delete</a>
-                        </td>
+                    <th >SSO ID</th>
+                    <th >First name</th>
+                    <th >Last name</th>
+                    <th >Email</th>
+                    <th >Photo</th>
+                    <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+                        <th >Delete</th>
                     </sec:authorize>
+
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach items="${users}" var="user" varStatus="i">
+                    <tr>
+                        <td><a href="<c:url value='/user-${user.ssoId}'/>">${user.ssoId}</a></td>
+                        <td >${user.firstName}</td>
+                        <td>${user.lastName}</td>
+                        <td>${user.email}</td>
+                        <td>
+                            <c:if test="${images[i.index] == null}">
+                                <img id="output" alt="df" width="20" src="/static/img/default.JPG">
+                            </c:if>
+                            <c:if test="${images[i.index] != null}">
+                                <img src="data:image/jpeg;base64,${images[i.index]}" id="output" width="20" alt="df">
+                            </c:if>
+                        </td>
+                        <sec:authorize access="hasRole('ADMIN')">
+                            <td><a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width">Delete</a>
+                            </td>
+                        </sec:authorize>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
         <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
             <div class="well">
                 <a href="<c:url value='/newuser' />">Add New User</a>

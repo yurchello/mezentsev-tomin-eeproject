@@ -9,8 +9,8 @@
 </head>
 <body>
 <%--<ul class="hrMenu nav nav-tabs nav-justified">--%>
-<ul class="hrMenu nav  nav-tabs">
-	<li> <a  href="${pageContext.request.contextPath}/">Home</a></li>
+<ul class="hrMenu nav  nav-tabs"  >
+	<li > <a  href="${pageContext.request.contextPath}/">Home</a></li>
     <li> <a href="${pageContext.request.contextPath}/download">Download</a></li>
     <%--<li> <a href="${pageContext.request.contextPath}/about">About Us</a></li>--%>
     <li> <a href="${pageContext.request.contextPath}/help">Help</a></li>
