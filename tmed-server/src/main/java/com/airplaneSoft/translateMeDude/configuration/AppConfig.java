@@ -51,7 +51,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	//	registry.addResourceHandler("/static/img/favicon.ico").addResourceLocations("/static/img/favicon.ico");
         registry.addResourceHandler("/static/**","C:/aaa/**", "C:/desktop_dude/**").addResourceLocations("/static/","C:/aaa/", "C:\\aaa\\");
-		//registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+//		registry.addResourceHandler("/static/**").addResourceLocations("/static/");
     }
     
     /**
@@ -110,6 +110,14 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		mailSender.setJavaMailProperties(mailProperties);
 
 		return mailSender;
+	}
+
+	@Controller
+	static class FaviconController {
+		@RequestMapping("favicon.ico")
+		String favicon() {
+			return "forward:/static/favicon.ico";
+		}
 	}
 
 }

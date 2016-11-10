@@ -72,7 +72,8 @@
     //    } );
 </script>
 <head>
-
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/img/favicon.ico" />
+    <title>Home</title>
 </head>
 <body>
 <div class="well lead">Home</div>
