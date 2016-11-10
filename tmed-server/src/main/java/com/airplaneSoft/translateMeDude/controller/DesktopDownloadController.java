@@ -76,6 +76,12 @@ public class DesktopDownloadController extends BaseController {
 
     private List<String> getFilesList(String folder){
         File file = new File(folder);
-        return Arrays.asList(file.list());
+        List<String> fileList;
+        try {
+            fileList = Arrays.asList(file.list());
+        }catch (Exception e){
+            throw new ResourceNotFoundException(e.getMessage());
+        }
+        return fileList;
     }
 }
