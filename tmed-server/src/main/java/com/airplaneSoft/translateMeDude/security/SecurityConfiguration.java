@@ -46,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/user-list").permitAll()
 				//.antMatchers("/newuser/**", "/delete-user-*").access("hasRole('ADMIN')")
 				.antMatchers("/edit-user-*").access("hasRole('ADMIN') or hasRole('DBA')")
-//				.antMatchers("/favicon.ico").permitAll()
+				.antMatchers("/favicon.ico").permitAll()
 				.antMatchers("/userGroups").permitAll()
 
 				//.antMatchers("/test").access("hasRole('DBA')")
@@ -60,8 +60,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.csrf()
 				.and()
 				.csrf().ignoringAntMatchers("/api/**")
-//				.and()
-//				.csrf().ignoringAntMatchers("/favicon.ico")
+				.and()
+				.csrf().ignoringAntMatchers("/favicon.ico")
 				//.csrf()
 				.and()
 				.exceptionHandling().accessDeniedPage("/Access_Denied");

@@ -8,7 +8,7 @@
     <title>Error Sending Email</title>
 </head>
 <body>
-<div class="well lead">Success</div>
+<div class="well lead">Error</div>
 <div class="generic-container col-xs-12" style="height:50px;">
     <div style="text-align: center">
         <div><h3>%=request.getAttribute("message")%</h3></div>
