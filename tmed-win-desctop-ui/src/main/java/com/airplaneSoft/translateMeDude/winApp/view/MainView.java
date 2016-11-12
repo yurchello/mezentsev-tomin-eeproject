@@ -1,6 +1,7 @@
 package com.airplaneSoft.translateMeDude.winApp.view;
 
 import com.airplaneSoft.translateMeDude.core.translationVerefier.TranslationVerifierImpl;
+import com.airplaneSoft.translateMeDude.winApp.App;
 import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
 import com.airplaneSoft.translateMeDude.winApp.viewModel.ForeignNativeMainViewModel;
 import com.airplaneSoft.translateMeDude.winApp.viewModel.MainViewModel;
@@ -63,9 +64,15 @@ public class MainView extends VBox {
         //handling the enter key pressed
         wordTranslationTextField.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode() == KeyCode.ENTER) translate();
-            if (keyEvent.getCode() == KeyCode.ESCAPE) {
-                //App.getMainStage().hide();
-            }
+//            if (keyEvent.getCode() == KeyCode.ESCAPE) {
+//                App.getMainStage().hide();
+//                App.setIsShow(false);
+//                keyEvent.consume();
+//            }
+        });
+        wordTranslationTextField.setOnMouseClicked(event -> {
+            App.getMainStage().requestFocus();
+            System.out.println("Mouse clicked on wordTranslationTextField");
         });
     }
 

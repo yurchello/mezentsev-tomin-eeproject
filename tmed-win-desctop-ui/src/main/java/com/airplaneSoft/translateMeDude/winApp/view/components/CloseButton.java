@@ -10,8 +10,8 @@ import javafx.stage.Stage;
  * Main popup close button component
  */
 public class CloseButton extends Parent {
-    private final static String SELECT_BUTTON = "cls_select.png";
-    private final static String NOT_SELECT_BUTTON = "cls_not_select.png";
+    private final static String SELECT_BUTTON = "cls_select.PNG";
+    private final static String NOT_SELECT_BUTTON = "cls_not_select.PNG";
     private final ImageView imageView;
 
     public CloseButton(Stage stageToClose) {
@@ -22,7 +22,7 @@ public class CloseButton extends Parent {
         this.getChildren().add(this.imageView);
         this.imageView.setOnMousePressed(evt -> {
             imageView.setImage(notSelect);
-            stageToClose.close();
+            stageToClose.hide();
             imageView.setImage(select);
             App.setIsShow(false);
         });

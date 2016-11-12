@@ -1,0 +1,1 @@
+javapackager.exe -createjar -nocss2bin -appclass com.airplaneSoft.translateMeDude.winApp.App -srcdir tmed-win-desctop-ui/target/classes -outdir tmed-win-desctop-ui/target/packager_jar -outfile TranslateMeDude.jar -v -manifestAttrs "Specification-Version=1.0,Implementation-Version=404,Specification-Title=TranslateMe Dude"

@@ -9,13 +9,16 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
 import javafx.util.Duration;
+import org.controlsfx.control.NotificationPane;
 import org.controlsfx.control.Notifications;
 import javax.imageio.ImageIO;
+import javax.management.Notification;
 import java.io.IOException;
 import static com.airplaneSoft.translateMeDude.winApp.utils.AppUtils.getStringProperty;
 
@@ -45,28 +48,32 @@ public class App extends Application {
      * Call main popup balloon
      */
     private static void notifier() {
-        Platform.runLater(() -> {
-                    //Stage owner = new Stage(StageStyle.TRANSPARENT);
-                    Stage owner = mainStage;
-                    owner.getIcons().add(AppUtils.ICON_IMAGE);
-                    StackPane root = new StackPane();
-                    root.setStyle("-fx-background-color: TRANSPARENT");
-                    Scene scene = new Scene(root, 1, 1);
-                    scene.setFill(Color.TRANSPARENT);
-                    owner.setScene(scene);
-                    owner.setWidth(1);
-                    owner.setHeight(1);
-                    owner.toBack();
-                    owner.show();
-                    //creating main popup content
-                    MainView mainView = new MainView();
-                    if (!isShow) {
-                        isShow = true;
-                        Notifications notifications = getNotifications(mainView, owner);
-                        notifications.show();
-                    }
-                }
-        );
+        if (!isShow) {
+            mainStage = new Stage(StageStyle.TRANSPARENT);
+            mainStage.getIcons().add(AppUtils.ICON_IMAGE);
+                        StackPane root = new StackPane();
+                        root.setStyle("-fx-background-color: TRANSPARENT");
+                        Scene scene = new Scene(root, 1, 1);
+                        scene.setFill(Color.TRANSPARENT);
+            mainStage.setScene(scene);
+            mainStage.setWidth(1);
+            mainStage.setHeight(1);
+            mainStage.toBack();
+            mainStage.show();
+            mainStage.setAlwaysOnTop(true);
+            mainStage.requestFocus();
+            MainView mainView = new MainView();
+            setIsShow(true);
+            Notifications notifications = getNotifications(mainView, mainStage);
+            notifications.show();
+            //check if stage was closed
+            mainStage.setOnCloseRequest(event -> {
+                mainStage.hide();
+                setIsShow(false);
+                event.consume();
+            });
+
+        }
     }
 
     /**
@@ -90,10 +97,15 @@ public class App extends Application {
         setGridStyle(closeButton);
 
         VBox vBox = new VBox(gridPane,content);
+        vBox.setFocusTraversable(true);
+//        vBox.setOnMouseClicked(event -> {
+//            owner.requestFocus();
+//        });
         return Notifications.create()
                 .hideAfter(Duration.INDEFINITE)
                 .graphic(vBox)
                 .darkStyle()
+                //.owner(owner)
                 .hideCloseButton();
     }
 
@@ -127,6 +139,7 @@ public class App extends Application {
                     .getResourceAsStream(TRAY_IMAGE_LOCATION)));
             // if the user double-clicks on the tray icon, show the main app stage.
             trayIcon.addActionListener(event -> {
+
                 Platform.runLater(App::notifier);
             });
             // setup the popup menu for the application.
