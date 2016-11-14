@@ -17,6 +17,9 @@
 
 
 <body>
+<div class="alert alert-danger">
+    <strong>Warning!</strong> This is a demo application. Current server has a limitations. Photo upload is unavailable.
+</div>
 <div class="well lead">Personal Page</div>
 <div class="text-colour">
     <div class="generic-container col-xs-12 " style="height:50px;">
