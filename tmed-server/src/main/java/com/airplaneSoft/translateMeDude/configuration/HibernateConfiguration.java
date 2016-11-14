@@ -40,11 +40,14 @@ public class HibernateConfiguration {
 	
     @Bean
     public DataSource dataSource() {
+        final String password = System.getenv("DB_PASSWORD");
+        final String username = System.getenv("DB_USERNAME");
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
         dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-        dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
-        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        //dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
         return dataSource;
     }
     
