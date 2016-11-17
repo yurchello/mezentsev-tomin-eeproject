@@ -1,9 +1,5 @@
 package com.airplaneSoft.translateMeDude.utils;
 
-import com.dropbox.core.*;
-
-
-import com.google.api.services.drive.Drive;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
