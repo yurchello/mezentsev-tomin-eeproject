@@ -52,7 +52,7 @@
                                     <Insets top="3" bottom="3" right="15" left="3"/>
                                 </GridPane.margin>
                             </PasswordField>
-                            <CheckBox fx:id="showCheckBox" text="%ui.settings.label.for.checkbox.show"
+                            <CheckBox fx:id="showCheckBox" visible="false" text="%ui.settings.label.for.checkbox.show"
                                       GridPane.rowIndex="3" GridPane.columnIndex="2">
                                 <GridPane.margin>
                                     <Insets top="3" bottom="3" right="15" left="3"/>
