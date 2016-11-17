@@ -12,18 +12,9 @@
         <dl>
             <dt><label>Windows</label></dt>
             <dd>
-                <c:if test="${fn:length(windowsFiles) != 0}">
-                    <c:forEach items="${windowsFiles}" var="file" varStatus="status">
-                        <div>
-                            <a href="<c:url value='/download/windows-${file}' />">${file}</a>
-                        </div>
-                    </c:forEach>
-                </c:if>
-            </dd>
-            <dd>
-                <c:if test="${fn:length(windowsFiles) == 0}">
-                    Sorry, dude... But, this OS not supported yet...
-                </c:if>
+                <div>
+                    <a target="_blank" href="<c:url value='https://www.dropbox.com/sh/x1k0v9oqwrtoj2s/AABxrV5-q2-GmXYrJ8eAF2oWa?dl=0' />">Download</a>
+                </div>
             </dd>
         </dl>
     </div>
@@ -32,18 +23,9 @@
         <dl>
             <dt><label>Android</label></dt>
             <dd>
-                <c:if test="${fn:length(androidFiles) != 0}">
-                    <c:forEach items="${androidFiles}" var="file" varStatus="status">
-                        <div>
-                            <a href="<c:url value='/download/android-${file}' />">${file}</a>
-                        </div>
-                    </c:forEach>
-                </c:if>
-            </dd>
-            <dd>
-                <c:if test="${fn:length(androidFiles) == 0}">
-                    Sorry, dude... But, this OS not supported yet...
-                </c:if>
+                <div>
+                    <a target="_blank" href="<c:url value='https://www.dropbox.com/sh/95v39kncx84mfgf/AADWowDTJ36AOV3f6B2YTnxMa?dl=0' />">Download</a>
+                </div>
             </dd>
         </dl>
     </div>
@@ -52,18 +34,9 @@
         <dl>
             <dt><label>IOS</label></dt>
             <dd>
-                <c:if test="${fn:length(iosFiles) != 0}">
-                    <c:forEach items="${iosFiles}" var="file" varStatus="status">
-                        <div>
-                            <a href="<c:url value='/download/ios-${file}' />">${file}</a>
-                        </div>
-                    </c:forEach>
-                </c:if>
-            </dd>
-            <dd>
-                <c:if test="${fn:length(iosFiles) == 0}">
-                    Sorry, dude... But, this OS not supported yet...
-                </c:if>
+                <div>
+                    <a target="_blank" href="<c:url value='https://www.dropbox.com/sh/gtt3ww8hr0fxqpc/AADwNaAltYF5xo8-25fkiFQVa?dl=0' />">Download</a>
+                </div>
             </dd>
         </dl>
     </div>

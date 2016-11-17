@@ -1,9 +1,14 @@
 package com.airplaneSoft.translateMeDude.utils;
 
+import com.dropbox.core.*;
+
+
+import com.google.api.services.drive.Drive;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.Locale;
 
 /**
  * Utility class for work with drive file system
