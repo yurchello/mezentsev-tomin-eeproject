@@ -1,5 +1,6 @@
 package com.airplaneSoft.translateMeDude.winApp.view;
 
+import com.airplaneSoft.translateMeDude.winApp.App;
 import com.airplaneSoft.translateMeDude.winApp.viewModel.SettingsDialogViewModel;
 import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
 import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingsKeys;
@@ -14,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.converter.BooleanStringConverter;
+import org.apache.log4j.Logger;
 import org.controlsfx.validation.ValidationSupport;
 
 import java.io.IOException;
@@ -25,6 +27,8 @@ import static com.airplaneSoft.translateMeDude.winApp.utils.AppUtils.getStringPr
  * Settings dialog view component
  */
 public class SettingsDialogView extends Dialog {
+    private static final Logger LOGGER = Logger.getLogger(SettingsDialogView.class);
+
     @FXML
     TextField urlField;
     @FXML
@@ -75,17 +79,17 @@ public class SettingsDialogView extends Dialog {
 
         okButton.addEventFilter(ActionEvent.ACTION, (event) -> {
             viewModel.saveToFile();
-            System.out.println("Ok settings button pressed");
+            LOGGER.info("Ok settings button pressed");
         });
 
         applyButton.addEventFilter(ActionEvent.ACTION, (event) -> {
             viewModel.saveModel();
-            System.out.println("Apply settings button pressed");
+            LOGGER.info("Apply settings button pressed");
             event.consume();
         });
 
         cancelButton.addEventFilter(ActionEvent.ACTION, (event) -> {
-            System.out.println("Cancel settings button pressed");
+            LOGGER.info("Cancel settings button pressed");
         });
 
         //invalid characters handling. Ok and apply buttons will be disabled,
@@ -97,7 +101,7 @@ public class SettingsDialogView extends Dialog {
 
         testButton.addEventFilter(ActionEvent.ACTION, (event) -> {
             viewModel.testConnection();
-            System.out.println("Test connection button pressed");
+            LOGGER.info("Test connection button pressed");
         });
     }
 

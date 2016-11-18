@@ -20,7 +20,6 @@ public class RandomWordGenerator implements WordGenerator {
     @Override
     public Word getWord() {
         if (words == null){
-            System.out.println("Words set is null.");
             return null;
         }
         Random rnd = new Random();

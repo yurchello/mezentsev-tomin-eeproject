@@ -1,6 +1,8 @@
 package com.airplaneSoft.translateMeDude.winApp.utils.vocabularyUtils;
 
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
+import com.airplaneSoft.translateMeDude.winApp.App;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -11,6 +13,7 @@ import java.util.Objects;
  * This class provide save vocabulary to drive and get it from drive.
  */
 public class VocabularyUtilsImpl implements VocabularyUtils {
+    private static final Logger LOGGER = Logger.getLogger(VocabularyUtilsImpl.class);
     /**
      * Serialize  wordsGroupList to hard drive.
      * @param wordsGroupList
@@ -23,17 +26,16 @@ public class VocabularyUtilsImpl implements VocabularyUtils {
             Files.deleteIfExists(VOCABULARY_FILE_PATH);
             Files.createFile(VOCABULARY_FILE_PATH);
         } catch (IOException e) {
-            System.out.println("Vocabulary serialize failed.");
-            e.printStackTrace();
+            LOGGER.error("Vocabulary serialize failed.", e);
             return false;
         }
         try (FileOutputStream fileOutputStream = new FileOutputStream(VOCABULARY_FILE_PATH.toFile());
              ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream)){
             outputStream.writeObject(wordsGroupList);
-            System.out.println("Vocabulary serialize success.");
+            LOGGER.info("Vocabulary serialize success.");
         } catch (IOException e) {
-            System.out.println("Vocabulary serialize failed.");
-            e.printStackTrace();
+            LOGGER.error("Vocabulary serialize failed.", e);
+
             return false;
         }
         return true;
@@ -48,11 +50,10 @@ public class VocabularyUtilsImpl implements VocabularyUtils {
         try (FileInputStream fileInputStream = new FileInputStream(VOCABULARY_FILE_PATH.toFile());
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)){
             List<WordsGroup> list = (List<WordsGroup>) objectInputStream.readObject();
-            System.out.println("Vocabulary deserialize success.");
+            LOGGER.info("Vocabulary deserialize success.");
             return list;
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Vocabulary deserialize failed.");
-            e.printStackTrace();
+            LOGGER.error("Vocabulary deserialize failed.", e);
             return null;
         }
     }

@@ -1,5 +1,6 @@
 package com.airplaneSoft.translateMeDude.winApp.viewModel;
 
+import com.airplaneSoft.translateMeDude.winApp.App;
 import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
 import com.airplaneSoft.translateMeDude.winApp.view.LoadingDialogView;
 import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingModel;
@@ -11,6 +12,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.concurrent.Worker;
 import javafx.scene.Node;
+import org.apache.log4j.Logger;
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -21,6 +24,7 @@ import java.util.concurrent.ExecutionException;
  * Settings view model
  */
 public class SettingsDialogViewModel {
+    private static final Logger LOGGER = Logger.getLogger(SettingsDialogViewModel.class);
     private Set<SettingModel> settingModels = new HashSet<>();
     private Settings settings;
     private ObservableSet<Node> invalidNodes = FXCollections.observableSet();
@@ -50,8 +54,7 @@ public class SettingsDialogViewModel {
         try {
             settings.save();
         }catch (Exception e){
-            System.out.println("Error save settings to file ");
-            e.printStackTrace();
+           LOGGER.error("Error save settings to file", e);
         }
     }
 
@@ -63,9 +66,9 @@ public class SettingsDialogViewModel {
         try{
             return settingModels.stream().filter(settingStateModel -> settingStateModel.getKey().equals(key)).findFirst().get();
         }catch (NoSuchElementException e){
-            System.out.println("Setting with name " + key + " does not exist");
-            return null;
+            LOGGER.error("Setting with name " + key + " does not exist" , e);
         }
+        return null;
     }
 
     /**
@@ -88,12 +91,12 @@ public class SettingsDialogViewModel {
                 loadingDialog.close();
                 if (newState == Worker.State.FAILED || !isValidConnections || exception!= null) {
                     GuiUtils.showErrorAlert(AppUtils.getStringProperty("ui.alert.error"), AppUtils.getStringProperty("ui.alert.test.connection.error"));
-                    System.out.println("Test connection ERROR");
+                    LOGGER.info("Test connection ERROR", exception);
                 }else {
                     GuiUtils.showInfoAlert(AppUtils.getStringProperty("ui.alert.success"), AppUtils.getStringProperty("ui.alert.test.connection.success"));
-                    System.out.println("Test connection SUCCESS");
+                    LOGGER.info("Test connection SUCCESS");
                 }
-                System.out.println("Test connection task status " + newState);
+                LOGGER.info("Test connection task status " + newState);
             }
         });
         new Thread(testConnectionTask).start();

@@ -2,6 +2,7 @@ package com.airplaneSoft.translateMeDude.winApp.utils;
 
 import com.airplaneSoft.translateMeDude.models.User;
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
+import com.airplaneSoft.translateMeDude.winApp.App;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.GenericType;
@@ -9,6 +10,7 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
+import org.apache.log4j.Logger;
 
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
@@ -20,6 +22,7 @@ import java.util.List;
  * This class provides to control vocabulary from remote personal account by REST full api
  */
 public class RemoteServiceUtils {
+    private static final Logger LOGGER = Logger.getLogger(RemoteServiceUtils.class);
     //main site url
     private String url;
     //user ssoid
@@ -53,23 +56,22 @@ public class RemoteServiceUtils {
             List<WordsGroup> wordsGroups;
             status = response.getStatus();
             if (status == Response.Status.OK.getStatusCode()) {
-                System.out.println("URL: " + URL_FULL_PATH + " " + user + " http status = OK");
+                LOGGER.info("URL: " + URL_FULL_PATH + " " + user + " http status = OK");
                 wordsGroups = response.getEntity(new GenericType<List<WordsGroup>>(){});
                 return wordsGroups;
             }
             if (status == Response.Status.BAD_REQUEST.getStatusCode()) {
-                System.out.println("URL: " + URL_FULL_PATH + " " + user + " http status = BAD_REQUEST");
+                LOGGER.info("URL: " + URL_FULL_PATH + " " + user + " http status = BAD_REQUEST");
                 return null;
             }
             if (status == Response.Status.NOT_FOUND.getStatusCode()){
-                System.out.println("URL: " + URL_FULL_PATH + " "  + user + " http status = NOT_FOUND");
+                LOGGER.info("URL: " + URL_FULL_PATH + " "  + user + " http status = NOT_FOUND");
                 return null;
             }
         }catch (Exception e){
-            System.out.println("URL connection: " + URL_FULL_PATH + " " + user + " Error.");
-            e.printStackTrace();
+            LOGGER.error("URL connection: " + URL_FULL_PATH + " " + user + " Error.", e);
         }
-        System.out.println("URL: " + URL_FULL_PATH + " "  + user + "Bad http status = " + status);
+        LOGGER.info("URL: " + URL_FULL_PATH + " "  + user + "Bad http status = " + status);
         return null;
     }
 

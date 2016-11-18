@@ -1,5 +1,6 @@
 package com.airplaneSoft.translateMeDude.winApp.viewModel;
 
+import com.airplaneSoft.translateMeDude.winApp.App;
 import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
 import com.airplaneSoft.translateMeDude.winApp.view.LoadingDialogView;
 import com.airplaneSoft.translateMeDude.winApp.models.settings.Settings;
@@ -11,11 +12,13 @@ import com.airplaneSoft.translateMeDude.winApp.utils.RemoteServiceUtils;
 import com.airplaneSoft.translateMeDude.winApp.utils.vocabularyUtils.VocabularyUtilsImpl;
 import javafx.application.Platform;
 import javafx.concurrent.Worker;
+import org.apache.log4j.Logger;
 
 /**
  * AWT context menu model
  */
 public class AWTMenuModel {
+    private static final Logger LOGGER = Logger.getLogger(AWTMenuModel.class);
     private final Settings settings;
     private LoadingDialogView loadingDialog;
 
@@ -42,14 +45,14 @@ public class AWTMenuModel {
                 loadingDialog.close();
                 GuiUtils.showErrorAlert(AppUtils.getStringProperty("ui.alert.error"),
                         AppUtils.getStringProperty("ui.alert.update.error"));
-                System.out.println("Update ERROR");
+                LOGGER.info("Update ERROR");
             } else if (newState == Worker.State.SUCCEEDED) {
                 loadingDialog.close();
                 GuiUtils.showInfoAlert(AppUtils.getStringProperty("ui.alert.success"),
                         AppUtils.getStringProperty("ui.alert.update.success"));
-                System.out.println("Test connection SUCCESS");
+                LOGGER.info("Test connection SUCCESS");
             }
-            System.out.println("Update task status " + newState);
+            LOGGER.info("Update task status " + newState);
         });
         new Thread(task).start();
     }

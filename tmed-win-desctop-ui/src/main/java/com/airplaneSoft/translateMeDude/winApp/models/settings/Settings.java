@@ -31,8 +31,4 @@ public interface Settings {
             return false;
         }
     }
-
-
-
-
 }

@@ -1,6 +1,8 @@
 package com.airplaneSoft.translateMeDude.winApp.models.settings;
 
+import com.airplaneSoft.translateMeDude.winApp.App;
 import com.airplaneSoft.translateMeDude.winApp.utils.AppUtils;
+import org.apache.log4j.Logger;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
@@ -23,7 +25,7 @@ import java.util.TreeMap;
  * hard drive saving.
  */
 public class SettingsImpl implements Settings {
-
+    private static final Logger LOGGER = Logger.getLogger(SettingsImpl.class);
     private static final String SETTINGS_FILE_NAME = "settings.xml";
     public static final String APP_FOLDER = "TranslateMe_Dude";
     private static final Path APP_PATH = Paths.get(System.getProperty("user.home"), APP_FOLDER);
@@ -73,13 +75,13 @@ public class SettingsImpl implements Settings {
     public void save() {
         try {
             if(SETTINGS_FILE == null){
-                System.out.println("File path is not set. " + SETTINGS_FILE);
+                LOGGER.warn("File path is not set. " + SETTINGS_FILE);
                 return;
             }
 
             File settingsDir = SETTINGS_FILE.getParentFile();
             if(!settingsDir.exists() && !settingsDir.mkdirs()) {
-                System.out.println("Settings directory " + settingsDir + " not exist.");
+                LOGGER.warn("Settings directory " + settingsDir + " not exist.");
                 return;
             }
 
@@ -90,9 +92,9 @@ public class SettingsImpl implements Settings {
             putSettingsToDocument(document);
             saveDocument(document);
 
-            System.out.println("Settings saved");
+            LOGGER.info("Settings saved");
         } catch (Exception e) {
-            System.out.println(e + "Settings save failed.");
+            LOGGER.error("Settings save failed.", e);
         }
     }
 
@@ -134,7 +136,7 @@ public class SettingsImpl implements Settings {
         clearSettingsMap();
         try {
             if(SETTINGS_FILE == null){
-                System.out.println("File path is not set. " + SETTINGS_FILE);
+                LOGGER.warn("File path is not set. " + SETTINGS_FILE);
                 return;
             }
             if (!SETTINGS_FILE.exists()) {
@@ -143,7 +145,7 @@ public class SettingsImpl implements Settings {
             }
             fillSettingsMap();
         }catch (Exception e){
-            System.out.println(e + "Failed to load " + SETTINGS_FILE);
+            LOGGER.warn(e + "Failed to load " + SETTINGS_FILE);
             clearSettingsMap();
         }
     }

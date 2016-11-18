@@ -9,24 +9,22 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
 import javafx.util.Duration;
-import org.controlsfx.control.NotificationPane;
 import org.controlsfx.control.Notifications;
 import javax.imageio.ImageIO;
-import javax.management.Notification;
 import java.io.IOException;
 import static com.airplaneSoft.translateMeDude.winApp.utils.AppUtils.getStringProperty;
+import org.apache.log4j.Logger;
 
 /**
  * Main app run class. This class contains AWT UI components, that provides to create windows tray app.
  */
 public class App extends Application {
-
+    private static final Logger LOGGER = Logger.getLogger(App.class);
     private static final String TRAY_IMAGE_LOCATION = "tray_icon_16x16.png";
     private static Stage mainStage;
     public static boolean isShow;
@@ -148,10 +146,9 @@ public class App extends Application {
                 tray.remove(trayIcon);//clean icon
             }));
             tray.add(trayIcon);
-            System.out.println("Application run");
+            LOGGER.info("Application run");
         } catch (java.awt.AWTException | IOException e) {
-            System.out.println("Unable to init system tray");
-            e.printStackTrace();
+            LOGGER.error("Unable to init system tray" , e);
         }
     }
 

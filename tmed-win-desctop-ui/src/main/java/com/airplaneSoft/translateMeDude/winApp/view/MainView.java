@@ -12,12 +12,15 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 
 /**
  * Main popup view
  */
 public class MainView extends VBox {
+    private static final Logger LOGGER = Logger.getLogger(MainView.class);
     @FXML
     GridPane gridPane;
     @FXML
@@ -58,7 +61,7 @@ public class MainView extends VBox {
 
         translateButton.addEventFilter(ActionEvent.ACTION, (event) -> {
             translate();
-            System.out.println("Translate button pressed");
+            LOGGER.info("Translate button pressed");
         });
 
         //handling the enter key pressed
@@ -72,7 +75,7 @@ public class MainView extends VBox {
         });
         wordTranslationTextField.setOnMouseClicked(event -> {
             App.getMainStage().requestFocus();
-            System.out.println("Mouse clicked on wordTranslationTextField");
+            LOGGER.info("Mouse clicked on wordTranslationTextField");
         });
     }
 

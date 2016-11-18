@@ -17,7 +17,6 @@ public class WordsManagerImpl implements WordsManager {
     @Override
     public List<Word> getWords() {
         if (wordsGroupList == null){
-            System.out.println("wordsGroupList is null");
             return null;
         }
         Set<Word> wordSet = wordsGroupList.stream().map(WordsGroup::getWords).reduce((a, b) -> {
