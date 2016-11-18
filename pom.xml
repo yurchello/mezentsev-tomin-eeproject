@@ -14,7 +14,7 @@
         <module>tmed-core</module>
         <module>tmed-common</module>
         <module>tmed-server</module>
-        <!--<module>tmed-win-desctop-ui</module>-->
+        <module>tmed-win-desctop-ui</module>
     </modules>
 
 
