@@ -23,8 +23,6 @@ public class WordsManagerImpl implements WordsManager {
             a.addAll(b);
             return a;
         }).get();
-
-
         return new ArrayList<>(wordSet);
     }
 

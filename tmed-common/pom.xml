@@ -28,6 +28,11 @@
             <artifactId>testng</artifactId>
             <version>6.9.10</version>
         </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
 
     <build>

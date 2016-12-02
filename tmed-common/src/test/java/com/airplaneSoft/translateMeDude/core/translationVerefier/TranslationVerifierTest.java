@@ -67,10 +67,7 @@ public class TranslationVerifierTest {
         assertTrue(result);
     }
 
-    //correct with whitespaces
-
-
-    //incorect cases
+    //incorrect cases
     @Test(priority = 70)
     public void testVerifyExample7() throws Exception {
         TranslationVerifier translationVerifier = new TranslationVerifierImpl();
