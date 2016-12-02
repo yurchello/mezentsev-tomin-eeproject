@@ -1,4 +1,4 @@
-package com.airplaneSoft.translateMeDude.winApp;
+package com.airplaneSoft.translateMeDude.winApp.utils;
 
 import com.airplaneSoft.translateMeDude.models.User;
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
@@ -10,20 +10,26 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+import static org.testng.Assert.*;
 
 /**
- * Created by Mezentsev.Y on 10/1/2016.
+ * Created by Mezentsev.Y on 12/1/2016.
  */
-public class ApiTest {
-    @Test
+public class RemoteServiceUtilsTest {
+    private final String URL = "http://localhost:8080/";
+    private final String ssoid = "qqq";
+    private final String password = "qqq";
+
+
+    @Test(enabled=false)
     public void wordGroupClientTest(){
         final String URL = "http://localhost:8080/api/getGroupsList";
         User user = new User();
         user.setSsoId("qqq");
-        user.setFirstName("ddd");
         user.setPassword("qqq");
         try {
             ClientConfig clientConfig = new DefaultClientConfig();
@@ -45,9 +51,20 @@ public class ApiTest {
         } catch (Exception e) {
 
             e.printStackTrace();
-
         }
-
-
     }
+
+    @Test
+    public void testConnectionTest(){
+        RemoteServiceUtils serviceUtils = new RemoteServiceUtils(URL, ssoid, password);
+        Assert.assertTrue(serviceUtils.testConnection());
+    }
+
+    @Test
+    public void getWordGroupsListTest(){
+        RemoteServiceUtils serviceUtils = new RemoteServiceUtils(URL, ssoid, password);
+        Assert.assertNotNull(serviceUtils.getWordGroupsList());
+        Assert.assertTrue(serviceUtils.getWordGroupsList().size()>0);
+    }
+
 }

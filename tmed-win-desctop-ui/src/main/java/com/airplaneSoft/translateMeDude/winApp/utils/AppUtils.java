@@ -1,7 +1,9 @@
 package com.airplaneSoft.translateMeDude.winApp.utils;
 
+import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingsImpl;
 import javafx.scene.image.Image;
 
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 /**

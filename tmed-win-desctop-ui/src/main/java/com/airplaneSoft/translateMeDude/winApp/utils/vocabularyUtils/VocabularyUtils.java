@@ -10,9 +10,12 @@ import java.util.List;
  * This interface describes signature of vocabulary object saving
  */
 public interface VocabularyUtils {
-    String VOCABULARY_FILE_NAME = "vocabulary.vcb";
-    Path VOCABULARY_FILE_PATH = SettingsImpl.getAppPath().resolve(VOCABULARY_FILE_NAME);
 
+    /**
+     * Serialize  wordsGroupList to hard drive.
+     * @param wordsGroupList
+     * @return true if operation is success
+     */
     boolean saveFullVocabulary(List<WordsGroup> wordsGroupList);
 
     List<WordsGroup> getFullVocabulary();

@@ -35,7 +35,7 @@ public class AWTMenuModel {
             loadingDialog = new LoadingDialogView(AppUtils.getStringProperty("ui.loading.dialog.loading.vocabulary"));
             loadingDialog.show();
         });
-        UpdateVocabularyTask task = new UpdateVocabularyTask(new VocabularyUtilsImpl(),
+        UpdateVocabularyTask task = new UpdateVocabularyTask(new VocabularyUtilsImpl(SettingsImpl.getInstance().getVocabularyPath()),
                 new RemoteServiceUtils(
                         settings.get(SettingsKeys.URL),
                         settings.get(SettingsKeys.SSOID),

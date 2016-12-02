@@ -77,7 +77,7 @@ public class RemoteServiceUtils {
 
     /**
      * Provides to test connection with personal account
-     * @return
+     * @return true if connection is success
      */
     public boolean testConnection(){
         final String URL_FULL_PATH = url + AppUtils.getStringProperty("rest.vocabulary.update");

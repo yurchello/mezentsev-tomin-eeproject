@@ -31,6 +31,9 @@ public class SettingsImpl implements Settings {
     private static final Path APP_PATH = Paths.get(System.getProperty("user.home"), APP_FOLDER);
     private static final File SETTINGS_FILE = APP_PATH.resolve(SETTINGS_FILE_NAME).toFile();
     private static final SettingsImpl instance = new SettingsImpl();
+    private String VOCABULARY_FILE_NAME = "vocabulary.vcb";
+    private Path VOCABULARY_FILE_PATH = APP_PATH.resolve(VOCABULARY_FILE_NAME);
+
     private final Map<String, String> settingsMap = new TreeMap<>();
 
 
@@ -186,5 +189,13 @@ public class SettingsImpl implements Settings {
      */
     public static File getSettingsFile() {
         return SETTINGS_FILE;
+    }
+
+    /**
+     *
+     * @return path of file of serialized words groups
+     */
+    public Path getVocabularyPath() {
+        return VOCABULARY_FILE_PATH;
     }
 }

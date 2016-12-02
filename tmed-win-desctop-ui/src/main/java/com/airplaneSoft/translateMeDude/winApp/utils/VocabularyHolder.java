@@ -4,6 +4,7 @@ import com.airplaneSoft.translateMeDude.core.wordGenerator.RandomWordGenerator;
 import com.airplaneSoft.translateMeDude.core.wordGenerator.WordGenerator;
 import com.airplaneSoft.translateMeDude.core.wordManager.WordsManager;
 import com.airplaneSoft.translateMeDude.core.wordManager.WordsManagerImpl;
+import com.airplaneSoft.translateMeDude.winApp.models.settings.SettingsImpl;
 import com.airplaneSoft.translateMeDude.winApp.utils.vocabularyUtils.VocabularyUtils;
 import com.airplaneSoft.translateMeDude.winApp.utils.vocabularyUtils.VocabularyUtilsImpl;
 
@@ -15,7 +16,7 @@ public class VocabularyHolder {
     private WordsManager wordsManager;
     private WordGenerator wordGenerator;
     private VocabularyHolder() {
-        VocabularyUtils vocabularyUtils = new VocabularyUtilsImpl();
+        VocabularyUtils vocabularyUtils = new VocabularyUtilsImpl(SettingsImpl.getInstance().getVocabularyPath());
         this.wordsManager = new WordsManagerImpl(vocabularyUtils.getFullVocabulary());
         this.wordGenerator = new RandomWordGenerator(this.wordsManager.getWords());
 
