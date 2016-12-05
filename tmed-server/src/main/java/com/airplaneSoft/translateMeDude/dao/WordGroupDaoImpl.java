@@ -21,16 +21,6 @@ import java.util.List;
 @Repository("wordGroupDao")
 public class WordGroupDaoImpl extends AbstractDao<Integer, WordsGroup> implements WordGroupDao{
 
-    @SuppressWarnings("unchecked")
-    public List<WordsGroup> findAllGroups(){
-        Criteria criteria = createEntityCriteria().addOrder(Order.asc("name"));
-        Session session = getSession();
-        session.get(WordsGroup.class, new Integer(1));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
-        List<WordsGroup> groups = (List<WordsGroup>) criteria.list();
-        return groups;
-    }
-
     @Override
     public void createGroup(WordsGroup wordsGroup, User user) {
         wordsGroup.setUser(user);

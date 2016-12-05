@@ -19,6 +19,9 @@
         <hibernate.version>4.3.11.Final</hibernate.version>
         <mysql.connector.version>5.1.31</mysql.connector.version>
         <apachetiles.version>3.0.5</apachetiles.version>
+
+        <dbunit.version>2.2</dbunit.version>
+        <mockito.version>1.10.19</mockito.version>
     </properties>
 
 
@@ -229,7 +232,20 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!--TestNG dependencies-->
+        <dependency>
+        <groupId>dbunit</groupId>
+        <artifactId>dbunit</artifactId>
+        <version>${dbunit.version}</version>
+        <scope>test</scope>
+        </dependency>
 
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 

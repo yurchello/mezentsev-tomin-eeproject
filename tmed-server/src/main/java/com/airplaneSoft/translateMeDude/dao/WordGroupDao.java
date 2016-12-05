@@ -12,8 +12,6 @@ import java.util.List;
  */
 public interface WordGroupDao {
 
-    List<WordsGroup> findAllGroups();//todo remove
-
     void createGroup(WordsGroup wordsGroup, User user);
 
     void updateGroup(WordsGroup wordsGroup);
