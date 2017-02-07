@@ -4,10 +4,7 @@ import com.airplaneSoft.translateMeDude.models.User;
 import com.airplaneSoft.translateMeDude.models.vocabulary.Word;
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
 
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -41,7 +38,13 @@ public class WordGroupDaoImpl extends AbstractDao<Integer, WordsGroup> implement
     public List<WordsGroup> findAllUserGroups(User user) {
         Query query = getSession().createQuery("FROM WordsGroup as worgGoup where worgGoup.user =:currentUser");
         query.setParameter("currentUser", user);
-        List groups = query.list();
+        List<WordsGroup> groups = query.list();
+        if(groups!=null){
+            for (WordsGroup wg: groups) {
+                Hibernate.initialize(wg.getUser().getUserProfiles());
+            }
+
+        }
         return groups;
     }
 
