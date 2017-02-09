@@ -1,5 +1,6 @@
 package com.airplaneSoft.translateMeDude.core;
 
+import com.airplaneSoft.translateMeDude.core.utils.EncoderUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,8 +13,8 @@ public class UtilsTest {
     @Test
     public void testGetPasswordEncoder() throws Exception {
         final String PASSWORD = "pass1234";
-        String encode = Utils.getPasswordEncoder().encode(PASSWORD);
-        Assert.assertTrue(Utils.getPasswordEncoder().matches(PASSWORD, encode));
+        String encode = EncoderUtils.getPasswordEncoder().encode(PASSWORD);
+        Assert.assertTrue(EncoderUtils.getPasswordEncoder().matches(PASSWORD, encode));
     }
 
 }

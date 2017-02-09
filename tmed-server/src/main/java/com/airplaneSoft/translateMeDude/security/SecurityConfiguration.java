@@ -1,6 +1,6 @@
 package com.airplaneSoft.translateMeDude.security;
 
-import com.airplaneSoft.translateMeDude.core.Utils;
+import com.airplaneSoft.translateMeDude.core.utils.EncoderUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -73,7 +73,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return Utils.getPasswordEncoder();
+		return EncoderUtils.getPasswordEncoder();
 	}
 
 	@Bean

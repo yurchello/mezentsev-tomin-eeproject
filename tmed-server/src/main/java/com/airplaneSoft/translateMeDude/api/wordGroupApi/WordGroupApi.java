@@ -1,6 +1,7 @@
 package com.airplaneSoft.translateMeDude.api.wordGroupApi;
 
-import com.airplaneSoft.translateMeDude.core.Utils;
+
+import com.airplaneSoft.translateMeDude.core.utils.EncoderUtils;
 import com.airplaneSoft.translateMeDude.models.User;
 import com.airplaneSoft.translateMeDude.models.vocabulary.WordsGroup;
 import com.airplaneSoft.translateMeDude.service.UserService;
@@ -37,7 +38,7 @@ public class WordGroupApi {
     @RequestMapping(value="/getGroupsList", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<WordsGroup>> getGroupsList(@RequestBody User user){
         User ownerUser = userService.findBySSO(user.getSsoId());
-        if (!Utils.getPasswordEncoder().matches(user.getPassword(), ownerUser.getPassword()))
+        if (!EncoderUtils.getPasswordEncoder().matches(user.getPassword(), ownerUser.getPassword()))
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         List<WordsGroup> list = wordGroupService.findAllUserGroups(ownerUser);
         if (list == null)return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -53,7 +54,7 @@ public class WordGroupApi {
     @RequestMapping(value="/testConnection", method = RequestMethod.POST)
     ResponseEntity<Void> testConnection(@RequestBody User user){
         User ownerUser = userService.findBySSO(user.getSsoId());
-        if (!Utils.getPasswordEncoder().matches(user.getPassword(), ownerUser.getPassword()))
+        if (!EncoderUtils.getPasswordEncoder().matches(user.getPassword(), ownerUser.getPassword()))
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         else return new ResponseEntity<>(HttpStatus.OK);
     }
