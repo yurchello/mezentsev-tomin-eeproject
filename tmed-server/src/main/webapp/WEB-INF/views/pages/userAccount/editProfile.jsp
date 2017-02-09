@@ -17,7 +17,7 @@
         <form:input type="hidden" path="id" id="id"/>
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-2 control-lable text-colour" for="ssoId">SSO ID</label>
+                <label class="col-md-2 control-lable text-colour" for="ssoId">NickName(SSO ID)</label>
                 <div class="col-md-4">
                     <form:input type="text" path="ssoId" id="ssoId" class="form-control input-sm" disabled="true"/>
                 </div>
